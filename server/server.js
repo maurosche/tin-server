@@ -41,8 +41,11 @@ app.use(express.static(path.resolve(__dirname, '../public')));
 app.use( require('./routes/index'));
 
 mongoose.connect(process.env.urlDB, (err,res)=>{
-     if (err) throw err;
-
+     if (err) 
+     {
+        console.log("ERROR: ",err);
+        throw err;
+     }
      console.log("CONEXION OK!!");
 });
 
