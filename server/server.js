@@ -43,7 +43,7 @@ app.use( require('./routes/index'));
 mongoose.connect(process.env.urlDB, (err,res)=>{
      if (err) 
      {
-        console.log("ERROR: ",err);
+        console.log("ERROR!!! : ",err);
         throw err;
      }
      console.log("CONEXION OK!!");

@@ -26,7 +26,7 @@ let urlDB = '';
 // if ( process.env.NODE_ENV == 'dev') {
 //     urlDB = 'mongodb://localhost:27017/tinder';
 // } else{
-      urlDB = 'mongodb://maurosche:39523952@ds151970.mlab.com:51970/tinder';
+      urlDB = 'mongodb://maurosche:39523952m@ds151970.mlab.com:51970/tinder';
 // }
 
 
