@@ -1,5 +1,7 @@
 const {io} = require('../server');
 
+console.log('ADENTRO');
+
 io.on('connection', (client)=>{
 
     console.log('Usuario conectado');
