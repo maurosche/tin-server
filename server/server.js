@@ -4,9 +4,6 @@ const path = require('path');
 
 const express = require('express');
 const socketIO = require('socket.io');
-const http = require('http');
-const appSocket = express();
-let serverScoket = http.createServer(appSocket);
 
 const mongoose = require('mongoose');
 
@@ -71,6 +68,9 @@ app.listen(process.env.PORT ,() => {
 // ========================
 //   SOCKETS
 // ========================
+// const http = require('http');
+// const appSocket = express();
+// let serverScoket = http.createServer(appSocket);
 // module.exports.io = socketIO(serverScoket);
 // require('./providers/socket.provider');
 
