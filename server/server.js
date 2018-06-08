@@ -71,14 +71,14 @@ app.listen(process.env.PORT ,() => {
 // ========================
 //   SOCKETS
 // ========================
-module.exports.io = socketIO(serverScoket);
-require('./providers/socket.provider');
+// module.exports.io = socketIO(serverScoket);
+// require('./providers/socket.provider');
 
-serverScoket.listen(process.env.PORT_SOCKETS, (err) => {
+// serverScoket.listen(process.env.PORT_SOCKETS, (err) => {
 
-    console.log("ERROR EN SOCKETS : ",err);
-    throw err;
+//     console.log("ERROR EN SOCKETS : ",err);
+//     throw err;
 
-    console.log('SOCKETS escuchando en puerto: ', process.env.PORT_SOCKETS);
+//     console.log('SOCKETS escuchando en puerto: ', process.env.PORT_SOCKETS);
 
-});
+// });
