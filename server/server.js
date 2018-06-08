@@ -3,6 +3,11 @@ require('./config/config');
 const path = require('path');
 
 const express = require('express');
+const socketIO = require('socket.io');
+const http = require('http');
+const appSocket = express();
+let serverScoket = http.createServer(appSocket);
+
 const mongoose = require('mongoose');
 
 const app = express();
@@ -40,15 +45,40 @@ app.use(express.static(path.resolve(__dirname, '../public')));
 
 app.use( require('./routes/index'));
 
+// ========================
+//   MONGOO BD
+// ========================
 mongoose.connect(process.env.urlDB, (err,res)=>{
      if (err) 
      {
-        console.log("ERROR!!! : ",err);
+        console.log("ERROR EN BASE MONGOO : ",err);
         throw err;
      }
-     console.log("CONEXION OK!!");
+     console.log("CONEXION MONGOO OK!");
 });
 
+// ========================
+//   REST API
+// ========================
 app.listen(process.env.PORT ,() => {
-    console.log('Escuhando en puerto: ', process.env.PORT);
+
+    console.log("ERROR EN REST API : ",err);
+    throw err;
+
+    console.log('REST API escuchando en puerto: ', process.env.PORT);
+});
+
+// ========================
+//   SOCKETS
+// ========================
+module.exports.io = socketIO(serverScoket);
+require('./providers/socket.provider');
+
+serverScoket.listen(process.env.PORT_SOCKETS, (err) => {
+
+    console.log("ERROR EN SOCKETS : ",err);
+    throw err;
+
+    console.log('SOCKETS escuchando en puerto: ', process.env.PORT_SOCKETS);
+
 });

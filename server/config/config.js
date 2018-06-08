@@ -1,7 +1,12 @@
 // ========================
-//   PUERTO
+//   PUERTO REST API
 // ========================
 process.env.PORT = process.env.PORT || 3000;
+
+// ========================
+//   PUERTO SOCKETS
+// ========================
+process.env.PORT_SOCKETS = process.env.PORT_SOCKETS || 3001;
 
 // ========================
 //   ENTORNO
