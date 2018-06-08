@@ -56,17 +56,16 @@ mongoose.connect(process.env.urlDB, (err,res)=>{
 // ========================
 //   REST API
 // ========================
-var p = 3000;
-app.listen(p ,(err) => {
+// app.listen(process.env.PORT ,(err) => {
 
-    if (err) 
-    {
-        console.log("ERROR EN REST API : ",err);
-        throw err;
-    }
+//     if (err) 
+//     {
+//         console.log("ERROR EN REST API : ",err);
+//         throw err;
+//     }
     
-    console.log('REST API escuchando en puerto: ', p);
-});
+//     console.log('REST API escuchando en puerto: ', process.env.PORT);
+// });
 
 // ========================
 //   SOCKETS
