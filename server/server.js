@@ -3,7 +3,6 @@ require('./config/config');
 const path = require('path');
 
 const express = require('express');
-const socketIO = require('socket.io');
 
 const mongoose = require('mongoose');
 
@@ -68,17 +67,18 @@ app.listen(process.env.PORT ,() => {
 // ========================
 //   SOCKETS
 // ========================
-// const http = require('http');
-// const appSocket = express();
-// let serverScoket = http.createServer(appSocket);
-// module.exports.io = socketIO(serverScoket);
-// require('./providers/socket.provider');
+const http = require('http');
+const appSocket = express();
+const socketIO = require('socket.io');
+let serverScoket = http.createServer(appSocket);
+module.exports.io = socketIO(serverScoket);
+require('./providers/socket.provider');
 
-// serverScoket.listen(process.env.PORT_SOCKETS, (err) => {
+serverScoket.listen(process.env.PORT_SOCKETS, (err) => {
 
-//     console.log("ERROR EN SOCKETS : ",err);
-//     throw err;
+    console.log("ERROR EN SOCKETS : ",err);
+    throw err;
 
-//     console.log('SOCKETS escuchando en puerto: ', process.env.PORT_SOCKETS);
+    console.log('SOCKETS escuchando en puerto: ', process.env.PORT_SOCKETS);
 
-// });
+});
