@@ -72,7 +72,7 @@ const appSocket = express();
 const socketIO = require('socket.io');
 let server = http.createServer(app);
 module.exports.io = socketIO(server);
-require('./providers/socket.provider');
+//require('./providers/socket.provider');
 
 server.listen(process.env.PORT, (err) => {
 
