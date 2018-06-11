@@ -94,7 +94,7 @@ const socketIO = require('socket.io');
 
 const server = express()
  // .use((req, res) => res.sendFile(INDEX) )
-  .listen(3000 , () => console.log(`Listening on ${ 3000  }`));
+  .listen(process.env.PORT , () => console.log(`Listening on ${ process.env.PORT  }`));
 
 const io = socketIO(server);
 
