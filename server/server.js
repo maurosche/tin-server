@@ -91,10 +91,7 @@ const express = require('express');
 
 
 const socketIO = require('socket.io');
-
-const server = express()
- // .use((req, res) => res.sendFile(INDEX) )
-  .listen(process.env.PORT , () => console.log(`Listening on ${ process.env.PORT  }`));
+const app = express();
 
   // Add headers
   server.use(function (req, res, next) {
@@ -116,6 +113,10 @@ const server = express()
     // Pass to next layer of middleware
     next();
 });
+
+const server = app
+ // .use((req, res) => res.sendFile(INDEX) )
+  .listen(process.env.PORT , () => console.log(`Listening on ${ process.env.PORT  }`));
 
 const io = socketIO(server);
 
