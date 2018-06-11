@@ -74,7 +74,8 @@ const http = require('http');
 const appSocket = express();
 const socketIO = require('socket.io');
 let serverScoket = http.createServer(appSocket);
-module.exports.io = socketIO(serverScoket);
+//module.exports.io = socketIO(serverScoket);
+let io = socketIO(serverScoket);
 //require('./providers/socket.provider');
 
 serverScoket.listen(process.env.PORT, (err) => {
