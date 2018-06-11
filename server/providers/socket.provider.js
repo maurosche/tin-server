@@ -19,9 +19,9 @@ let enviarMatch = (usuario1,usuario2)=>{
 
 let enviarChat = (usuario1,usuario2,msj)=>{
     
-    io.emit(usuario2._id,{
+    io.emit(usuario1,{
         tipo : 'chat',
-        usuario : usuario1,
+        usuario : usuario2,
         msj
     });
 };

@@ -2,7 +2,8 @@ const express = require('express');
 
 const Chat = require('../models/chat');
 const Usuario = require('../models/usuario');
-const { getChats} = require('../providers/chat.provider');
+const { getChats, getChat, postChat} = require('../providers/chat.provider');
+const { enviarChat } = require('../providers/socket.provider');
 
 const { verificarToken,verificarAdmin_Role } = require('../middlewares/autenticacion');
 
@@ -39,82 +40,32 @@ app.get('/chatList', verificarToken, (req, res) => {
 // ===========================
 app.get('/chat', verificarToken, (req, res) => {
 
-    let ObjectId = require('mongoose').Types.ObjectId; 
-    let idUsuarioEmisor = req.query.idUsuarioEmisor || 0;
-    let idUsuarioReceptor = req.query.idUsuarioReceptor || 0; 
-    let condicion = {
-        $or:[
-            {
-                usuarioEmisor : new ObjectId(idUsuarioEmisor),
-                usuarioReceptor : new ObjectId(idUsuarioReceptor)
-            },
-            {
-                usuarioEmisor : new ObjectId(idUsuarioReceptor),
-                usuarioReceptor : new ObjectId(idUsuarioEmisor)
-            },
-        ],
-        borrado : false
-    };   
+    let idUsuario1 = req.query.idUsuarioEmisor || 0;
+    let idUsuario2 = req.query.idUsuarioReceptor || 0;
 
-    if(idUsuarioEmisor == 0 || idUsuarioReceptor == 0){
-        return res.status(500).json({
-            ok: false,
-            err : "Usuario/s incorrecto/s"
-        });
-    }
-    
-    Chat.find(condicion)
-        // .skip(desde)
-        // .limit(5)
-        .populate('usuarioEmisor')
-        .populate('usuarioReceptor')
-        .sort([['fecha', 'ascending']])
-        .exec((err, chats) => {
+    getChat(idUsuario1,idUsuario2,(result)=>{
 
-            if (err) {
-                return res.status(500).json({
-                    ok: false,
-                    err
-                });
-            }
+        res.json({ok:true,result });
 
-            res.json({
-                ok: true,
-                chats
-            });
-        })
+    },(data)=>{callbackError(data,res)});
+
 });
 
 
 // ===========================
 //  Agrega un chat
 // ===========================
-app.post('/chat', verificarToken, (req, res) => { 
+app.post('/chat', verificarToken, (req, res) => {
 
     let body = req.body;
 
-    let chat = new Chat({
-        usuarioEmisor: body.idUsuarioEmisor,
-        usuarioReceptor: body.idUsuarioReceptor,
-        mensaje : body.mensaje,
-        fecha: new Date()
-    });
+    postChat( body.idUsuarioEmisor, body.idUsuarioReceptor,body.mensaje,(result)=>{
 
-    chat.save((err, productoDB) => {
+        enviarChat(body.idUsuarioEmisor, body.idUsuarioReceptor,body.mensaje);
 
-        if (err) {
-            return res.status(500).json({
-                ok: false,
-                err
-            });
-        }
+        res.json({ok:true,result });
 
-        res.status(201).json({
-            ok: true,
-            producto: productoDB
-        });
-
-    });
+    },(data)=>{callbackError(data,res)});
 
 });
 
@@ -164,7 +115,6 @@ app.delete('/chat/:id', verificarToken, (req, res) => {
 
     })
 });
-
 
 
 module.exports = app;

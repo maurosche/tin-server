@@ -39,6 +39,74 @@ let  getChats = (idUsuario,callback,callbackError)=> {
         });
 };
 
+// ===========================
+//  Obtener chat
+// ===========================
+let  getChat = (idUsuario1,idUsuario2,callback,callbackError)=> {
+
+    let ObjectId = require('mongoose').Types.ObjectId; 
+    let condicion = {
+        $or:[
+            {
+                usuarioEmisor : new ObjectId(idUsuario1),
+                usuarioReceptor : new ObjectId(idUsuario2)
+            },
+            {
+                usuarioEmisor : new ObjectId(idUsuario2),
+                usuarioReceptor : new ObjectId(idUsuario1)
+            },
+        ],
+        borrado : false
+    };   
+
+    if(idUsuario1 == 0 || idUsuario2 == 0){
+        return res.status(500).json({
+            ok: false,
+            err : "Usuario/s incorrecto/s"
+        });
+    }
+    
+    Chat.find(condicion)
+        // .skip(desde)
+        // .limit(5)
+        .populate('usuarioEmisor')
+        .populate('usuarioReceptor')
+        .sort([['fecha', 'ascending']])
+        .exec((err, chats) => {
+
+            if (err) {
+                return callbackError(err);
+            }     
+
+            callback(chats);
+        });
+
+};
+
+// ===========================
+//  Obtener chat
+// ===========================
+let  postChat = (idUsuarioEmisor,idUsuarioReceptor,mensaje,callback,callbackError)=> {
+
+    let chat = new Chat({
+        usuarioEmisor: idUsuarioEmisor,
+        usuarioReceptor: idUsuarioReceptor,
+        mensaje,
+        fecha: new Date()
+    });
+
+    chat.save((err, chat) => {
+
+        if (err) {
+            return callbackError(err);
+        }     
+
+        callback(chat);
+    });    
+};
+
 module.exports = {
     getChats,
+    getChat,
+    postChat
 };
