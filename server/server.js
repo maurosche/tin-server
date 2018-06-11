@@ -93,7 +93,7 @@ const express = require('express');
 const socketIO = require('socket.io');
 
 const server = express()
-  .use((req, res) => res.sendFile(INDEX) )
+ // .use((req, res) => res.sendFile(INDEX) )
   .listen(8080 , () => console.log(`Listening on ${ 8080  }`));
 
 const io = socketIO(server);
