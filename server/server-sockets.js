@@ -4,7 +4,7 @@
 require('./config/config');
 const express = require('express');
 const http = require('http');
-const appSocket = express2();
+const appSocket = express();
 const socketIO = require('socket.io');
 let serverScoket = http.createServer(appSocket);
 module.exports.io = socketIO(serverScoket);
