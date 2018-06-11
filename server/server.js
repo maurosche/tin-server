@@ -70,64 +70,24 @@ const express = require('express');
 // ========================
 //   SOCKETS
 // ========================
-// const http = require('http');
-// const appSocket = express();
-// const socketIO = require('socket.io');
-// let serverScoket = http.createServer(appSocket);
-// module.exports.io = socketIO(serverScoket);
-// require('./providers/socket.provider');
-
-// serverScoket.listen(process.env.PORT, (err) => {
-
-//     if (err) 
-//     {
-//         console.log("ERROR EN SOCKETS : ",err);
-//         throw err;
-//     }
-
-//     console.log('SOCKETS escuchando en puerto: ', process.env.PORT);
-
-// });
-
-
+const http = require('http');
+const appSocket = express();
 const socketIO = require('socket.io');
-const app = express();
+let serverScoket = http.createServer(appSocket);
+module.exports.io = socketIO(serverScoket);
+require('./providers/socket.provider');
 
-  // Add headers
-  app.use(function (req, res, next) {
+serverScoket.listen(process.env.PORT, (err) => {
 
-    // Website you wish to allow to connect
-    //res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8100');
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    if (err) 
+    {
+        console.log("ERROR EN SOCKETS : ",err);
+        throw err;
+    }
 
-    // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    console.log('SOCKETS escuchando en puerto: ', process.env.PORT);
 
-    // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
-
-    // Pass to next layer of middleware
-    next();
 });
-
-
-const server = app
- // .use((req, res) => res.sendFile(INDEX) )
-  .listen(process.env.PORT , () => console.log(`Listening on ${ process.env.PORT  }`));
-
-const io = socketIO(server);
-
-io.on('connection', (socket) => {
-    console.log('Client connected');
-    socket.on('disconnect', () => console.log('Client disconnected'));
-  });
-
-setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
-
 
 // var app = express();
 // var server = app.listen(process.env.PORT, () => console.log(`Listening on ${ process.env.PORT  }`));
@@ -138,4 +98,4 @@ setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 //     socket.on('disconnect', () => console.log('Client disconnected'));
 //   });
 
-setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
+//setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
