@@ -73,9 +73,9 @@ const socketIO = require('socket.io');
 let server = http.createServer(app);
 module.exports.io = socketIO(server);
 require('./providers/socket.provider');
-let io = socketIO(server);
+// let io = socketIO(server);
 
-setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
+// setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
  
 server.listen(process.env.PORT, (err) => {
 
