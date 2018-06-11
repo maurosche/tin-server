@@ -71,8 +71,9 @@ const http = require('http');
 const appSocket = express();
 const socketIO = require('socket.io');
 let server = http.createServer(app);
-module.exports.io = socketIO(server);
+//module.exports.io = socketIO(server);
 //require('./providers/socket.provider');
+let io = socketIO(server);
 
 setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
