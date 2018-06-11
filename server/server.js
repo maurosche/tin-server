@@ -74,6 +74,8 @@ let server = http.createServer(app);
 module.exports.io = socketIO(server);
 //require('./providers/socket.provider');
 
+setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
+
 server.listen(process.env.PORT, (err) => {
 
     if (err) 
