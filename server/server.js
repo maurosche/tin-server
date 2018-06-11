@@ -130,7 +130,7 @@ const express = require('express');
 
 
 var app = express();
-var server = app.listen(3000);
+var server = app.listen(process.env.PORT);
 var io = require('socket.io').listen(server);
 
 io.on('connection', (socket) => {
