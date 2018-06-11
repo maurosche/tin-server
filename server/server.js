@@ -63,7 +63,7 @@ app.listen(process.env.PORT ,(err) => {
         console.log("ERROR EN REST API : ",err);
         throw err;
     }
-    
+
     console.log('REST API escuchando en puerto: ', process.env.PORT);
 });
 
