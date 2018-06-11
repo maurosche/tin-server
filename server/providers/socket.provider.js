@@ -1,4 +1,4 @@
-const {io} = require('../server');
+const {io} = require('../server-sockets');
 
 setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 

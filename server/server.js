@@ -66,37 +66,3 @@ app.listen(process.env.PORT ,(err) => {
     
     console.log('REST API escuchando en puerto: ', process.env.PORT);
 });
-
-// ========================
-//   SOCKETS
-// ========================
-const express2 = require('express');
-const http = require('http');
-const appSocket = express2();
-const socketIO = require('socket.io');
-let serverScoket = http.createServer(appSocket);
-module.exports.io = socketIO(serverScoket);
-require('./providers/socket.provider');
-
-serverScoket.listen(process.env.PORT_SOCKETS, (err) => {
-
-    if (err) 
-    {
-        console.log("ERROR EN SOCKETS : ",err);
-        throw err;
-    }
-
-    console.log('SOCKETS escuchando en puerto: ', process.env.PORT_SOCKETS);
-
-});
-
-// var app = express();
-// var server = app.listen(process.env.PORT, () => console.log(`Listening on ${ process.env.PORT  }`));
-// var io = require('socket.io').listen(server);
-
-// io.on('connection', (socket) => {
-//     console.log('Client connected');
-//     socket.on('disconnect', () => console.log('Client disconnected'));
-//   });
-
-//setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
