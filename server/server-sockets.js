@@ -10,14 +10,14 @@ let serverScoket = http.createServer(appSocket);
 module.exports.io = socketIO(serverScoket);
 //require('./providers/socket.provider');
 
-serverScoket.listen(process.env.PORT, (err) => {
+// serverScoket.listen(process.env.PORT, (err) => {
 
-    if (err) 
-    {
-        console.log("ERROR EN SOCKETS : ",err);
-        throw err;
-    }
+//     if (err) 
+//     {
+//         console.log("ERROR EN SOCKETS : ",err);
+//         throw err;
+//     }
 
-    console.log('SOCKETS escuchando en puerto: ', process.env.PORT);
+//     console.log('SOCKETS escuchando en puerto: ', process.env.PORT);
 
-});
+// });
