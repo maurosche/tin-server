@@ -74,7 +74,7 @@ const express = require('express');
 
 const server = express()
   .use((req, res) => res.sendFile(INDEX) )
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
+  .listen(process.env.PORT , () => console.log(`Listening on ${ process.env.PORT  }`));
 
 const io = socketIO(server);
 
