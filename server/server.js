@@ -71,7 +71,7 @@ app.listen(process.env.PORT ,(err) => {
 //   SOCKETS
 // ========================
 const http = require('http');
-//const appSocket = express();
+const appSocket = express();
 const socketIO = require('socket.io');
 let serverScoket = http.createServer(appSocket);
 module.exports.io = socketIO(serverScoket);
