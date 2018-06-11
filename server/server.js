@@ -56,35 +56,35 @@ mongoose.connect(process.env.urlDB, (err,res)=>{
 // ========================
 //   REST API
 // ========================
-app.listen(3000 ,(err) => {
-
-    if (err) 
-    {
-        console.log("ERROR EN REST API : ",err);
-        throw err;
-    }
-    
-    console.log('REST API escuchando en puerto: ',3000);
-});
-
-// const http = require('http');
-// const appSocket = express();
-// const socketIO = require('socket.io');
-// let server = http.createServer(app);
-//module.exports.io = socketIO(server);
-//require('./providers/socket.provider');
-// let io = socketIO(server);
-
-// setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
- 
-// server.listen(process.env.PORT, (err) => {
+// app.listen(3000 ,(err) => {
 
 //     if (err) 
 //     {
-//         console.log("ERROR EN SOCKETS : ",err);
+//         console.log("ERROR EN REST API : ",err);
 //         throw err;
 //     }
-
-//     console.log('SOCKETS escuchando en puerto: ', process.env.PORT);
-
+    
+//     console.log('REST API escuchando en puerto: ',3000);
 // });
+
+const http = require('http');
+const appSocket = express();
+const socketIO = require('socket.io');
+let server = http.createServer(app);
+module.exports.io = socketIO(server);
+require('./providers/socket.provider');
+let io = socketIO(server);
+
+setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
+ 
+server.listen(process.env.PORT, (err) => {
+
+    if (err) 
+    {
+        console.log("ERROR EN SOCKETS : ",err);
+        throw err;
+    }
+
+    console.log('SOCKETS escuchando en puerto: ', process.env.PORT);
+
+});
