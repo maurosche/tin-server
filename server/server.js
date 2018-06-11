@@ -75,7 +75,7 @@ const appSocket = express();
 const socketIO = require('socket.io');
 let serverScoket = http.createServer(appSocket);
 module.exports.io = socketIO(serverScoket);
-require('./providers/socket.provider');
+//require('./providers/socket.provider');
 
 serverScoket.listen(process.env.PORT, (err) => {
 
@@ -86,5 +86,31 @@ serverScoket.listen(process.env.PORT, (err) => {
     }
 
     console.log('SOCKETS escuchando en puerto: ', process.env.PORT);
+
+});
+
+io.on('connection', (client)=>{
+
+    console.log('Usuario conectado');
+
+    client.emit('enviarMensaje',{
+        usuario : 'Admin',
+        mensaje : 'Bienvenido a esta APP'
+    });
+
+    client.on('disconnect', ()=>{
+        console.log('Usuario deconectado');
+    })
+
+    //escuchar cliente
+    client.on('enviarMensaje',(data, callback)=>{
+
+        console.log('Mensaje :' , data);
+
+        client.broadcast.emit('enviarMensaje', data);
+
+        //callback('todo ok en el server');
+
+    });
 
 });
