@@ -2,12 +2,12 @@
   <body>
     <p id='server-time'></p>
     
-  <!-- <script src="http://tinder-server-node.herokuapp.com/socket.io/socket.io.js"></script> -->
-  <script src="socket.io.js"></script>
+   <script src="http://tinder-server-node.herokuapp.com/socket.io/socket.io.js"></script> 
+ <!-- <script src="socket.io.js"></script>-->
 	
     <script>
       //var socket = io();
-	  var socket = io.connect('http://tinder-server-node.herokuapp.com:3001');
+	  var socket = io.connect('http://tinder-server-node.herokuapp.com');
       var el = document.getElementById('server-time');
       socket.on('time', function(timeString) {
         el.innerHTML = 'Server time: ' + timeString;
