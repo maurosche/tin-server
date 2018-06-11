@@ -56,7 +56,10 @@ mongoose.connect(process.env.urlDB, (err,res)=>{
 // ========================
 //   REST API
 // ========================
-app.listen(process.env.PORT ,(err) => {
+
+app.set('port', process.env.PORT);
+
+app.listen(app.get('port') ,(err) => {
 
     if (err) 
     {
@@ -64,8 +67,9 @@ app.listen(process.env.PORT ,(err) => {
         throw err;
     }
 
-    console.log('REST API escuchando en puerto: ', process.env.PORT);
+    console.log('REST API escuchando en puerto: ', app.get('port'));
 });
+
 
 const http = require('http');
 const appSocket = express();
