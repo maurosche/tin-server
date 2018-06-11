@@ -6,7 +6,7 @@ process.env.PORT = process.env.PORT || 3000;
 // ========================
 //   PUERTO SOCKETS
 // ========================
-process.env.PORT_SOCKETS = process.env.PORT_SOCKETS || 3001;
+process.env.PORT_SOCKETS = process.env.PORT_SOCKETS || 30001;
 
 // ========================
 //   ENTORNO
