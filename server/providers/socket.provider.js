@@ -4,7 +4,7 @@ const {io} = require('../server');
 
 // io.on('connection', (client)=>{
 // });
-
+ 
 let enviarMatch = (usuario1,usuario2)=>{
 
     io.emit(usuario1._id,{
