@@ -5,7 +5,7 @@ const { getChats} = require('../providers/chat.provider');
 const { getMatchs} = require('../providers/match.provider');
 const { postMatch} = require('../providers/socket.provider');
 
-const { verificarToken } = require('../middlewares/autenticacion');
+const { verificarToken } = require('../middlewares/autenticacion'); 
 
 const app = express();
 
