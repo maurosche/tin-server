@@ -2,8 +2,8 @@ const express = require('express');
 
 const Match= require('../models/match');
 const { getChats} = require('../providers/chat.provider');
-const { getMatchs} = require('../providers/match.provider');
-const { postMatch} = require('../providers/socket.provider');
+const { getMatchs,postMatch} = require('../providers/match.provider');
+const { enviarMatch} = require('../providers/socket.provider');
 
 const { verificarToken } = require('../middlewares/autenticacion'); 
 
@@ -65,6 +65,7 @@ app.post('/match', verificarToken, (req, res) => {
 
         postMatch(idUsuario1,idUsuario2,(result)=>{
 
+            enviarMatch(idUsuario1,idUsuario2);
             res.json({ok:true,result });
 
         },(data)=>{callbackError(data,res)});
