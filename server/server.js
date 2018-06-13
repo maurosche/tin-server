@@ -39,10 +39,13 @@ require('./providers/socket.provider');
 //   ROUTES API REST
 // ========================
 app.use( require('./routes/index'));
-server.listen(process.env.PORT, (err) => {
 
+app.listen(process.env.PORT, (err) => {
     if (err) throw new Error(err);
-
     console.log(`Servidor corriendo en puerto ${ process.env.PORT }`);
-
 });
+
+// server.listen(process.env.PORT, (err) => {
+//     if (err) throw new Error(err);
+//     console.log(`Servidor corriendo en puerto ${ process.env.PORT }`);
+// });
