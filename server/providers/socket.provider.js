@@ -1,12 +1,6 @@
 const {io,texto} = require('../server.js');
 
-setInterval(() => io.emit('time', new Date().toTimeString()), 3000);
-
-// io.on('connection', (client)=>{
-
-//     setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
-//     enviarMatch({_id:'5b1991bf1a102b00147b9aae'},{_id:'5b1991bf1a102b00147b9aae'});
-// });
+setInterval(() => io.emit('time', new Date().toTimeString()), 10000);
  
 let enviarMatch = (usuario1,usuario2)=>{
     console.log('USUARIO MATCH :' , usuario1);
