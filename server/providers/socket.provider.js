@@ -1,6 +1,6 @@
-const {io2} = require('../server');
+const {io} = require('../server');
 
-setInterval(() => io2.emit('time', new Date().toTimeString()), 1000);
+//setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
 // io.on('connection', (client)=>{
 // });
