@@ -1,5 +1,5 @@
 const {io,texto} = require('../server');
-const {texto2} = require('./socket.provider');
+const {texto2} = require('./chat.provider');
 console.log('MENSAJE : ',texto);
 console.log('MENSAJE : ',texto2);
 
