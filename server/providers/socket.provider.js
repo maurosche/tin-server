@@ -1,6 +1,6 @@
-const {io,texto} = require('../server.js');
+const {io} = require('../server.js');
 
-() => io.emit('connection', 'SOCKET MANDADO')
+setInterval(() => io.emit('time', new Date().toTimeString()));
  
 let enviarMatch = (usuario1,usuario2)=>{
 
