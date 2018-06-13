@@ -15,7 +15,7 @@ socket.on('message', function(data) {
 setInterval(() => socket.emit('message', new Date().toTimeString()), 1000);
 
 server.listen(process.env.PORT, function(){
-console.log('Server started');
+console.log('Server started : ', process.env.PORT);
 });
 
 
