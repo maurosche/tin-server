@@ -24,6 +24,11 @@ mongoose.connect(process.env.urlDB, (err,res)=>{
     console.log("CONEXION MONGOO OK!");
 });
 
+// ========================
+//   ROUTES API REST
+// ========================
+app.use( require('./routes/index'));
+
 // IO = esta es la comunicacion del backend
 module.exports.io = socketIO(server);
 require('./providers/socket.provider');

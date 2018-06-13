@@ -1,6 +1,6 @@
 const {io,texto} = require('../server.js');
 
-setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
+setInterval(() => io.emit('time', new Date().toTimeString()), 3000);
 
 // io.on('connection', (client)=>{
 
