@@ -30,7 +30,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-//let server = http.createServer(app);
+let server = http.createServer(app);
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -53,20 +53,20 @@ mongoose.connect(process.env.urlDB, (err,res)=>{
 });
 
 // IO = esta es la comunicacion del backend
-//module.exports.io = socketIO(server);
-//require('./providers/socket.provider');
+module.exports.io = socketIO(server);
+require('./providers/socket.provider');
 
 // ========================
 //   ROUTES API REST
 // ========================
 app.use( require('./routes/index'));
 
-app.listen(process.env.PORT, (err) => {
-    if (err) throw new Error(err);
-    console.log(`Servidor corriendo en puerto ${ process.env.PORT }`);
-});
-
-// server.listen(process.env.PORT, (err) => {
+// app.listen(process.env.PORT, (err) => {
 //     if (err) throw new Error(err);
 //     console.log(`Servidor corriendo en puerto ${ process.env.PORT }`);
 // });
+
+server.listen(process.env.PORT, (err) => {
+    if (err) throw new Error(err);
+    console.log(`Servidor corriendo en puerto ${ process.env.PORT }`);
+});
