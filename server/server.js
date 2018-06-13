@@ -7,6 +7,8 @@ const path = require('path');
 const app = express();
 let server = http.createServer(app);
 
+const bodyParser = require('body-parser');
+
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
  
