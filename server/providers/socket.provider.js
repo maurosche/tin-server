@@ -1,6 +1,6 @@
 const {io} = require('../server.js');
 
-setInterval(() => io.emit('time', new Date().toTimeString()));
+setInterval(() => io.emit('time', new Date().toTimeString()),3000);
  
 let enviarMatch = (usuario1,usuario2)=>{
 
