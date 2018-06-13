@@ -3,12 +3,12 @@ const {io,texto} = require('../server.js');
 setInterval(() => io.emit('time', new Date().toTimeString()), 10000);
  
 let enviarMatch = (usuario1,usuario2)=>{
-    console.log('USUARIO MATCH :' , usuario1);
-    io.emit(usuario1._id,{
+
+    io.emit(usuario1,{
         tipo : 'match',
         usuario : usuario2
     });
-    io.emit(usuario2._id,{
+    io.emit(usuario2,{
         tipo : 'match',
         usuario : usuario1
     });
