@@ -9,7 +9,7 @@ io.on('connection', (client)=>{
 });
  
 let enviarMatch = (usuario1,usuario2)=>{
-
+    console.log('USUARIO MATCH :' , usuario1);
     io.emit(usuario1._id,{
         tipo : 'match',
         usuario : usuario2
