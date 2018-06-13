@@ -1,5 +1,5 @@
 const {io,texto} = require('../server');
-console.log(texto);
+console.log('MENSAJE : ',texto);
 
 //setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
