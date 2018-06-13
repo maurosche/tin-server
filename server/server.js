@@ -2,9 +2,9 @@ var socket = require('socket.io'), http = require('http'),
   server = http.createServer(), socket = socket.listen(server);
 
 
-socket.on('connection', function(connection) {
+socket.on('message', function(data) {
 
-   console.log('User Connected');
+   console.log('DATA : ', data);
    
 //    connection.on('message', function(msg){
 //      socket.emit('message', msg);
