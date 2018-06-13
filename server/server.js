@@ -1,22 +1,22 @@
-var socket = require('socket.io'), http = require('http'),
-  server = http.createServer(), socket = socket.listen(server);
+// var socket = require('socket.io'), http = require('http'),
+//   server = http.createServer(), socket = socket.listen(server);
 
 
-socket.on('message', function(data) {
+// socket.on('message', function(data) {
 
-   console.log('DATA : ', data);
+//    console.log('DATA : ', data);
    
-//    connection.on('message', function(msg){
-//      socket.emit('message', msg);
-//    });
+// //    connection.on('message', function(msg){
+// //      socket.emit('message', msg);
+// //    });
 
-});
+// });
 
-setInterval(() => socket.emit('message', new Date().toTimeString()), 1000);
+// setInterval(() => socket.emit('message', new Date().toTimeString()), 1000);
 
-server.listen(process.env.PORT, function(){
-console.log('Server started : ', process.env.PORT);
-});
+// server.listen(process.env.PORT, function(){
+// console.log('Server started : ', process.env.PORT);
+// });
 
 
 
