@@ -6,9 +6,16 @@ const http = require('http');
 const path = require('path');
 const app = express();
 const mongoose = require('mongoose');
+const publicPath = path.resolve(__dirname, '../public');
+const bodyParser = require('body-parser');
 
 let server = http.createServer(app);
-const publicPath = path.resolve(__dirname, '../public');
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+ 
+// parse application/json
+app.use(bodyParser.json())
 
 app.use(express.static(publicPath));
 
