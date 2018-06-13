@@ -108,6 +108,5 @@ let  postChat = (idUsuarioEmisor,idUsuarioReceptor,mensaje,callback,callbackErro
 module.exports = {
     getChats,
     getChat,
-    postChat,
-    texto2 : 'hola mundo 2'
+    postChat
 };

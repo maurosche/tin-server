@@ -1,12 +1,11 @@
 const {io,texto} = require('../server.js');
-const {texto2} = require('./chat.provider');
-console.log('MENSAJE : ',texto);
-console.log('MENSAJE : ',texto2);
 
 //setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
-// io.on('connection', (client)=>{
-// });
+io.on('connection', (client)=>{
+
+    setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
+});
  
 let enviarMatch = (usuario1,usuario2)=>{
 
