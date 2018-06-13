@@ -71,12 +71,12 @@ const http = require('http');
 const appSocket = express();
 const socketIO = require('socket.io');
 let server = http.createServer(app);
-module.exports.io = socketIO(server);
+//module.exports.io = socketIO(server);
 require('./providers/socket.provider'); 
 
 let io2 = socketIO(server);
-
-setInterval(() => io2.emit('time', new Date().toTimeString()), 1000);
+module.exports = {io2};
+//setInterval(() => io2.emit('time', new Date().toTimeString()), 1000);
  
 server.listen(process.env.PORT, (err) => {
 
