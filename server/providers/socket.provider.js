@@ -1,9 +1,11 @@
 const {io} = require('../server');
 
-setInterval((io) => io.emit('time', new Date().toTimeString()), 1000);
+//setInterval((io) => io.emit('time', new Date().toTimeString()), 1000);
 
-// io.on('connection', (client)=>{
-// });
+io.on('connection', (client)=>{
+
+    setInterval((io) => io.emit('time', new Date().toTimeString()), 1000);
+});
  
 let enviarMatch = (usuario1,usuario2)=>{
 
