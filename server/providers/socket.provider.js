@@ -1,4 +1,4 @@
-const {io,texto} = require('../server');
+const {io,texto} = require('../server.js');
 const {texto2} = require('./chat.provider');
 console.log('MENSAJE : ',texto);
 console.log('MENSAJE : ',texto2);
