@@ -18,34 +18,28 @@
 // console.log('Server started : ', process.env.PORT);
 // });
 
+const express = require('express');
+const socketIO = require('socket.io')
+const http = require('http');
 
+const path = require('path');
 
+const app = express();
+let server = http.createServer(app);
 
+const publicPath = path.resolve(__dirname, '../public');
+const port = process.env.PORT || 3000;
 
+app.use(express.static(publicPath));
 
+// IO = esta es la comunicacion del backend
+module.exports.io = socketIO(server);
+require('./providers/socket.provider');
 
-// const express = require('express');
-// const socketIO = require('socket.io')
-// const http = require('http');
+server.listen(port, (err) => {
 
-// const path = require('path');
+    if (err) throw new Error(err);
 
-// const app = express();
-// let server = http.createServer(app);
+    console.log(`Servidor corriendo en puerto ${ port }`);
 
-// const publicPath = path.resolve(__dirname, '../public');
-// const port = process.env.PORT || 3000;
-
-// app.use(express.static(publicPath));
-
-// // IO = esta es la comunicacion del backend
-// module.exports.io = socketIO(server);
-// require('./providers/socket.provider');
-
-// server.listen(port, (err) => {
-
-//     if (err) throw new Error(err);
-
-//     console.log(`Servidor corriendo en puerto ${ port }`);
-
-// });
+});
