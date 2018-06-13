@@ -32,8 +32,8 @@ mongoose.connect(process.env.urlDB, (err,res)=>{
 });
 
 // IO = esta es la comunicacion del backend
-module.exports.io = socketIO(server);
-require('./providers/socket.provider');
+//module.exports.io = socketIO(server);
+//require('./providers/socket.provider');
 
 // ========================
 //   ROUTES API REST
