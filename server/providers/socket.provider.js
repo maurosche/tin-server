@@ -1,5 +1,7 @@
 const {io,texto} = require('../server');
+const {texto2} = require('./socket.provider');
 console.log('MENSAJE : ',texto);
+console.log('MENSAJE : ',texto2);
 
 //setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 

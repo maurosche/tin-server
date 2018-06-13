@@ -74,7 +74,9 @@ let server = http.createServer(app);
 //module.exports.io = socketIO(server);
 //require('./providers/socket.provider'); 
 
-module.export = {io : socketIO(server),texto : 'hola mundo'}
+module.export = {io : socketIO(server),
+    texto : 'hola mundo'};
+    
 require('./providers/socket.provider'); 
 
 server.listen(process.env.PORT, (err) => {
