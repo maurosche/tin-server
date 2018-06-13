@@ -1,4 +1,5 @@
-const {io} = require('../server');
+const {io,texto} = require('../server');
+console.log(texto);
 
 //setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
