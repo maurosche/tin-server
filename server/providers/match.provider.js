@@ -35,7 +35,7 @@ let  getMatchs = (idUsuario,callback,callbackError)=> {
 // =================================
 let crearMatch = (idUsuario1,idUsuario2) =>{
 
-    this.postMatch(idUsuario1,idUsuario2,(result)=>{
+    postMatch(idUsuario1,idUsuario2,(result)=>{
 
         enviarMatch(idUsuario1,idUsuario2);
         res.json({ok:true,result });
