@@ -37,7 +37,7 @@ let login = (email,password,callback,callbackError)=> {
 // ===========================
 let postUsuario = (usuario,callback,callbackError)=> {
     
-let usuario = new Usuario({
+let usr = new Usuario({
     nombre : usuario.nombre,
     apellido : usuario.apellido,
     email : usuario.email,
@@ -54,7 +54,7 @@ let usuario = new Usuario({
     fechaEdicion : new Date()
 });
 
-usuario.save( (err, data)=> {
+usr.save( (err, data)=> {
 
     if (err) {
         return callbackError(err);
