@@ -18,6 +18,6 @@ let likeSchema = new Schema({
     }                      
 });
 
-likeSchema.index({ usuarioEmisor: 1, usuarioReceptor: 1 }, { unique: true })
+//likeSchema.index({ usuarioEmisor: 1, usuarioReceptor: 1 }, { unique: true })
 
 module.exports = mongoose.model('like', likeSchema);

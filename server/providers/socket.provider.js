@@ -18,6 +18,7 @@ let enviarMatch = (usuario1,usuario2,callback,callbackError)=>{
                 usuario : usuario1
             }    
         });
+        console.log("MATCH ENVIADO POR SOCKET")
         callback();
     }
     catch(err){
