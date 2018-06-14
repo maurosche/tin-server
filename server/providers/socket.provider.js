@@ -2,7 +2,7 @@ const {io} = require('../server.js');
 
 //setInterval(() => io.emit('time', new Date().toTimeString()),3000);
  
-let enviarMatch = (usuario1,usuario2)=>{
+let enviarMatch = (usuario1,usuario2,callback)=>{
 
     io.emit(usuario1,{
         tipo : 'match',
@@ -16,6 +16,8 @@ let enviarMatch = (usuario1,usuario2)=>{
             usuario : usuario1
         }    
     });
+
+    callback();
 };
 
 let enviarChat = (usuario1,usuario2,msj)=>{

@@ -33,12 +33,11 @@ let  getMatchs = (idUsuario,callback,callbackError)=> {
 // =================================
 //  Inserta match y envia socket
 // =================================
-let crearMatch = (idUsuario1,idUsuario2) =>{
+let crearMatch = (idUsuario1,idUsuario2,callback,callbackError) =>{
 
     postMatch(idUsuario1,idUsuario2,(result)=>{
 
-        enviarMatch(idUsuario1,idUsuario2);
-        res.json({ok:true,result });
+        enviarMatch(idUsuario1,idUsuario2,callback);        
 
     },(data)=>{callbackError(data,res)});
 };
