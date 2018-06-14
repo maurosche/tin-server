@@ -19,6 +19,7 @@ let enviarMatch = (usuario1,usuario2)=>{
 };
 
 let enviarChat = (usuario1,usuario2,msj)=>{
+    console.log
     
     io.emit(usuario1,{
         tipo : 'chat',

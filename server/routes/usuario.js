@@ -3,9 +3,21 @@ const bcrypt = require('bcrypt');
 const _ = require('underscore');
 
 const Usuario = require('../models/usuario');
+const { getUsuarios , postUsuario, login} = require('../providers/usuario.provider');
+
 const { verificarToken,verificarTokenAdmin } = require('../middlewares/autenticacion');
 
 const app = express();
+
+let callbackError = (data,res)=>{
+
+    //console.log('ERROR : ', data);
+
+    res.json({
+                ok:false,
+                err:data
+             });
+};
 
 // ===========================
 //  Listar usuarios
@@ -13,29 +25,26 @@ const app = express();
 
 app.get('/usuario', verificarTokenAdmin, function(req,res){
 
-    Usuario.find({borrado:false} , 'id nombre email img')
-                    .exec(
-                            (err, usuarios) => {
+    getUsuarios((result)=>{
 
-                                if (err) {
-                                    return res.status(400).json({
-                                        ok:false,
-                                        err
-                                    });
-                                }
+        res.json({ok:true,result });
 
-                                Usuario.count({borrado:false})
-                                            .exec((err,count)=>{
-                                                res.json({
-                                                    ok:true,
-                                                    usuarios,
-                                                    count
-                                                });
-                                            })
-                                
-                         
-                            }
-    );
+    },(data)=>{callbackError(data,res)});
+
+})
+
+// ===========================
+//  Login
+// ===========================
+
+app.get('/usuarioLogin', verificarTokenAdmin, function(req,res){
+
+    login((result)=>{
+
+        res.json({ok:true,result });
+
+    },(data)=>{callbackError(data,res)});
+
 })
 
 // ===========================
@@ -43,119 +52,93 @@ app.get('/usuario', verificarTokenAdmin, function(req,res){
 // ===========================
 app.post('/usuario', [verificarToken], function(req,res){
 
-    var body = req.body;
+    var usuario = req.body;
 
-    let usuario = new Usuario({
-        nombre : body.nombre,
-        apellido : body.apellido,
-        email : body.email,
-        password : bcrypt.hashSync(body.password,10),
-        img : body.img,
-        facebook : body.facebook,
-        fechaNacimiento : body.fechaNacimiento,
-        kmConfig : body.kmConfig,
-        edadDesdeConfig : body.edadDesdeConfig,
-        edadHastaConfig : body.edadHastaConfig,
-        notifMensajeConfig : body.notifMensajeConfig,
-        notifMatchConfig : body.notifMatchConfig,
-        fechaAlta : body.fechaAlta,
-        fechaEdicion : body.fechaEdicion
-    });
+    postUsuario(usuario,(result)=>{
 
-    usuario.save( (err, usuarioDB)=> {
+        res.json({ok:true,result });
 
-        if(err)
-        {
-            return res.status(400).json({
-                ok:false,
-                err
-             });
-        }
-
-        res.json({
-            ok: true,
-            usuario : usuarioDB
-        });
-    });
+    },(data)=>{callbackError(data,res)});
+    
 })
 
-// ===========================
-//  Modificar un usuario
-// ===========================
-app.put('/usuario/:id', [verificarToken],function(req,res){
+// // ===========================
+// //  Modificar un usuario
+// // ===========================
+// app.put('/usuario/:id', [verificarToken],function(req,res){
 
-    return res.status(400).json({
-        ok:false,
-        err : {
-            mensaje : 'En desarrollo'
-        }
-    });
+//     return res.status(400).json({
+//         ok:false,
+//         err : {
+//             mensaje : 'En desarrollo'
+//         }
+//     });
 
-    // let id = req.params.id;
-    // let body =  _.pick(req.body, ['nombre','email','img']);
+//     // let id = req.params.id;
+//     // let body =  _.pick(req.body, ['nombre','email','img']);
 
-    // Usuario.findByIdAndUpdate(id,body, {new:true,runValidators:true},(err,usuarioDB) =>{
+//     // Usuario.findByIdAndUpdate(id,body, {new:true,runValidators:true},(err,usuarioDB) =>{
 
-    //     if(err)
-    //     {
-    //         return res.status(400).json({
-    //             ok:false,
-    //             err
-    //         });
-    //     }
+//     //     if(err)
+//     //     {
+//     //         return res.status(400).json({
+//     //             ok:false,
+//     //             err
+//     //         });
+//     //     }
 
-    //     res.json({
-    //         ok: true,
-    //         usuario : usuarioDB
-    //     });
-    // });   
-})
+//     //     res.json({
+//     //         ok: true,
+//     //         usuario : usuarioDB
+//     //     });
+//     // });   
+// })
 
-// ===========================
-//  Borrar un usuario
-// ===========================
-app.delete('/usuario/:id', verificarToken, (req, res) => {
+// // ===========================
+// //  Borrar un usuario
+// // ===========================
+// app.delete('/usuario/:id', verificarToken, (req, res) => {
 
-    let id = req.params.id;
+//     let id = req.params.id;
 
-    usuario.findById(id, (err, usuarioDB) => {
+//     usuario.findById(id, (err, usuarioDB) => {
 
-        if (err) {
-            return res.status(500).json({
-                ok: false,
-                err
-            });
-        }
+//         if (err) {
+//             return res.status(500).json({
+//                 ok: false,
+//                 err
+//             });
+//         }
 
-        if (!usuarioDB) {
-            return res.status(400).json({
-                ok: false,
-                err: {
-                    message: 'ID no existe'
-                }
-            });
-        }
+//         if (!usuarioDB) {
+//             return res.status(400).json({
+//                 ok: false,
+//                 err: {
+//                     message: 'ID no existe'
+//                 }
+//             });
+//         }
 
-        usuarioDB.borrado = true;
+//         usuarioDB.borrado = true;
 
-        usuarioDB.save((err, usuarioBorrado) => {
+//         usuarioDB.save((err, usuarioBorrado) => {
 
-            if (err) {
-                return res.status(500).json({
-                    ok: false,
-                    err
-                });
-            }
+//             if (err) {
+//                 return res.status(500).json({
+//                     ok: false,
+//                     err
+//                 });
+//             }
 
-            res.json({
-                ok: true,
-                usuario: usuarioBorrado,
-                mensaje: 'Borrado con éxito'
-            });
+//             res.json({
+//                 ok: true,
+//                 usuario: usuarioBorrado,
+//                 mensaje: 'Borrado con éxito'
+//             });
 
-        })
+//         })
 
-    })
-});
+//     })
+// });
 
 module.exports = app;

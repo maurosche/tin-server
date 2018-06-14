@@ -73,66 +73,66 @@ app.post('/match', verificarToken, (req, res) => {
 });
 
 
-// ===========================
-//  Borrar un match
-// ===========================
-app.delete('/match', verificarToken, (req, res) => {
+// // ===========================
+// //  Borrar un match
+// // ===========================
+// app.delete('/match', verificarToken, (req, res) => {
 
-    let ObjectId = require('mongoose').Types.ObjectId; 
-    let idUsuario1 = req.query.idUsuario1 || 0;
-    let idUsuario2 = req.query.idUsuario2 || 0;    
+//     let ObjectId = require('mongoose').Types.ObjectId; 
+//     let idUsuario1 = req.query.idUsuario1 || 0;
+//     let idUsuario2 = req.query.idUsuario2 || 0;    
 
-    if(idUsuario1 == 0 || idUsuario2 == 0){
-        return res.status(500).json({
-            ok: false,
-            err : "Usuario/s incorrecto/s"
-        });
-    }
+//     if(idUsuario1 == 0 || idUsuario2 == 0){
+//         return res.status(500).json({
+//             ok: false,
+//             err : "Usuario/s incorrecto/s"
+//         });
+//     }
     
-    Match.find(
-              { 'usuario1' : new ObjectId(idUsuario1),
-                'usuario2' : new ObjectId(idUsuario2)
-              })
-    .exec((err, result) => {
+//     Match.find(
+//               { 'usuario1' : new ObjectId(idUsuario1),
+//                 'usuario2' : new ObjectId(idUsuario2)
+//               })
+//     .exec((err, result) => {
 
-        if (err) {
-            return res.status(500).json({
-                ok: false,
-                err
-            });
-        }
+//         if (err) {
+//             return res.status(500).json({
+//                 ok: false,
+//                 err
+//             });
+//         }
 
-        if (!result) {
-            return res.status(400).json({
-                ok: false,
-                err: {
-                    message: 'ID no existe'
-                }
-            });
-        }
+//         if (!result) {
+//             return res.status(400).json({
+//                 ok: false,
+//                 err: {
+//                     message: 'ID no existe'
+//                 }
+//             });
+//         }
 
-        //Borramos el único que debería existir
-        let matchDB = result[0];
+//         //Borramos el único que debería existir
+//         let matchDB = result[0];
 
-        matchDB.borrado = true;
+//         matchDB.borrado = true;
 
-        matchDB.save((err, matchBorrado) => {
+//         matchDB.save((err, matchBorrado) => {
 
-            if (err) {
-                return res.status(500).json({
-                    ok: false,
-                    err
-                });
-            }
+//             if (err) {
+//                 return res.status(500).json({
+//                     ok: false,
+//                     err
+//                 });
+//             }
 
-            res.json({
-                ok: true,
-                match: matchBorrado,
-                mensaje: 'match borrado'
-            });
-        })
-    })   
-});
+//             res.json({
+//                 ok: true,
+//                 match: matchBorrado,
+//                 mensaje: 'match borrado'
+//             });
+//         })
+//     })   
+// });
 
 
 module.exports = app;
