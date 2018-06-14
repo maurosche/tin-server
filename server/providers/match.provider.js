@@ -1,4 +1,5 @@
 const Match = require('../models/match');
+const { enviarMatch} = require('../providers/socket.provider');
 
 // ===========================
 //  Obtener matchs
@@ -27,6 +28,19 @@ let  getMatchs = (idUsuario,callback,callbackError)=> {
 
             callback(result);
         })
+};
+
+// =================================
+//  Inserta match y envia socket
+// =================================
+let crearMatch = (idUsuario1,idUsuario2) =>{
+
+    this.postMatch(idUsuario1,idUsuario2,(result)=>{
+
+        enviarMatch(idUsuario1,idUsuario2);
+        res.json({ok:true,result });
+
+    },(data)=>{callbackError(data,res)});
 };
 
 // ===========================

@@ -2,7 +2,7 @@ const express = require('express');
 
 const Like= require('../models/like');
 const { postLike , getLike} = require('../providers/like.provider');
-const { postMatch} = require('../providers/match.provider');
+const { crearMatch} = require('../providers/match.provider');
 
 const { verificarToken } = require('../middlewares/autenticacion');
 
@@ -36,7 +36,7 @@ app.post('/like', verificarToken, (req, res) => {
 
             //Si hay me gusta hay un MATCH!!!
             if (result2.length > 0) {
-                postMatch(idUsuarioEmisor,idUsuarioReceptor,(result2)=>{
+                crearMatch(idUsuarioEmisor,idUsuarioReceptor,(result2)=>{
 
                     res.json({ok:true,match:true,result : "con match!!!" });
 
