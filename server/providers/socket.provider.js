@@ -18,7 +18,7 @@ let enviarMatch = (usuario1,usuario2,callback,callbackError)=>{
                 usuario : usuario1
             }    
         });
-        
+
         console.log("MATCH ENVIADO POR SOCKET")
         callback();
     }
@@ -27,16 +27,24 @@ let enviarMatch = (usuario1,usuario2,callback,callbackError)=>{
     }   
 };
 
-let enviarChat = (usuario1,usuario2,msj)=>{
-    console.log
+let enviarChat = (usuario1,usuario2,msj,callback,callbackError)=>{
     
-    io.emit(usuario1,{
-        tipo : 'chat',
-        obj : {
-            usuario : usuario2,
-            msj
-        }
-    });
+    try 
+    {    
+        io.emit(usuario1,{
+            tipo : 'chat',
+            obj : {
+                usuario : usuario2,
+                msj
+            }
+        });
+
+        console.log("CHAT ENVIADO POR SOCKET")
+        callback();
+    }
+    catch(err){
+        callbackError();
+    } 
 };
 
 module.exports = {

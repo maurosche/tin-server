@@ -32,6 +32,10 @@ app.post('/like', verificarToken, (req, res) => {
 
     postLike(idUsuarioEmisor,idUsuarioReceptor,(result1)=>{
 
+        if (!like){
+            return res.json({ok:true,match:false,result : "sin match" });
+        }
+
         getLike(idUsuarioReceptor,idUsuarioEmisor,(result2)=>{
 
             //Si hay me gusta hay un MATCH!!!

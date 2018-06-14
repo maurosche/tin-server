@@ -20,9 +20,7 @@ let  postLike = (idUsuarioEmisor,idUsuarioReceptor,callback,callbackError)=> {
         }
 
         callback(result);
-
     });
-
 };
 
 // ===========================

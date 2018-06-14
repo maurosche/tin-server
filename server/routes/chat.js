@@ -61,9 +61,11 @@ app.post('/chat', verificarToken, (req, res) => {
 
     postChat( body.idUsuarioEmisor, body.idUsuarioReceptor,body.mensaje,(result)=>{
 
-        enviarChat(body.idUsuarioReceptor,body.idUsuarioEmisor,body.mensaje);
+        enviarChat(body.idUsuarioReceptor,body.idUsuarioEmisor,body.mensaje,()=>{
 
-        res.json({ok:true,result });
+            res.json({ok:true,result });
+
+        },(data)=>{callbackError(data,res)});
 
     },(data)=>{callbackError(data,res)});
 
