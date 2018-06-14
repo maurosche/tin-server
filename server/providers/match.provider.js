@@ -37,9 +37,9 @@ let crearMatch = (idUsuario1,idUsuario2,callback,callbackError) =>{
 
     postMatch(idUsuario1,idUsuario2,(result)=>{
 
-        enviarMatch(idUsuario1,idUsuario2,callback);        
+        enviarMatch(idUsuario1,idUsuario2,callback,callbackError);        
 
-    },(data)=>{callbackError(data,res)});
+    },callbackError);
 };
 
 // ===========================
