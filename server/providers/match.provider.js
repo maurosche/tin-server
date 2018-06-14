@@ -70,5 +70,6 @@ let  postMatch = (idUsuario1,idUsuario2,callback,callbackError)=> {
 
 module.exports = {
     getMatchs,
-    postMatch
+    postMatch,
+    crearMatch
 };
