@@ -70,12 +70,12 @@ usr.save( (err, data)=> {
 //  Modifica usuario
 // ===========================
 let putUsuario = (usuario,callback,callbackError)=> {
-    
-     let id = usuario._id;
+
      usuario.fechaEdicion = new Date();
-     let usr =  _.pick(usuario, ['fechaEdicion','kmConfig','edadDesdeConfig','edadHastaConfig','notifMensajeConfig',
+
+     let usuarioEdit =  _.pick(usuario, ['fechaEdicion','kmConfig','edadDesdeConfig','edadHastaConfig','notifMensajeConfig',
                                   'notifMatchConfig']);
-     Usuario.findByIdAndUpdate(id,usuario, {new:true,runValidators:true},(err,data) =>{    
+     Usuario.findByIdAndUpdate(usuario._id,usuarioEdit, {new:true,runValidators:true},(err,data) =>{    
     
         if (err) {
             return callbackError(err);
