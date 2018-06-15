@@ -1,3 +1,4 @@
+const _ = require('underscore');
 const Usuario = require('../models/usuario');
 
 // ===========================
@@ -64,8 +65,44 @@ usr.save( (err, data)=> {
 });
 };
 
+// ===========================
+//  Modifica usuario
+// ===========================
+let postUsuario = (usuario,callback,callbackError)=> {
+    
+     let id = usuario._id;
+     usuario.fechaEdicion = new Date();
+     let usr =  _.pick(req.body, ['fechaEdicion','kmConfig','edadDesdeConfig','edadHastaConfig','notifMensajeConfig',
+                                  'notifMatchConfig']);
+     Usuario.findByIdAndUpdate(id,usuario, {new:true,runValidators:true},(err,data) =>{    
+    
+        if (err) {
+            return callbackError(err);
+        }     
+    
+        callback(data);
+    });
+ };
+
+ 
+// ===========================
+//  Borra usuario
+// ===========================
+let deleteUsuario = (id,callback,callbackError)=> {
+    
+     Usuario.findByIdAndUpdate(id,{borrado : true}, {new:true,runValidators:true},(err,data) =>{    
+    
+        if (err) {
+            return callbackError(err);
+        }     
+    
+        callback(data);
+    });
+    };
+
 module.exports = {
     getUsuarios,
     postUsuario,
+    putUsuario,
     login
 };

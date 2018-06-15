@@ -1,9 +1,8 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
-const _ = require('underscore');
 
 const Usuario = require('../models/usuario');
-const { getUsuarios , postUsuario, login} = require('../providers/usuario.provider');
+const { getUsuarios , postUsuario, putUsuario, login} = require('../providers/usuario.provider');
 
 const { verificarToken,verificarTokenAdmin } = require('../middlewares/autenticacion');
 
@@ -62,83 +61,34 @@ app.post('/usuario', [verificarToken], function(req,res){
     
 })
 
-// // ===========================
-// //  Modificar un usuario
-// // ===========================
-// app.put('/usuario/:id', [verificarToken],function(req,res){
+// ===========================
+//  Modifica un usuario
+// ===========================
+app.put('/usuario', [verificarToken], function(req,res){
 
-//     return res.status(400).json({
-//         ok:false,
-//         err : {
-//             mensaje : 'En desarrollo'
-//         }
-//     });
+    var usuario = req.body;
 
-//     // let id = req.params.id;
-//     // let body =  _.pick(req.body, ['nombre','email','img']);
+    putUsuario(usuario,(result)=>{
 
-//     // Usuario.findByIdAndUpdate(id,body, {new:true,runValidators:true},(err,usuarioDB) =>{
+        res.json({ok:true,result });
 
-//     //     if(err)
-//     //     {
-//     //         return res.status(400).json({
-//     //             ok:false,
-//     //             err
-//     //         });
-//     //     }
+    },(data)=>{callbackError(data,res)});
+    
+})
 
-//     //     res.json({
-//     //         ok: true,
-//     //         usuario : usuarioDB
-//     //     });
-//     // });   
-// })
+// ===========================
+//  Borrar un usuario
+// ===========================
+app.delete('/usuario/:id', verificarToken, (req, res) => {
 
-// // ===========================
-// //  Borrar un usuario
-// // ===========================
-// app.delete('/usuario/:id', verificarToken, (req, res) => {
+    let id = req.params.id;
 
-//     let id = req.params.id;
+    deleteUsuario(id,(result)=>{
 
-//     usuario.findById(id, (err, usuarioDB) => {
+        res.json({ok:true,result });
 
-//         if (err) {
-//             return res.status(500).json({
-//                 ok: false,
-//                 err
-//             });
-//         }
+    },(data)=>{callbackError(data,res)});
 
-//         if (!usuarioDB) {
-//             return res.status(400).json({
-//                 ok: false,
-//                 err: {
-//                     message: 'ID no existe'
-//                 }
-//             });
-//         }
-
-//         usuarioDB.borrado = true;
-
-//         usuarioDB.save((err, usuarioBorrado) => {
-
-//             if (err) {
-//                 return res.status(500).json({
-//                     ok: false,
-//                     err
-//                 });
-//             }
-
-//             res.json({
-//                 ok: true,
-//                 usuario: usuarioBorrado,
-//                 mensaje: 'Borrado con éxito'
-//             });
-
-//         })
-
-//     })
-// });
+});
 
 module.exports = app;
