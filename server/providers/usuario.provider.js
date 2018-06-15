@@ -73,7 +73,7 @@ let putUsuario = (usuario,callback,callbackError)=> {
     
      let id = usuario._id;
      usuario.fechaEdicion = new Date();
-     let usr =  _.pick(req.body, ['fechaEdicion','kmConfig','edadDesdeConfig','edadHastaConfig','notifMensajeConfig',
+     let usr =  _.pick(usuario, ['fechaEdicion','kmConfig','edadDesdeConfig','edadHastaConfig','notifMensajeConfig',
                                   'notifMatchConfig']);
      Usuario.findByIdAndUpdate(id,usuario, {new:true,runValidators:true},(err,data) =>{    
     
