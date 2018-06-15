@@ -68,7 +68,7 @@ usr.save( (err, data)=> {
 // ===========================
 //  Modifica usuario
 // ===========================
-let postUsuario = (usuario,callback,callbackError)=> {
+let putUsuario = (usuario,callback,callbackError)=> {
     
      let id = usuario._id;
      usuario.fechaEdicion = new Date();
