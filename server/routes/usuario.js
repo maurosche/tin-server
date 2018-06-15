@@ -53,12 +53,6 @@ app.post('/usuario', [verificarToken], function(req,res){
 
     var usuario = req.body;
 
-    usuario.kmConfig = 80;
-    usuario.edadDesdeConfig = 18;
-    usuario.edadHastaConfig = 80
-    usuario.notifMensajeConfig = true;
-    usuario.notifMatchConfig = true;
-
     postUsuario(usuario,(result)=>{
 
         res.json({ok:true,result });

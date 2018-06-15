@@ -32,19 +32,24 @@ let usuarioSchema = new Schema({
         type : Date
     },
     kmConfig : {
-        type : Number
+        type : Number,
+        default : 80
     },
     edadDesdeConfig : {
-        type : Number
+        type : Number,
+        default: 18
     },
     edadHastaConfig : {
-        type : Number
+        type : Number,
+        default : 80
     },
     notifMensajeConfig : {
-        type : Boolean
+        type : Boolean,
+        default : true
     },
     notifMatchConfig : {
-        type : Boolean
+        type : Boolean,
+        default : true
     },
     fechaAlta : {
         type : Date
