@@ -19,30 +19,30 @@ let  getChats = (idUsuario,callback,callbackError)=> {
         } 
     
         Chat.aggregate([
-            { "$match": condicion },
-            {
-                "$group": {
-                    "_id": {
-                        "usuarioEmisor": "$usuarioEmisor",
-                        "usuarioReceptor" : "$usuarioReceptor"
-                    },
-                    //usuarioChat : { $eq : "$usuarioEmisor : $usuarioReceptor" }
-                    usuarioEmisor: { $first: "$usuarioEmisor" },
-                    usuarioReceptor: { $first: "$usuarioReceptor" }
-                }
-            },      
+            { "$match": condicion }, 
             {
                 "$project": {
-                "_id.usuarioChat": {
+                "usuarioChat": {
                    $cond: {
-                      if: { $eq: [ new ObjectId(idUsuario), "$_id.usuarioEmisor" ] },
-                      then: "$_id.usuarioReceptor",
-                      else: "$_id.usuarioEmisor"
+                      if: { $eq: [ new ObjectId(idUsuario), "$usuarioEmisor" ] },
+                      then: "$usuarioReceptor",
+                      else: "$usuarioEmisor"
                    }
                 },
                 "_id.usuarioReceptor": 1,
                 "_id.usuarioEmisor": 1
-             }  
+             },  
+            //  {
+            //     "$group": {
+            //         "_id": {
+            //             "usuarioEmisor": "$usuarioEmisor",
+            //             "usuarioReceptor" : "$usuarioReceptor"
+            //         },
+            //         //usuarioChat : { $eq : "$usuarioEmisor : $usuarioReceptor" }
+            //         usuarioEmisor: { $first: "$usuarioEmisor" },
+            //         usuarioReceptor: { $first: "$usuarioReceptor" }
+            //     }
+            // },     
             },
             // {
             //     $group: {
