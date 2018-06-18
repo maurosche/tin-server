@@ -35,14 +35,15 @@ let  getChats = (idUsuario,callback,callbackError)=> {
             },  
             {
                 "$group": {
-                    // "_id": {
-                    //     "usuarioChat": "$usuarioChat"
-                    // },
+                    "_id": {
+                        "usuarioChat": "$usuarioChat"
+                    },
                     "usuarioChat": { $first : "$usuarioChat"}
                     //usuarioEmisor: { $first: "$usuarioEmisor" },
                     //usuarioReceptor: { $first: "$usuarioReceptor" }
                 }
-            } 
+            }, 
+            {$lookup: {from: 'usuarios', localField: 'usuarioChat', foreignField: '_id', as: 'usuarioChat'} },
             // {
             //     $group: {
             //         _id: "$_id",
