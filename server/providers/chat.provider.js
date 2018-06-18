@@ -36,7 +36,7 @@ let  getChats = (idUsuario,callback,callbackError)=> {
                           if: { $eq: [ "5b1991bf1a102b00147b9aae", "#_id.usuarioEmisor" ] },
                           then: "$$REMOVE",
                           else: "$_id.usuarioEmisor"
-                       }
+                       } 
                     }
                  }
             },        
