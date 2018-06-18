@@ -6,7 +6,7 @@ const Usuario = require('../models/usuario');
 // ===========================
 let getUsuarios = (idUsuario,callback,callbackError)=> {
 
-    console.log("GETUSUARIOS===================");
+    console.log("GETUSUARIOS===================", idUsuario);
     Usuario.find({borrado:false , _id : { $ne : idUsuario}} , 'id nombre apellido email img kmConfig edadDesdeConfig edadHastaConfig notifMensajeConfig notifMatchConfig')
         .exec((err, data) => {
 
