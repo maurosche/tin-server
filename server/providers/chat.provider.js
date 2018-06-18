@@ -35,10 +35,10 @@ let  getChats = (idUsuario,callback,callbackError)=> {
             },  
             {
                 "$group": {
-                    "_id": {
-                        "usuarioChat": "$usuarioChat"
-                    },
-                    //"usuarioChat": "$usuarioChat"
+                    // "_id": {
+                    //     "usuarioChat": "$usuarioChat"
+                    // },
+                    "usuarioChat": { $first : "$usuarioChat"}
                     //usuarioEmisor: { $first: "$usuarioEmisor" },
                     //usuarioReceptor: { $first: "$usuarioReceptor" }
                 }
