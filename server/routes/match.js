@@ -19,31 +19,65 @@ let callbackError = (data,res)=>{
              });
 };
 
-// ===========================
-//  Obtener matches
-// ===========================
+// // ===========================
+// //  Obtener matches
+// // ===========================
+// app.get('/match', verificarToken, (req, res) => {
+
+//     let idUsuario = req.query.idUsuario || 0;
+
+//     //Si ya hay un chat con ese usuario no lo mostramos
+//     getChats(idUsuario,(chats)=>{        
+
+//         getMatchs(idUsuario,(matchs)=>{
+
+//             let list = new Array();
+
+//             matchs.forEach(match => {
+
+//                  if  (!chats.find(chat=> 
+//                        ( String(chat._id.usuarioEmisor) == String(match.usuario1._id) && String(chat._id.usuarioReceptor) == String(match.usuario2._id) ||
+//                        (String(chat._id.usuarioEmisor) == String(match.usuario2._id) && String(chat._id.usuarioReceptor) == String(match.usuario1._id) ))
+//                     ))
+//                     {
+//                         let usuarioMatch = match.usuario1._id == idUsuario ? match.usuario2: match.usuario1;
+//                         list.push({usuarioMatch , match});
+//                     }
+                
+//             });
+
+//             res.json({ok:true,result : list});
+
+//         },(data)=>{callbackError(data,res)});
+
+//     },(data)=>{callbackError(data,res)});
+
+// });
+
 app.get('/match', verificarToken, (req, res) => {
 
     let idUsuario = req.query.idUsuario || 0;
-
+ 
+    console.log(idUsuario);
+ 
     //Si ya hay un chat con ese usuario no lo mostramos
-    getChats(idUsuario,(chats)=>{        
-
+    getChats(idUsuario,(chats)=>{       
+ 
         getMatchs(idUsuario,(matchs)=>{
-
+ 
             let list = new Array();
-
+ 
             matchs.forEach(match => {
-
-                 if  (!chats.find(chat=> 
-                       ( String(chat._id.usuarioEmisor) == String(match.usuario1._id) && String(chat._id.usuarioReceptor) == String(match.usuario2._id) ||
-                       (String(chat._id.usuarioEmisor) == String(match.usuario2._id) && String(chat._id.usuarioReceptor) == String(match.usuario1._id) ))
+ 
+                 if  (!chats.find(chat=>
+                       ( String(chat.usuarioEmisor[0]._id) == String(match.usuario1._id) && String(chat.usuarioReceptor[0]._id) == String(match.usuario2._id) ||
+                       (String(chat.usuarioEmisor[0]._id) == String(match.usuario2._id) && String(chat.usuarioReceptor[0]._id) == String(match.usuario1._id) ))
                     ))
                     {
                         let usuarioMatch = match.usuario1._id == idUsuario ? match.usuario2: match.usuario1;
                         list.push({usuarioMatch , match});
                     }
-                
+               
             });
 
             res.json({ok:true,result : list});
@@ -51,7 +85,6 @@ app.get('/match', verificarToken, (req, res) => {
         },(data)=>{callbackError(data,res)});
 
     },(data)=>{callbackError(data,res)});
-
 });
 
 // ===========================

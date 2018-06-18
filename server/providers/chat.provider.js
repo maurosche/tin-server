@@ -7,38 +7,47 @@ let  getChats = (idUsuario,callback,callbackError)=> {
 
     let ObjectId = require('mongoose').Types.ObjectId; 
     let condicion = {
-                        $or:[
-                            {usuarioEmisor : new ObjectId(idUsuario)},
-                            {usuarioReceptor : new ObjectId(idUsuario)}
-                        ],
-                        borrado : false
-                    };
-
-    if(idUsuario == 0 ){
-        callbackError( "Usuario incorrecto");
-    }
-
-    Chat.aggregate([
-        { "$match": condicion },
-        {
-            "$group": {
-                "_id": { 
-                    "usuarioEmisor": "$usuarioEmisor", 
-                    "usuarioReceptor" : "$usuarioReceptor"
-                }
-            }
+                            $or:[
+                                {usuarioEmisor : new ObjectId(idUsuario)},
+                                {usuarioReceptor : new ObjectId(idUsuario)}
+                            ],
+                            borrado : false
+                        };
+    
+        if(idUsuario == 0 ){
+            callbackError( "Usuario incorrecto");
         }
-        ])
-        .exec((err, chats) => {
-
-            if (err) {
-                return callbackError(err);
-            }     
-
-            callback(chats);
-        });
+    
+        Chat.aggregate([
+            { "$match": condicion },
+            // {
+            //     "$group": {
+            //         "_id": {
+            //             "usuarioEmisor": "$usuarioEmisor",
+            //             "usuarioReceptor" : "$usuarioReceptor"
+            //         }
+            //     }
+            // }        
+            {
+                $group: {
+                    _id: "$_id",
+                    usuarioEmisor: { $first: "$usuarioEmisor" },
+                    usuarioReceptor: { $first: "$usuarioReceptor" }
+                }
+            },
+            {$lookup: {from: 'usuarios', localField: 'usuarioEmisor', foreignField: '_id', as: 'usuarioEmisor'} },
+            {$lookup: {from: 'usuarios', localField: 'usuarioReceptor', foreignField: '_id', as: 'usuarioReceptor'} }
+            ])
+            .exec((err, chats) => {
+    
+                if (err) {
+                    return callbackError(err);
+                }     
+    
+                callback(chats);
+            });
 };
-
+    
 // ===========================
 //  Obtener chat
 // ===========================
