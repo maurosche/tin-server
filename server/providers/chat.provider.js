@@ -31,8 +31,9 @@ let  getChats = (idUsuario,callback,callbackError)=> {
                 },
                 "_id.usuarioReceptor": 1,
                 "_id.usuarioEmisor": 1
-             },  
-             {
+                }
+            },  
+            {
                 "$group": {
                     "_id": {
                         "usuarioChat": "$usuarioChat"
@@ -41,7 +42,7 @@ let  getChats = (idUsuario,callback,callbackError)=> {
                     //usuarioEmisor: { $first: "$usuarioEmisor" },
                     //usuarioReceptor: { $first: "$usuarioReceptor" }
                 }
-            },    
+            } 
             // {
             //     $group: {
             //         _id: "$_id",
