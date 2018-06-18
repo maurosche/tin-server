@@ -36,9 +36,11 @@ let  getChats = (idUsuario,callback,callbackError)=> {
                 "_id.usuarioEmisor": {
                    $cond: {
                       if: { $eq: [ "5b1991bf1a102b00147b9aae", "$_id.usuarioEmisor" ] },
-                      then: "$_id.usuarioReceptor",
+                      then: "$_id.usuarioEmisor",
                       else: "$_id.usuarioEmisor"
-                   } 
+                   },
+                   usuarioEmisor1: { $first: "$usuarioEmisor" },
+                   usuarioReceptor1: { $first: "$usuarioReceptor" } 
                 }
              }  
             },
