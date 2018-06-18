@@ -20,21 +20,23 @@ let  getChats = (idUsuario,callback,callbackError)=> {
     
         Chat.aggregate([
             { "$match": condicion },
-            // {
-            //     "$group": {
-            //         "_id": {
-            //             "usuarioEmisor": "$usuarioEmisor",
-            //             "usuarioReceptor" : "$usuarioReceptor"
-            //         }
-            //     }
-            // },        
             {
-                $group: {
-                    _id: "$_id",
+                "$group": {
+                    "_id": {
+                        "usuarioEmisor": "$usuarioEmisor",
+                        "usuarioReceptor" : "$usuarioReceptor"
+                    },
                     usuarioEmisor: { $first: "$usuarioEmisor" },
                     usuarioReceptor: { $first: "$usuarioReceptor" }
                 }
-            },
+            },        
+            // {
+            //     $group: {
+            //         _id: "$_id",
+            //         usuarioEmisor: { $first: "$usuarioEmisor" },
+            //         usuarioReceptor: { $first: "$usuarioReceptor" }
+            //     }
+            // },
             {$lookup: {from: 'usuarios', localField: '_id.usuarioEmisor', foreignField: '_id', as: 'usuarioEmisor'} },
             {$lookup: {from: 'usuarios', localField: '_id.usuarioReceptor', foreignField: '_id', as: 'usuarioReceptor'} }
             ])
