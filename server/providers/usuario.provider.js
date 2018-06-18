@@ -4,10 +4,10 @@ const Usuario = require('../models/usuario');
 // ===========================
 //  Obtener usuarios
 // ===========================
-let getUsuarios = (callback,callbackError)=> {
+let getUsuarios = (idUsuario,callback,callbackError)=> {
 
     console.log("GETUSUARIOS===================");
-    Usuario.find({borrado:false} , 'id nombre apellido email img kmConfig edadDesdeConfig edadHastaConfig notifMensajeConfig notifMatchConfig')
+    Usuario.find({borrado:false , "$ne" : { _id: idUsuario}} , 'id nombre apellido email img kmConfig edadDesdeConfig edadHastaConfig notifMensajeConfig notifMatchConfig')
         .exec((err, data) => {
 
             if (err) {

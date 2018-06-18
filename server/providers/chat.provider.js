@@ -37,8 +37,8 @@ let  getChats = (idUsuario,callback,callbackError)=> {
             //         usuarioReceptor: { $first: "$usuarioReceptor" }
             //     }
             // },
-            {$lookup: {from: 'usuarios', localField: '_id.usuarioEmisor', foreignField: '_id', as: 'usuarioEmisor'} },
-            {$lookup: {from: 'usuarios', localField: '_id.usuarioReceptor', foreignField: '_id', as: 'usuarioReceptor'} }
+            // {$lookup: {from: 'usuarios', localField: '_id.usuarioEmisor', foreignField: '_id', as: 'usuarioEmisor'} },
+            // {$lookup: {from: 'usuarios', localField: '_id.usuarioReceptor', foreignField: '_id', as: 'usuarioReceptor'} }
             ])
             .exec((err, chats) => {
     

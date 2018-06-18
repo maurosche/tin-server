@@ -24,7 +24,9 @@ let callbackError = (data,res)=>{
 
 app.get('/usuario', verificarTokenAdmin, function(req,res){
 
-    getUsuarios((result)=>{
+    let idUsuario = req.query.idUsuario || 0;
+
+    getUsuarios(idUsuario,(result)=>{
 
         res.json({ok:true,result });
 
