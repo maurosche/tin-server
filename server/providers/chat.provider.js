@@ -26,6 +26,7 @@ let  getChats = (idUsuario,callback,callbackError)=> {
                         "usuarioEmisor": "$usuarioEmisor",
                         "usuarioReceptor" : "$usuarioReceptor"
                     },
+                    usuarioChat : { "$usuarioEmisor" == idUsuario ?  "$usuarioReceptor":"$usuarioEmisor" }
                     //usuarioEmisor: { $first: "$usuarioEmisor" },
                     //usuarioReceptor: { $first: "$usuarioReceptor" }
                 }
