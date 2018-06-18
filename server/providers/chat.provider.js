@@ -16,7 +16,7 @@ let  getChats = (idUsuario,callback,callbackError)=> {
     
         if(idUsuario == 0 ){
             callbackError( "Usuario incorrecto");
-        }
+        } 
     
         Chat.aggregate([
             { "$match": condicion },
