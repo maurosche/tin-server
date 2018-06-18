@@ -28,9 +28,7 @@ let  getChats = (idUsuario,callback,callbackError)=> {
                       then: "$usuarioReceptor",
                       else: "$usuarioEmisor"
                    }
-                },
-                "_id.usuarioReceptor": 1,
-                "_id.usuarioEmisor": 1
+                }
                 }
             },  
             {
@@ -39,21 +37,10 @@ let  getChats = (idUsuario,callback,callbackError)=> {
                         "usuarioChat": "$usuarioChat"
                     },
                     "usuarioChat": { $first : "$usuarioChat"}
-                    //usuarioEmisor: { $first: "$usuarioEmisor" },
-                    //usuarioReceptor: { $first: "$usuarioReceptor" }
                 }
             }, 
             {$lookup: {from: 'usuarios', localField: 'usuarioChat', foreignField: '_id', as: 'usuarioChat'} },
-            // {
-            //     $group: {
-            //         _id: "$_id",
-            //         usuarioEmisor: { $first: "$usuarioEmisor" },
-            //         usuarioReceptor: { $first: "$usuarioReceptor" }
-            //     }
-            // },
-            // {$lookup: {from: 'usuarios', localField: '_id.usuarioEmisor', foreignField: '_id', as: 'usuarioEmisor'} },
-            // {$lookup: {from: 'usuarios', localField: '_id.usuarioReceptor', foreignField: '_id', as: 'usuarioReceptor'} }
-            ]) 
+            ])
             .exec((err, chats) => {
     
                 if (err) {
