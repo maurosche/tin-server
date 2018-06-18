@@ -39,7 +39,7 @@ let  getChats = (idUsuario,callback,callbackError)=> {
                     "usuarioChat": { $first : "$usuarioChat"}
                 }
             }, 
-            {$lookup: {from: 'usuarios', localField: 'usuarioChat', foreignField: '_id', as: 'usuarioChat'} }
+            {$lookup: {from: 'usuarios', localField: 'usuarioChat', foreignField: '_id', as: 'usuarioChat'} } 
             ])
             .exec((err, chats) => {
     
