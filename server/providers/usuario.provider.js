@@ -23,6 +23,25 @@ let getUsuarios = (idUsuario,callback,callbackError)=> {
 // ===========================
 //  Obtener usuario
 // ===========================
+let getUsuario = (idUsuario,callback,callbackError)=> {
+
+    console.log("GETUSUARIOS===================", idUsuario);
+    let condition =  idUsuario == 0 ? {borrado:false} : {borrado:false , _id : { $ne : idUsuario}};
+
+    Usuario.findById( idUsuario, 'id nombre apellido img')
+        .exec((err, data) => {
+
+            if (err) {
+                return callbackError(err);
+            }     
+
+            callback(data);
+        });
+};
+
+// ===========================
+//  Obtener usuario
+// ===========================
 let login = (email,password,callback,callbackError)=> {
 
     Usuario.findOne({borrado:false,email:email,password:password} , 'id nombre email img')
@@ -107,5 +126,6 @@ module.exports = {
     getUsuarios,
     postUsuario,
     putUsuario,
+    getUsuario,
     login
 };

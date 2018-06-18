@@ -1,4 +1,5 @@
 const {io} = require('../server.js');
+const { getUsuario} = require('../providers/usuario.provider');
 
 //setInterval(() => io.emit('time', new Date().toTimeString()),3000);
  
@@ -6,20 +7,44 @@ let enviarMatch = (usuario1,usuario2,callback,callbackError)=>{
 
     try 
     {
-        io.emit(usuario1,{
-            tipo : 'match',
-            obj : {
-                usuario : usuario2
-            }        
-        });
-        io.emit(usuario2,{
-            tipo : 'match',
-            obj : {
-                usuario : usuario1
-            }    
-        });
+
+        getUsuario(usuario2,(data)=>{
+
+            io.emit(usuario1,{
+                tipo : 'match',
+                obj : {
+                    usuario : data
+                }        
+            });
+
+        },()=>{});
+
+        getUsuario(usuario1,(data)=>{
+
+            io.emit(usuario2,{
+                tipo : 'match',
+                obj : {
+                    usuario : data
+                }        
+            });
+
+        },()=>{});
+
+        // io.emit(usuario1,{
+        //     tipo : 'match',
+        //     obj : {
+        //         usuario : usuario2
+        //     }        
+        // });
+        // io.emit(usuario2,{
+        //     tipo : 'match',
+        //     obj : {
+        //         usuario : usuario1
+        //     }    
+        // });
 
         console.log("MATCH ENVIADO POR SOCKET")
+        
         callback();
     }
     catch(err){
