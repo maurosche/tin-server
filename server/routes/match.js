@@ -69,9 +69,9 @@ app.get('/match', verificarToken, (req, res) => {
  
             matchs.forEach(match => {
  
+                //Si tengo un chat con el que tengo match, no muestro el match en la lista
                  if  (!chats.find(chat=>
-                       ( String(chat.usuarioEmisor[0]._id) == String(match.usuario1._id) && String(chat.usuarioReceptor[0]._id) == String(match.usuario2._id) ||
-                       (String(chat.usuarioEmisor[0]._id) == String(match.usuario2._id) && String(chat.usuarioReceptor[0]._id) == String(match.usuario1._id) ))
+                       ( String(chat.usuarioChat[0]._id) == String(match.usuario1._id) || String(chat.usuarioChat[0]._id) == String(match.usuario2._id))
                     ))
                     {
                         let usuarioMatch = match.usuario1._id == idUsuario ? match.usuario2: match.usuario1;
