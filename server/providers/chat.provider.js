@@ -43,7 +43,7 @@ let  getChats = (idUsuario,callback,callbackError)=> {
                     "visto": {$last : "$visto"  },
                     "mensajesPendientes": {
                         "$sum": { "$cond": [
-                            { "$eq": [ "$visto", false ] },
+                            { "$eq": [ "$visto", false ],[ "$usuarioReceptor" , new ObjectId(idUsuario)] },
                             1,
                             0
                         ]}
@@ -131,9 +131,6 @@ let  postChat = (idUsuarioEmisor,idUsuarioReceptor,mensaje,callback,callbackErro
 //  Poner chat en visto
 // ===========================
 let  vistoChat = (idUsuarioEmisor,idUsuarioReceptor,callback,callbackError)=> {
-
-    console.log('VISTO EMISOR', idUsuarioEmisor);
-    console.log('VISTO RECEPTOR', idUsuarioReceptor);
 
     Chat.updateMany(
       { usuarioEmisor : new ObjectId(idUsuarioEmisor), 
