@@ -30,21 +30,8 @@ let enviarMatch = (usuario1,usuario2,callback,callbackError)=>{
 
         },()=>{});
 
-        // io.emit(usuario1,{
-        //     tipo : 'match',
-        //     obj : {
-        //         usuario : usuario2
-        //     }        
-        // });
-        // io.emit(usuario2,{
-        //     tipo : 'match',
-        //     obj : {
-        //         usuario : usuario1
-        //     }    
-        // });
-
         console.log("MATCH ENVIADO POR SOCKET")
-        
+
         callback();
     }
     catch(err){
