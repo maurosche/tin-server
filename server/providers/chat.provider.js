@@ -1,11 +1,11 @@
 const Chat = require('../models/chat');
+let ObjectId = require('mongoose').Types.ObjectId; 
 
 // ===========================
 //  Obtener chats
 // ===========================
 let  getChats = (idUsuario,callback,callbackError)=> {
 
-    let ObjectId = require('mongoose').Types.ObjectId; 
     let condicion = {
                             $or:[
                                 {usuarioEmisor : new ObjectId(idUsuario)},
@@ -67,7 +67,6 @@ let  getChats = (idUsuario,callback,callbackError)=> {
 // ===========================
 let  getChat = (idUsuario1,idUsuario2,callback,callbackError)=> {
 
-    let ObjectId = require('mongoose').Types.ObjectId; 
     let condicion = {
         $or:[
             {
