@@ -139,7 +139,7 @@ let  vistoChat = (idUsuarioEmisor,idUsuarioReceptor,callback,callbackError)=> {
      { idUsuarioEmisor : new ObjectId(idUsuarioEmisor), 
        idUsuarioReceptor : new ObjectId(idUsuarioReceptor)} ,
      { $set: { "visto" : true } },
-         callback(data)
+        (data)=>{ callback(data)}
      );  
 };
 
