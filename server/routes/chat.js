@@ -2,7 +2,7 @@ const express = require('express');
 
 const Chat = require('../models/chat');
 const Usuario = require('../models/usuario');
-const { getChats, getChat, postChat} = require('../providers/chat.provider');
+const { getChats, getChat, postChat, vistoChat} = require('../providers/chat.provider');
 const { enviarChat } = require('../providers/socket.provider');
 
 const { verificarToken,verificarAdmin_Role } = require('../middlewares/autenticacion');
