@@ -80,6 +80,8 @@ app.put('/chatVisto', verificarToken, (req, res) => {
 
     vistoChat( body.idUsuarioEmisor, body.idUsuarioReceptor ,(result)=>{
 
+        res.json({ok:true,result });
+
     },(data)=>{callbackError(data,res)});
 
 });
