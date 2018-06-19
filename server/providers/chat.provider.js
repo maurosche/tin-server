@@ -37,7 +37,8 @@ let  getChats = (idUsuario,callback,callbackError)=> {
                         1,
                         0
                     ]}
-                },
+                },                
+                "totalCount": { "$sum": 1 }
                 }
             },  
             {
