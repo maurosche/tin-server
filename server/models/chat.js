@@ -14,6 +14,10 @@ let chatSchema = new Schema({
     fecha :{
         type : Date
     },
+    visto: {
+        type : Boolean,
+        default : false
+    },    
     borrado: {
         type : Boolean,
         default : false

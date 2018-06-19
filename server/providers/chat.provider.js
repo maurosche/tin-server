@@ -29,7 +29,8 @@ let  getChats = (idUsuario,callback,callbackError)=> {
                       else: "$usuarioEmisor"
                    }
                 },
-                "mensaje" : 1
+                "mensaje" : 1,
+                "visto" : 1
                 }
             },  
             {
@@ -38,7 +39,8 @@ let  getChats = (idUsuario,callback,callbackError)=> {
                         "usuarioChat": "$usuarioChat"
                     },
                     "usuarioChat": { $first : "$usuarioChat"},
-                    "mensaje": {$last : "$mensaje"  }
+                    "mensaje": {$last : "$mensaje"},
+                    "visto": {$last : "$visto"  }
                 }
             }, 
             {$lookup: {from: 'usuarios', localField: 'usuarioChat', foreignField: '_id', as: 'usuarioChat'} } 
