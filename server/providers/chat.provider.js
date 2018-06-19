@@ -43,7 +43,7 @@ let  getChats = (idUsuario,callback,callbackError)=> {
                     "visto": {$last : "$visto"  },
                     "mensajesPendientes": {
                         "$sum": { "$cond": [
-                            { "$eq": [ "$visto", "false" ] },
+                            { "$eq": [ "$visto", false ] },
                             1,
                             0
                         ]}
