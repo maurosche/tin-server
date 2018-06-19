@@ -30,7 +30,14 @@ let  getChats = (idUsuario,callback,callbackError)=> {
                    }
                 },
                 "mensaje" : 1,
-                "visto" : 1
+                "visto" : 1,
+                "mensajesPendientes": {
+                    "$sum": { "$cond": [
+                        { "$eq": [ "$visto", "false" ] },
+                        1,
+                        0
+                    ]}
+                },
                 }
             },  
             {
@@ -41,13 +48,7 @@ let  getChats = (idUsuario,callback,callbackError)=> {
                     "usuarioChat": { $first : "$usuarioChat"},
                     "mensaje": {$last : "$mensaje"},
                     "visto": {$last : "$visto"  },
-                    "mensajesPendientes": {
-                        "$sum": { "$cond": [
-                            { "$eq": [ "$visto", "false" ] },
-                            1,
-                            0
-                        ]}
-                    },
+                    "mensajesPendientes": { $first : "$mensajesPendientes" }
                 }
             }, 
             {$lookup: {from: 'usuarios', localField: 'usuarioChat', foreignField: '_id', as: 'usuarioChat'} } 
