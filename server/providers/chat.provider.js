@@ -133,13 +133,15 @@ let  postChat = (idUsuarioEmisor,idUsuarioReceptor,mensaje,callback,callbackErro
 // ===========================
 let  vistoChat = (idUsuarioEmisor,idUsuarioReceptor,callback,callbackError)=> {
 
+    console.log('PONER VISTO 1: ',data);
+
     Chat.updateMany({idUsuarioEmisor, idUsuarioReceptor},(err, data) => {
 
         if (err) {
             return callbackError(err);
         }
 
-        console.log('PONER VISTO : ',data);
+        console.log('PONER VISTO 2: ',data);
 
         data.visto = true;
 
