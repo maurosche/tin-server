@@ -134,7 +134,7 @@ let  postChat = (idUsuarioEmisor,idUsuarioReceptor,mensaje,callback,callbackErro
 let  vistoChat = (idUsuarioEmisor,idUsuarioReceptor,callback,callbackError)=> {
 
     Chat.updateMany(
-     {idUsuarioEmisor, idUsuarioReceptor} ,
+     { "idUsuarioEmisor" : idUsuarioEmisor, "idUsuarioReceptor" : idUsuarioReceptor} ,
      { $set: { "visto" : true } },
          callback()
      );  
