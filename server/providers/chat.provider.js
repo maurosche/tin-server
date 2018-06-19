@@ -1,5 +1,6 @@
 const Chat = require('../models/chat');
 let ObjectId = require('mongoose').Types.ObjectId; 
+const { enviarVisto} = require('../providers/socket.provider');
 
 // ===========================
 //  Obtener chats
@@ -140,7 +141,22 @@ let  vistoChat = (idUsuarioEmisor,idUsuarioReceptor,callback,callbackError)=> {
       { usuarioEmisor : new ObjectId(idUsuarioEmisor), 
         usuarioReceptor : new ObjectId(idUsuarioReceptor)} ,
      { $set: { "visto" : true } },
-        (data)=>{ callback(data)}
+        (data)=>{ 
+
+            
+            getChat(idUsuarioEmisor,idUsuarioReceptor,(chats)=>{
+
+                callback(data)
+
+                let ultimoChat = chats[chats.legth];
+
+                console.log('VISTO CHAT PADRE: ', ultimoChat);
+
+                enviarVisto(idUsuarioEmisor,idUsuarioReceptor,ultimoChat._id,()=>{});
+
+            },callbackError);       
+        
+        }
      );  
 };
 

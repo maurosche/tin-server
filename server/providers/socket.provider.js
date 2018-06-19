@@ -59,7 +59,27 @@ let enviarChat = (usuario1,usuario2,msj,callback,callbackError)=>{
     } 
 };
 
+let enviarVisto = (usuario1,usuario2,idMsj,callback,callbackError)=>{
+    
+    try 
+    {    
+        io.emit(usuario2,{
+            tipo : 'visto',
+            obj : {
+                idUsuario : usuario1,
+                idMsj
+            }
+        });
+        callback();
+    }
+    catch(err){
+        callbackError();
+    } 
+};
+
+
 module.exports = {
     enviarChat,
-    enviarMatch
+    enviarMatch,
+    enviarVisto
 };
