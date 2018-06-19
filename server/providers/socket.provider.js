@@ -63,10 +63,10 @@ let enviarVisto = (usuario1,usuario2,idMsj,callback,callbackError)=>{
     
     try 
     {    
-        io.emit(usuario2,{
+        io.emit(usuario1,{
             tipo : 'visto',
             obj : {
-                idUsuario : usuario1,
+                idUsuario : usuario2,
                 idMsj
             }
         });
