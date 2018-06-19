@@ -128,8 +128,30 @@ let  postChat = (idUsuarioEmisor,idUsuarioReceptor,mensaje,callback,callbackErro
     });    
 };
 
+// ===========================
+//  Poner chat en visto
+// ===========================
+let  vistoChat = (idUsuarioEmisor,idUsuarioReceptor,callback,callbackError)=> {
+
+    Chat.updateMany({idUsuarioEmisor, idUsuarioReceptor},(err, data) => {
+
+        if (err) {
+            return callbackError(err);
+        }
+
+        console.log('PONER VISTO : ',data);
+
+        data.visto = true;
+
+        data.save((err, dataEditado) => {})
+
+        callback(chat);
+    });    
+};
+
 module.exports = {
     getChats,
     getChat,
-    postChat
+    postChat,
+    vistoChat
 };

@@ -72,6 +72,20 @@ app.post('/chat', verificarToken, (req, res) => {
 });
 
 // ===========================
+//  Agrega un chat
+// ===========================
+app.put('/chatVisto', verificarToken, (req, res) => {
+
+    let body = req.body;
+
+    vistoChat( body.idUsuarioEmisor, body.idUsuarioReceptor ,(result)=>{
+
+    },(data)=>{callbackError(data,res)});
+
+});
+
+
+// ===========================
 //  Borrar un chat
 // ===========================
 app.delete('/chat/:id', verificarToken, (req, res) => {
