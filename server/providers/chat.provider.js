@@ -152,7 +152,6 @@ let  vistoChat = (idUsuarioEmisor,idUsuarioReceptor,callback,callbackError)=> {
                 console.log('VISTO CHAT PADRE  chats[chats.length]:  ',  chats[chats.length]);
                 //console.log('VISTO CHAT PADRE: ', chats);
 
-
                 let ultimoChat = chats[chats.length];
 
                 enviarVisto(idUsuarioEmisor,idUsuarioReceptor,ultimoChat._id,()=>{});
