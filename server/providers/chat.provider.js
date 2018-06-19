@@ -29,6 +29,8 @@ let  getChats = (idUsuario,callback,callbackError)=> {
                       else: "$usuarioEmisor"
                    }
                 },
+                "usuarioReceptor" : 1,
+                "usuarioEmisor" : 1,
                 "mensaje" : 1,
                 "visto" : 1
                 }
