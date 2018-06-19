@@ -42,10 +42,12 @@ let  getChats = (idUsuario,callback,callbackError)=> {
                     "mensaje": {$last : "$mensaje"},
                     "visto": {$last : "$visto"  },
                     "mensajesPendientes": {
-                        "$sum": { "$cond": [
-                            { "$eq": [ "$visto", false ],[ "$usuarioReceptor" , new ObjectId(idUsuario)] },
-                            1,
-                            0
+                        "$sum": { "$cond": [ {"$and" : [
+                                                        { "$eq": [ "$visto", false ] },
+                                                        { "$eq":[ "$usuarioReceptor" , new ObjectId(idUsuario)] }
+                                                       ]},
+                                                        1,  
+                                                        0
                         ]}
                     }             
                 }
