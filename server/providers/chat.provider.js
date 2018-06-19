@@ -133,7 +133,7 @@ let  postChat = (idUsuarioEmisor,idUsuarioReceptor,mensaje,callback,callbackErro
 // ===========================
 let  vistoChat = (idUsuarioEmisor,idUsuarioReceptor,callback,callbackError)=> {
 
-    console.log('PONER VISTO 1: ',data);
+    console.log('PONER VISTO 1');
 
     Chat.updateMany({idUsuarioEmisor, idUsuarioReceptor},(err, data) => {
 
@@ -145,9 +145,12 @@ let  vistoChat = (idUsuarioEmisor,idUsuarioReceptor,callback,callbackError)=> {
 
         data.visto = true;
 
-        data.save((err, dataEditado) => {})
+        data.save((err, dataEditado) => {
 
-        callback(chat);
+            callback(dataEditado);
+        })
+
+
     });    
 };
 
