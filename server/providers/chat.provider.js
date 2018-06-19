@@ -47,8 +47,7 @@ let  getChats = (idUsuario,callback,callbackError)=> {
                             1,
                             0
                         ]}
-                    },                
-                    "totalCount": { "$sum": 1 }
+                    }             
                 }
             }, 
             {$lookup: {from: 'usuarios', localField: 'usuarioChat', foreignField: '_id', as: 'usuarioChat'} } 
