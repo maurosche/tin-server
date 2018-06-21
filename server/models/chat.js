@@ -18,6 +18,10 @@ let chatSchema = new Schema({
         type : Boolean,
         default : false
     },    
+    entregado: {
+        type : Boolean,
+        default : false
+    }, 
     borrado: {
         type : Boolean,
         default : false

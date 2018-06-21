@@ -1,6 +1,5 @@
 const Chat = require('../models/chat');
 let ObjectId = require('mongoose').Types.ObjectId; 
-const { enviarVisto} = require('../providers/socket.provider');
 
 // ===========================
 //  Obtener chats
@@ -107,7 +106,6 @@ let  getChat = (idUsuario1,idUsuario2,callback,callbackError)=> {
 
             callback(chats);
         });
-
 };
 
 // ===========================
@@ -143,28 +141,45 @@ let  vistoChat = (idUsuarioEmisor,idUsuarioReceptor,callback,callbackError)=> {
      { $set: { "visto" : true } },
         (data)=>{ 
 
-            
-            getChat(idUsuarioEmisor,idUsuarioReceptor,(chats)=>{
-
-                callback(data);                
-
-                console.log('VISTO CHAT PADRE chats.length: ', chats.length);
-                console.log('VISTO CHAT PADRE  chats[chats.length-1]:  ',  chats[chats.length-1]);
-                //console.log('VISTO CHAT PADRE: ', chats);
-
-                let ultimoChat = chats[chats.length-1];
-
-                enviarVisto(idUsuarioEmisor,idUsuarioReceptor,ultimoChat._id,()=>{});
-
-            },callbackError);       
+            callback(data);     
         
-        }
-     );  
+        });  
+};
+
+// ===========================
+//  Poner chats en entregado
+// ===========================
+let  entregadoChat = (idUsuario,callback,callbackError)=> {
+
+    Chat.updateMany(
+      { usuarioReceptor : new ObjectId(idUsuario)} ,
+     { $set: { "entregado" : true } },
+        (data)=>{ 
+
+            callback(data);     
+        
+        });  
+};
+
+// ===========================
+//  Poner chat en entregado
+// ===========================
+let  vistoChat = (idUsuarioReceptor,callback,callbackError)=> {
+
+    Chat.updateMany(
+      { usuarioReceptor : new ObjectId(idUsuarioReceptor)} ,
+     { $set: { "entregado" : true } },
+        (data)=>{ 
+
+            callback(data);     
+        
+        });  
 };
 
 module.exports = {
     getChats,
     getChat,
     postChat,
+    entregadoChat,
     vistoChat
 };

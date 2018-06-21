@@ -3,7 +3,7 @@ const express = require('express');
 const Chat = require('../models/chat');
 const Usuario = require('../models/usuario');
 const { getChats, getChat, postChat, vistoChat} = require('../providers/chat.provider');
-const { enviarChat } = require('../providers/socket.provider');
+const { enviarChat, enviarVisto , entregadoChat } = require('../providers/socket.provider');
 
 const { verificarToken,verificarAdmin_Role } = require('../middlewares/autenticacion');
 
@@ -23,13 +23,16 @@ let callbackError = (data,res)=>{
 //  Obtener chats
 // ===========================
 app.get('/chatList', verificarToken, (req, res) => {
-    let idUsuario = req.query.idUsuario || 0;
 
-    //Si ya hay un chat con ese usuario no lo mostramos
-    getChats(idUsuario,(result)=>{       
+    let idUsuario = req.query.idUsuario || 0;    
+    entregadoChat(idUsuario,(result)=>{     
 
+        //Si ya hay un chat con ese usuario no lo mostramos
+        getChats(idUsuario,(result)=>{     
 
-        res.json({ok:true,result });
+            res.json({ok:true,result });
+
+        },(data)=>{callbackError(data,res)});
 
     },(data)=>{callbackError(data,res)});
 
@@ -81,6 +84,15 @@ app.put('/chatVisto', verificarToken, (req, res) => {
     vistoChat( body.idUsuarioEmisor, body.idUsuarioReceptor ,(result)=>{
 
         res.json({ok:true,result });
+
+        //Enviamos socket
+        getChat(idUsuarioEmisor,idUsuarioReceptor,(chats)=>{               
+
+            let ultimoChat = chats[chats.length-1];
+
+            enviarVisto(idUsuarioEmisor,idUsuarioReceptor,ultimoChat._id,()=>{});
+
+        },(data)=>{callbackError(data,res)});
 
     },(data)=>{callbackError(data,res)});
 
