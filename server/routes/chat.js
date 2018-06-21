@@ -56,12 +56,17 @@ app.get('/chat', verificarToken, (req, res) => {
                 
                 getChat(idUsuario1,idUsuario2,(result)=>{
 
-                    res.json({ok:true,result });
-
-                    //Enviamos socket de visto
-                    let ultimoChat = chats[chats.length-1];    
+                    res.json({ok:true,result });                     
                     
-                    enviarVisto(idUsuario2, idUsuario1,ultimoChat._id,()=>{});
+                    if(chats.length > 0)
+                    {
+                        //Enviamos socket de visto
+                        let ultimoChat = chats[chats.length-1]; 
+                        console.log('ultimo CHAT chats:', chats);
+                        console.log('ultimo CHAT :', ultimoChat);
+
+                        enviarVisto(idUsuario2, idUsuario1,ultimoChat._id,()=>{});
+                    }                   
 
                 },(data)=>{callbackError(data,res)});
     
