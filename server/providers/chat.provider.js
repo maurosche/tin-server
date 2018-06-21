@@ -182,5 +182,6 @@ module.exports = {
     getChat,
     postChat,
     entregadoChat,
+    entregadoAllChat,
     vistoChat
 };
