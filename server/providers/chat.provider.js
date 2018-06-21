@@ -149,10 +149,26 @@ let  vistoChat = (idUsuarioEmisor,idUsuarioReceptor,callback,callbackError)=> {
 // ===========================
 //  Poner chats en entregado
 // ===========================
-let  entregadoChat = (idUsuario,callback,callbackError)=> {
+let  entregadoAllChat = (idUsuario,callback,callbackError)=> {
 
     Chat.updateMany(
       { usuarioReceptor : new ObjectId(idUsuario)} ,
+     { $set: { "entregado" : true } },
+        (data)=>{ 
+
+            callback(data);     
+        
+        });  
+};
+
+// ====================================================
+//  Poner chats en entregado con un usuario específico
+// ====================================================
+let  entregadoChat = (idUsuarioEmisor,idUsuarioReceptor,callback,callbackError)=> {
+
+    Chat.updateMany(
+        { usuarioEmisor : new ObjectId(idUsuarioEmisor), 
+            usuarioReceptor : new ObjectId(idUsuarioReceptor)} ,
      { $set: { "entregado" : true } },
         (data)=>{ 
 

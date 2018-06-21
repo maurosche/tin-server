@@ -2,7 +2,7 @@ const express = require('express');
 
 const Chat = require('../models/chat');
 const Usuario = require('../models/usuario');
-const { getChats, getChat, postChat, vistoChat, entregadoChat} = require('../providers/chat.provider');
+const { getChats, getChat, postChat, vistoChat, entregadoChat, entregadoAllChat} = require('../providers/chat.provider');
 const { enviarChat, enviarVisto  } = require('../providers/socket.provider');
 
 const { verificarToken,verificarAdmin_Role } = require('../middlewares/autenticacion');
@@ -27,7 +27,7 @@ app.get('/chatList', verificarToken, (req, res) => {
     let idUsuario = req.query.idUsuario || 0; 
     
     //Cambio el estado a entregado a todos los mensajes del usuario
-    entregadoChat(idUsuario,(result)=>{     
+    entregadoAllChat(idUsuario,(result)=>{     
 
         //Si ya hay un chat con ese usuario no lo mostramos
         getChats(idUsuario,(result)=>{     
@@ -113,6 +113,22 @@ app.put('/chatVisto', verificarToken, (req, res) => {
 
 });
 
+// ===========================
+//  Pone como "entregado"
+// ===========================
+app.put('/chatEntregado', verificarToken, (req, res) => {
+
+    let body = req.body;
+
+    entregadoChat( body.idUsuarioEmisor, body.idUsuarioReceptor ,(result)=>{
+
+        res.json({ok:true,result });
+
+        //Enviamos socket
+
+    },(data)=>{callbackError(data,res)});
+
+});
 
 // ===========================
 //  Borrar un chat
