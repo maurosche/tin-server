@@ -47,14 +47,26 @@ app.get('/chat', verificarToken, (req, res) => {
     let idUsuario1 = req.query.idUsuarioEmisor || 0;
     let idUsuario2 = req.query.idUsuarioReceptor || 0;
 
-    getChat(idUsuario1,idUsuario2,(result)=>{
+        //CLAVAMOS VISTO
+        vistoChat( idUsuario2, idUsuario1,()=>{    
+           
+            getChat(idUsuario2, idUsuario1,(chats)=>{       
+                
+                getChat(idUsuario1,idUsuario2,(result)=>{
 
-        res.json({ok:true,result });
+                    res.json({ok:true,result });
 
-    },(data)=>{callbackError(data,res)});
+                    //Enviamos socket
+                    let ultimoChat = chats[chats.length-1];    
+                    
+                    enviarVisto(idUsuario2, idUsuario1,ultimoChat._id,()=>{});
 
+                },(data)=>{callbackError(data,res)});
+    
+            },(data)=>{callbackError(data,res)});
+    
+        },(data)=>{callbackError(data,res)});
 });
-
 
 // ===========================
 //  Agrega un chat
@@ -76,7 +88,7 @@ app.post('/chat', verificarToken, (req, res) => {
 });
 
 // ===========================
-//  Agrega un chat
+//  Pone el "visto"
 // ===========================
 app.put('/chatVisto', verificarToken, (req, res) => {
 
@@ -87,7 +99,7 @@ app.put('/chatVisto', verificarToken, (req, res) => {
         res.json({ok:true,result });
 
         //Enviamos socket
-        getChat(idUsuarioEmisor,idUsuarioReceptor,(chats)=>{               
+        getChat(body.idUsuarioEmisor,body.idUsuarioReceptor,(chats)=>{               
 
             let ultimoChat = chats[chats.length-1];
 
