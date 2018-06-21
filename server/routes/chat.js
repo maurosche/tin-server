@@ -35,6 +35,7 @@ app.get('/chatList', verificarToken, (req, res) => {
         },(data)=>{callbackError(data,res)});
 
     },(data)=>{callbackError(data,res)});
+    
 
 });
 
