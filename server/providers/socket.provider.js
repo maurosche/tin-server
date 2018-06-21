@@ -43,13 +43,17 @@ let enviarChat = (usuario1,usuario2,msj,callback,callbackError)=>{
     
     try 
     {    
-        io.emit(usuario1,{
-            tipo : 'chat',
-            obj : {
-                usuario : usuario2,
-                msj
-            }
-        });
+        getUsuario(usuario2,(data)=>{
+
+            io.emit(usuario1,{
+                tipo : 'chat',
+                obj : {
+                    usuario : data,
+                    msj
+                }
+            });
+
+        },()=>{});
 
         console.log("CHAT ENVIADO POR SOCKET")
         callback();
