@@ -105,7 +105,7 @@ app.put('/chatVisto', verificarToken, (req, res) => {
 
             let ultimoChat = chats[chats.length-1];
 
-            enviarVisto(idUsuarioEmisor,idUsuarioReceptor,ultimoChat._id,()=>{});
+            enviarVisto(body.idUsuarioEmisor,body.idUsuarioReceptor,ultimoChat._id,()=>{});
 
         },(data)=>{callbackError(data,res)});
 
