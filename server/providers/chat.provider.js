@@ -161,21 +161,6 @@ let  entregadoChat = (idUsuario,callback,callbackError)=> {
         });  
 };
 
-// ===========================
-//  Poner chat en entregado
-// ===========================
-let  vistoChat = (idUsuarioReceptor,callback,callbackError)=> {
-
-    Chat.updateMany(
-      { usuarioReceptor : new ObjectId(idUsuarioReceptor)} ,
-     { $set: { "entregado" : true } },
-        (data)=>{ 
-
-            callback(data);     
-        
-        });  
-};
-
 module.exports = {
     getChats,
     getChat,
