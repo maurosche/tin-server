@@ -24,7 +24,9 @@ let callbackError = (data,res)=>{
 // ===========================
 app.get('/chatList', verificarToken, (req, res) => {
 
-    let idUsuario = req.query.idUsuario || 0;    
+    let idUsuario = req.query.idUsuario || 0; 
+    
+    //Cambio el estado a entregado a todos los mensajes del usuario
     entregadoChat(idUsuario,(result)=>{     
 
         //Si ya hay un chat con ese usuario no lo mostramos
@@ -56,7 +58,7 @@ app.get('/chat', verificarToken, (req, res) => {
 
                     res.json({ok:true,result });
 
-                    //Enviamos socket
+                    //Enviamos socket de visto
                     let ultimoChat = chats[chats.length-1];    
                     
                     enviarVisto(idUsuario2, idUsuario1,ultimoChat._id,()=>{});

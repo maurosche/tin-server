@@ -138,7 +138,7 @@ let  vistoChat = (idUsuarioEmisor,idUsuarioReceptor,callback,callbackError)=> {
     Chat.updateMany(
       { usuarioEmisor : new ObjectId(idUsuarioEmisor), 
         usuarioReceptor : new ObjectId(idUsuarioReceptor)} ,
-     { $set: { "visto" : true } },
+     { $set: { "visto" : true, "entregado" : true } },
         (data)=>{ 
 
             callback(data);     
