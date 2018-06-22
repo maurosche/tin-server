@@ -38,8 +38,8 @@ app.get('/usuario', verificarTokenAdmin, function(req,res){
         });
 
         ids.push(idUsuario);
-        
-        getUsuarios(ids,(result)=>{
+
+        getUsuarios(idUsuario,ids,(result)=>{
 
             res.json({ok:true,result });
     
