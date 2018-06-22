@@ -164,11 +164,10 @@ let  entregadoAllChat = (idUsuario,callback,callbackError)=> {
 // ====================================================
 //  Poner chats en entregado con un usuario específico
 // ====================================================
-let  entregadoChat = (idUsuarioEmisor,idUsuarioReceptor,callback,callbackError)=> {
+let  entregadoChat = (idMsj,callback,callbackError)=> {
 
     Chat.updateMany(
-        { usuarioEmisor : new ObjectId(idUsuarioEmisor), 
-            usuarioReceptor : new ObjectId(idUsuarioReceptor)} ,
+        { _id : idMsj} ,
      { $set: { "entregado" : true } },
         (data)=>{ 
 

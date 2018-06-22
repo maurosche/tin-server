@@ -125,11 +125,12 @@ app.put('/chatEntregado', verificarToken, (req, res) => {
 
     let body = req.body;
 
-    entregadoChat( body.idUsuarioEmisor, body.idUsuarioReceptor ,(result)=>{
+    entregadoChat( body.idMsj ,(result)=>{        
 
         res.json({ok:true,result });
 
         //Enviamos socket
+        enviarEntregado(body.idUsuarioEmisor, body.idUsuarioReceptor,idMsj,()=>{},()=>{});
 
     },(data)=>{callbackError(data,res)});
 
