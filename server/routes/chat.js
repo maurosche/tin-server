@@ -82,9 +82,9 @@ app.post('/chat', verificarToken, (req, res) => {
 
     let body = req.body;
 
-    postChat( body.idUsuarioEmisor, body.idUsuarioReceptor,body.mensaje,(result)=>{
+    postChat( body.idUsuarioEmisor, body.idUsuarioReceptor,body.mensaje,(chat)=>{
 
-        enviarChat(body.idUsuarioReceptor,body.idUsuarioEmisor,body.mensaje,()=>{
+        enviarChat(chat._id,body.idUsuarioReceptor,body.idUsuarioEmisor,body.mensaje,()=>{
 
             res.json({ok:true,result });
 

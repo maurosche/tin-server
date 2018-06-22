@@ -39,7 +39,7 @@ let enviarMatch = (usuario1,usuario2,callback,callbackError)=>{
     }   
 };
 
-let enviarChat = (usuario1,usuario2,msj,callback,callbackError)=>{
+let enviarChat = (_id,usuario1,usuario2,msj,callback,callbackError)=>{
     
     try 
     {    
@@ -48,6 +48,7 @@ let enviarChat = (usuario1,usuario2,msj,callback,callbackError)=>{
             io.emit(usuario1,{
                 tipo : 'chat',
                 obj : {
+                    _id,
                     usuario : data,
                     msj
                 }

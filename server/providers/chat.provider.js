@@ -109,7 +109,7 @@ let  getChat = (idUsuario1,idUsuario2,callback,callbackError)=> {
 };
 
 // ===========================
-//  Obtener chat
+//  Agrega un msj
 // ===========================
 let  postChat = (idUsuarioEmisor,idUsuarioReceptor,mensaje,callback,callbackError)=> {
 
