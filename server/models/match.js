@@ -18,6 +18,6 @@ let matchSchema = new Schema({
     }                      
 });
 
-//matchSchema.index({ usuario1: 1, usuario2: 1 }, { unique: true })
+matchSchema.index({ usuario1: 1, usuario2: 1 }, { unique: true })
 
 module.exports = mongoose.model('match', matchSchema);

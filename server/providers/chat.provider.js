@@ -133,12 +133,27 @@ let  postChat = (idUsuarioEmisor,idUsuarioReceptor,mensaje,callback,callbackErro
 // ===========================
 //  Poner chat en visto
 // ===========================
-let  vistoChat = (idUsuarioEmisor,idUsuarioReceptor,callback,callbackError)=> {
+let  vistoChats = (idUsuarioEmisor,idUsuarioReceptor,callback,callbackError)=> {
 
     Chat.updateMany(
       { usuarioEmisor : new ObjectId(idUsuarioEmisor), 
         usuarioReceptor : new ObjectId(idUsuarioReceptor)} ,
      { $set: { "visto" : true, "entregado" : true } },
+        (data)=>{ 
+
+            callback(data);     
+        
+        });  
+};
+
+// ===========================
+//  Poner UN chat en visto
+// ===========================
+let  vistoChat = (idMsj,callback,callbackError)=> {
+
+    Chat.updateMany(
+      { _id : idMsj },
+      { $set: { "visto" : true, "entregado" : true } },
         (data)=>{ 
 
             callback(data);     
@@ -182,5 +197,6 @@ module.exports = {
     postChat,
     entregadoChat,
     entregadoAllChat,
-    vistoChat
+    vistoChat,
+    vistoChats
 };

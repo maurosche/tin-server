@@ -2,7 +2,7 @@ const express = require('express');
 
 const Chat = require('../models/chat');
 const Usuario = require('../models/usuario');
-const { getChats, getChat, postChat, vistoChat, entregadoChat, entregadoAllChat} = require('../providers/chat.provider');
+const { getChats, getChat, postChat, vistoChat, vistoChats, entregadoChat, entregadoAllChat} = require('../providers/chat.provider');
 const { enviarChat, enviarVisto, enviarEntregado   } = require('../providers/socket.provider');
 
 const { verificarToken,verificarAdmin_Role } = require('../middlewares/autenticacion');
@@ -62,8 +62,6 @@ app.get('/chat', verificarToken, (req, res) => {
                     {
                         //Enviamos socket de visto
                         let ultimoChat = chats[chats.length-1]; 
-                        console.log('ultimo CHAT chats:', chats);
-                        console.log('ultimo CHAT :', ultimoChat);
 
                         enviarVisto(idUsuario2, idUsuario1,ultimoChat._id,()=>{});
                     }                   
@@ -101,18 +99,12 @@ app.put('/chatVisto', verificarToken, (req, res) => {
 
     let body = req.body;
 
-    vistoChat( body.idUsuarioEmisor, body.idUsuarioReceptor ,(result)=>{
+    vistoChat( body.idMsj ,(result)=>{
 
         res.json({ok:true,result });
 
-        //Enviamos socket
-        getChat(body.idUsuarioEmisor,body.idUsuarioReceptor,(chats)=>{               
-
-            let ultimoChat = chats[chats.length-1];
-
-            enviarVisto(body.idUsuarioEmisor,body.idUsuarioReceptor,ultimoChat._id,()=>{});
-
-        },(data)=>{callbackError(data,res)});
+        //Enivamos socket
+        enviarVisto(body.idUsuarioEmisor,body.idUsuarioReceptor, body.idMsj,()=>{});
 
     },(data)=>{callbackError(data,res)});
 
