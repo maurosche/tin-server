@@ -31,8 +31,9 @@ app.get('/usuario', verificarTokenAdmin, function(req,res){
 
         let idsChats = new Array();
 
-        chats.array.forEach(element => {
+        chats.forEach(element => {
             idsChats.push(element.usuarioChat._id);
+            console.log('EACH USUARIO : ', element.usuarioChat);
         });
 
         getUsuarios(idUsuario,idsChats,(result)=>{
