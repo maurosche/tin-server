@@ -104,5 +104,6 @@ let enviarEntregado = (usuario1,usuario2,idMsj,callback,callbackError)=>{
 module.exports = {
     enviarChat,
     enviarMatch,
+    enviarEntregado,
     enviarVisto
 };
