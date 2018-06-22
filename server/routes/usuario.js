@@ -26,12 +26,21 @@ app.get('/usuario', verificarTokenAdmin, function(req,res){
 
     let idUsuario = req.query.idUsuario || 0;
 
-    getUsuarios(idUsuario,(result)=>{
+    getChats(idUsuario,(chats)=>{
 
-        res.json({ok:true,result });
+        let idsChats = new Array();
+
+        chats.array.forEach(element => {
+            idsChats.push(element.usuarioChat._id);
+        });
+
+        getUsuarios(idUsuario,idsChats,(result)=>{
+
+            res.json({ok:true,result });
+    
+        },(data)=>{callbackError(data,res)});
 
     },(data)=>{callbackError(data,res)});
-
 })
 
 // ===========================
