@@ -72,7 +72,7 @@ let enviarVisto = (usuario1,usuario2,idMsj,callback,callbackError)=>{
             tipo : 'visto',
             obj : {
                 idUsuario : usuario2,
-                idMsj
+                _id : idMsj
             }
         });
         callback();
