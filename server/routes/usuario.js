@@ -37,7 +37,9 @@ app.get('/usuario', verificarTokenAdmin, function(req,res){
             console.log('EACH USUARIO : ', element.usuarioReceptor._id);
         });
 
-        getUsuarios(idUsuario,ids,(result)=>{
+        ids.push(idUsuario);
+        
+        getUsuarios(ids,(result)=>{
 
             res.json({ok:true,result });
     
