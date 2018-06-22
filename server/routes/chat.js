@@ -3,7 +3,7 @@ const express = require('express');
 const Chat = require('../models/chat');
 const Usuario = require('../models/usuario');
 const { getChats, getChat, postChat, vistoChat, entregadoChat, entregadoAllChat} = require('../providers/chat.provider');
-const { enviarChat, enviarVisto  } = require('../providers/socket.provider');
+const { enviarChat, enviarVisto, enviarEntregado   } = require('../providers/socket.provider');
 
 const { verificarToken,verificarAdmin_Role } = require('../middlewares/autenticacion');
 
