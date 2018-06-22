@@ -28,16 +28,16 @@ app.get('/usuario', verificarTokenAdmin, function(req,res){
     let idUsuario = req.query.idUsuario || 0;
 
     //Traigo usuarios a los que no le haya dado like
-    getLikesPropios(idUsuario,(chats)=>{
+    getLikesPropios(idUsuario,(likes)=>{
 
         let ids = new Array();
 
-        chats.forEach(element => {
+        likes.forEach(element => {
             ids.push(element.usuarioReceptor._id);
             console.log('EACH USUARIO : ', element.usuarioReceptor._id);
         });
 
-        getUsuarios(idUsuario,idsChats,(result)=>{
+        getUsuarios(idUsuario,ids,(result)=>{
 
             res.json({ok:true,result });
     
