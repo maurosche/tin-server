@@ -4,10 +4,10 @@ const Usuario = require('../models/usuario');
 // ===========================
 //  Obtener usuarios
 // ===========================
-let getUsuarios = (idUsuario,idsChats,callback,callbackError)=> {
+let getUsuarios = (idUsuario,ids,callback,callbackError)=> {
 
     console.log("GETUSUARIOS===================", idUsuario);
-    let condition =  idUsuario == 0 ? {borrado:false} : {borrado:false , _id : { $ne : idUsuario}, _id : { $nin : idsChats}};
+    let condition = {borrado:false , _id : { $ne : idUsuario}, _id : { $nin : ids}};
 
     Usuario.find( condition, 'id nombre apellido email img kmConfig edadDesdeConfig edadHastaConfig notifMensajeConfig notifMatchConfig')
         .exec((err, data) => {

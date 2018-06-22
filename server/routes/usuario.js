@@ -30,10 +30,10 @@ app.get('/usuario', verificarTokenAdmin, function(req,res){
     //Traigo usuarios a los que no le haya dado like
     getLikesPropios(idUsuario,(chats)=>{
 
-        let idsChats = new Array();
+        let ids = new Array();
 
         chats.forEach(element => {
-            idsChats.push(element.usuarioReceptor._id);
+            ids.push(element.usuarioReceptor._id);
             console.log('EACH USUARIO : ', element.usuarioReceptor._id);
         });
 
