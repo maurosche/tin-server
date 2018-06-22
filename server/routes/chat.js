@@ -50,7 +50,7 @@ app.get('/chat', verificarToken, (req, res) => {
     let idUsuario2 = req.query.idUsuarioReceptor || 0;
 
         //CLAVAMOS VISTO
-        vistoChat( idUsuario2, idUsuario1,()=>{    
+        vistoChats( idUsuario2, idUsuario1,()=>{    
            
             getChat(idUsuario2, idUsuario1,(chats)=>{       
                 
