@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 const Usuario = require('../models/usuario');
 const { getUsuarios , postUsuario, putUsuario, login} = require('../providers/usuario.provider');
-const { getChats} = require('../providers/chat.provider');
+const { getLikesPropios} = require('../providers/like.provider');
 
 const { verificarToken,verificarTokenAdmin } = require('../middlewares/autenticacion');
 
@@ -27,13 +27,14 @@ app.get('/usuario', verificarTokenAdmin, function(req,res){
 
     let idUsuario = req.query.idUsuario || 0;
 
-    getChats(idUsuario,(chats)=>{
+    //Traigo usuarios a los que no le haya dado like
+    getLikesPropios(idUsuario,(chats)=>{
 
         let idsChats = new Array();
 
         chats.forEach(element => {
-            idsChats.push(element.usuarioChat[0]._id);
-            console.log('EACH USUARIO : ', element.usuarioChat[0]._id);
+            idsChats.push(element.usuarioReceptor._id);
+            console.log('EACH USUARIO : ', element.usuarioReceptor._id);
         });
 
         getUsuarios(idUsuario,idsChats,(result)=>{

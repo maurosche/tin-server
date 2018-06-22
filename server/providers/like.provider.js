@@ -49,7 +49,32 @@ let  getLike = (idUsuarioEmisor,idUsuarioReceptor,callback,callbackError)=> {
         })
 };
 
+// ===========================
+//  Obtener likes propios
+// ===========================
+let  getLikesPropios = (idUsuario,callback,callbackError)=> {
+
+    let ObjectId = require('mongoose').Types.ObjectId; 
+
+    let condicion = {
+        usuarioEmisor : new ObjectId(idUsuario)
+    };   
+    
+    Like.find(condicion)
+        .populate('usuarioEmisor')
+        .populate('usuarioReceptor')
+        .exec((err, result) => {
+
+            if (err) {
+                return callbackError(err);
+            }
+
+            callback(result);
+        })
+};
+
 module.exports = {
     postLike,
+    getLikesPropios,
     getLike
 };
