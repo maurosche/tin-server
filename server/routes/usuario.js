@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 
 const Usuario = require('../models/usuario');
 const { getUsuarios , postUsuario, putUsuario, login} = require('../providers/usuario.provider');
+const { getChats} = require('../providers/chat.provider');
 
 const { verificarToken,verificarTokenAdmin } = require('../middlewares/autenticacion');
 
