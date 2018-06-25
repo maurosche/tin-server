@@ -31,7 +31,7 @@ let  postFotosPerfil = (idUsuario,fotosList,callback,callbackError)=> {
         base64Data  +=  base64Data.replace('+', ' ');
         let binaryData  =   new Buffer(base64Data, 'base64').toString('binary');
 
-        fs.writeFile(pathImagen, binaryData, "binary", function (err) {   
+        writeFile(pathImagen, binaryData, function (err) {   
 
         //fs.writeFile(pathImagen, base64Data, 'base64', function(err) {
         //writeFile(pathImagen, base64Data, function(err) {
@@ -57,7 +57,7 @@ let writeFile = (path, contents, cb) => {
     mkdirp(getDirName(path), function (err) {
       if (err) return cb(err);
   
-      fs.writeFile(path, contents, cb);
+      fs.writeFile(path, contents, "binary", cb);
     });
   }
 
