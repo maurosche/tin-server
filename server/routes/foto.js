@@ -1,7 +1,5 @@
 const express = require('express');
 
-const Chat = require('../models/chat');
-const Usuario = require('../models/usuario');
 const { postFotosPerfil   } = require('../providers/foto.provider');
 
 const { verificarToken,verificarAdmin_Role } = require('../middlewares/autenticacion');

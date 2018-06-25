@@ -6,6 +6,7 @@ const app = express();
 // app.use( require('./imagenes'));
 
 app.use( require('./login'));
+app.use( require('./foto'));
 app.use( require('./usuario'));
 app.use( require('./chat'));
 app.use( require('./like'));
