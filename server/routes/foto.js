@@ -3,6 +3,7 @@ const { postFotosPerfil   } = require('../providers/foto.provider');
 const { verificarToken,verificarAdmin_Role } = require('../middlewares/autenticacion');
 const app = express();
 const fs = require('fs');
+const path = require('path');
 
 let callbackError = (data,res)=>{
 
