@@ -3,12 +3,12 @@ const app = express();
 const fs = require('fs');
 const path = require('path');
 
-app.get('/imagen/:tipo/:img', (req,res)=>{
+app.get('/imagen/:idUser/:img', (req,res)=>{
 
-    let tipo = req.params.tipo;
+    let idUser = req.params.idUser;
     let img = req.params.img;
 
-    let pathImg = path.resolve(__dirname,`../../uploads/${tipo}/${img}`);
+    let pathImg = path.resolve(__dirname,`../../uploads/${idUser}/${img}`);
     let noImagePath = path.resolve(__dirname,'../assets/no-image.jpg');
 
     if (fs.existsSync(pathImg)) {
