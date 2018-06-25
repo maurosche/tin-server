@@ -6,7 +6,7 @@ const http = require('http');
 const path = require('path');
 const app = express();
 const mongoose = require('mongoose');
-const publicPath = path.resolve(__dirname, '../public');
+const publicPath = path.resolve(__dirname, '../uploads');
 const bodyParser = require('body-parser');
 
 //Add headers
