@@ -16,8 +16,6 @@ let  getFotos = (idUsuario,callback,callbackError)=> {
 let  postFotosPerfil = (idUsuario,fotosList,callback,callbackError)=> {
 
     let fotosListEnDisco = new Array();
-
-    console.log('================= fotosList.length : ',  fotosList.length);
  
     for(var i = 0; i < fotosList.length;i++){
         
@@ -26,7 +24,8 @@ let  postFotosPerfil = (idUsuario,fotosList,callback,callbackError)=> {
         let pathImagen = path.resolve(__dirname, `../../uploads/perfil/` + idUsuario + `/${ nombreArchivo }`);
         //let pathImagen = path.resolve(__dirname, `../../uploads/${ nombreArchivo }`);
         //var base64Data = fotosList[i].replace(/^data:image\/png;base64,/, "");
-        var base64Data = fotosList[i];
+        var data = fotosList[i].replace(/^data:image\/\w+;base64,/, "");
+        var base64Data = new Buffer(data, 'base64');
     
         console.log('=================pathImagen : ', pathImagen);
 
