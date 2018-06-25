@@ -27,14 +27,10 @@ let  postFotosPerfil = (idUsuario,fotosList,callback,callbackError)=> {
 
         console.log('=================pathImagen : ', pathImagen);
         
-        let base64Data  =   fotosList[i].replace(/^data:image\/png;base64,/, "");
-        base64Data  +=  base64Data.replace('+', ' ');
-        let binaryData  =   new Buffer(base64Data, 'base64').toString('binary');
-
-        writeFile(pathImagen, binaryData, function (err) {   
+        let base64Data = fotosList[i].split(';base64,').pop();
 
         //fs.writeFile(pathImagen, base64Data, 'base64', function(err) {
-        //writeFile(pathImagen, base64Data, function(err) {
+        writeFile(pathImagen, base64Data, function(err) {
  
             if (err) 
             {
@@ -57,9 +53,10 @@ let writeFile = (path, contents, cb) => {
     mkdirp(getDirName(path), function (err) {
       if (err) return cb(err);
   
-      fs.writeFile(path, contents, "binary", cb);
+      fs.writeFile(path, contents, {encoding: 'base64'}, function(err) {
     });
-  }
+  });
+}
 
 
 module.exports = {
