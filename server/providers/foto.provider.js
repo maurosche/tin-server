@@ -21,7 +21,7 @@ let  postFotosPerfil = (idUsuario,fotosList,callback,callbackError)=> {
  
     for(var i = 0; i < fotosList.length;i++){
         
-        let extension = 'jpeg'; 
+        let extension = fotosList[i].indexOf('jpeg') < 0 ? 'png' : 'jpeg';      
         let nombreArchivo = `${Math.random()}-${new Date().getMilliseconds()}.${extension}`;  
         let pathImagen = path.resolve(__dirname, `../../uploads/perfil/` + idUsuario + `/${ nombreArchivo }`);
         //let pathImagen = path.resolve(__dirname, `../../uploads/${ nombreArchivo }`);
