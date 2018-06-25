@@ -18,7 +18,7 @@ let callbackError = (data,res)=>{
 // ===========================
 //  Agrega fotos de perfil
 // ===========================
-app.post('/postFotosPerfil', verificarToken, (req, res) => {
+app.post('/fotosPerfil', verificarToken, (req, res) => {
 
     let body = req.body;
 
@@ -32,12 +32,12 @@ app.post('/postFotosPerfil', verificarToken, (req, res) => {
 // ===========================
 // GET FOTO
 // ===========================
-app.get('/foto/:idUser/:img', (req,res)=>{
+app.get('/fotoPerfil/:idUser/:img', (req,res)=>{
 
     let idUser = req.params.idUser;
     let img = req.params.img;
 
-    let pathImg = path.resolve(__dirname,`../../uploads/${idUser}/${img}`);
+    let pathImg = path.resolve(__dirname,`../../uploads/perfil/${idUser}/${img}`);
     let noImagePath = path.resolve(__dirname,'../assets/no-image.jpg');
 
     if (fs.existsSync(pathImg)) {
