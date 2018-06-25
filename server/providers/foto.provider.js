@@ -30,7 +30,7 @@ let  postFotosPerfil = (idUsuario,fotosList,callback,callbackError)=> {
 
             if (err) 
             {
-                return callbackError(err);
+                //return callbackError(err);
             }
             else
             {
