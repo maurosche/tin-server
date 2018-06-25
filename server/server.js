@@ -38,7 +38,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-//app.use(express.static(publicPath));
+app.use(express.static(publicPath));
 
 // ========================
 //   MONGOO BD
