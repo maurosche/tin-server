@@ -25,7 +25,8 @@ let  postFotosPerfil = (idUsuario,fotosList,callback,callbackError)=> {
         let nombreArchivo = `${new Date().getMilliseconds()}.${extension}`;  
         let pathImagen = path.resolve(__dirname, `../../uploads/perfil/` + idUsuario + `/${ nombreArchivo }`);
         //let pathImagen = path.resolve(__dirname, `../../uploads/${ nombreArchivo }`);
-        var base64Data = fotosList[i].replace(/^data:image\/png;base64,/, "");
+        //var base64Data = fotosList[i].replace(/^data:image\/png;base64,/, "");
+        var base64Data = fotosList[i];
     
         console.log('=================pathImagen : ', pathImagen);
 
