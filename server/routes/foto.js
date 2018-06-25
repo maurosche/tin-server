@@ -25,10 +25,11 @@ app.post('/postFotosPerfil', verificarToken, (req, res) => {
 
     console.log('================= body.fotosList.length : ',  body.fotosList.length);
 
+    return res.json({ok:true, cantidad : body.fotosList.length });
+
     postFotosPerfil( body.idUsuario, body.fotosList,(result)=>{
 
-        //res.json({ok:true, result });
-        res.json({ok:true, body.fotosList.length });
+        //res.json({ok:true, result });        
 
     },(data)=>{callbackError(data,res)});
 });
