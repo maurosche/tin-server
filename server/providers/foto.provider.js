@@ -15,6 +15,8 @@ let  postFotosPerfil = (idUsuario,fotosList,callback,callbackError)=> {
 
     let fotosListEnDisco = new Array();
 
+    console.log('=================fotosList : ', fotosList);
+
     fotosList.forEach(f => {        
         
         let nombreCortado = f.nombre.split('.');
