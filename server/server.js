@@ -39,6 +39,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.use(express.static(publicPath));
+app.use('/images', express.static(__dirname+'../uploads/'));
 
 // var fs = require('fs');
 // var dir = path.join(__dirname, '../uploads');
