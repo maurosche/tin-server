@@ -10,8 +10,9 @@ let  getFotosPerfil = (idUsuario,callback,callbackError)=> {
 
     let pathImagen = path.resolve(__dirname, `../../uploads/perfil/` + idUsuario + `/`);
 
-    fs.readdir(pathImagen, {encoding : "base64"},(data)=>{
+    fs.readdir(pathImagen, {encoding : "base64"},(err,data)=>{
 
+        console.log('DATAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ERROR:',err);
         console.log('DATAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:',data);
 
     })
