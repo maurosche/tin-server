@@ -22,12 +22,13 @@ let  postFotosPerfil = (idUsuario,fotosList,callback,callbackError)=> {
         let extension = 'jpeg'; 
         let nombreArchivo = `${new Date().getMilliseconds()}.${extension}`;  
         //let pathImagen = path.resolve(__dirname, `../../uploads/perfil/` + idUsuario + `/${ nombreArchivo }`);
-        let pathImagen =`../../uploads/${ nombreArchivo }`;
+        let pathImagen =`${ nombreArchivo }`;
         
         console.log('=================pathImagen : ', pathImagen);
         console.log('=================fotosList[i] : ', fotosList[i]); 
         console.log('=================fotosList[i].src : ', fotosList[i].src); 
         
+
 
         fs.writeFile(pathImagen, fotosList[i].src, function (err) {
 
