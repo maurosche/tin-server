@@ -1,4 +1,6 @@
+var mkdirp = require('mkdirp');
 const fs = require('fs');
+var getDirName = require('path').dirname;
 const path = require('path');
 
 // ===========================
@@ -27,7 +29,7 @@ let  postFotosPerfil = (idUsuario,fotosList,callback,callbackError)=> {
     
         console.log('=================pathImagen : ', pathImagen);
 
-        fs.writeFile(pathImagen, base64Data, 'base64', function(err) {
+        this.writeFile(pathImagen, base64Data, 'base64', function(err) {
 
             if (err) 
             {
@@ -45,6 +47,14 @@ let  postFotosPerfil = (idUsuario,fotosList,callback,callbackError)=> {
     callback(fotosListEnDisco);
 
 };
+
+function writeFile(path, contents, cb) {
+    mkdirp(getDirName(path), function (err) {
+      if (err) return cb(err);
+  
+      fs.writeFile(path, contents, cb);
+    });
+  }
 
 
 module.exports = {
