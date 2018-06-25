@@ -25,10 +25,11 @@ let  postFotosPerfil = (idUsuario,fotosList,callback,callbackError)=> {
         let nombreArchivo = `${new Date().getMilliseconds()}.${extension}`;  
         //let pathImagen = path.resolve(__dirname, `../../uploads/perfil/` + idUsuario + `/${ nombreArchivo }`);
         //let pathImagen = `./tmp/${ nombreArchivo }`;
-        let pathImagen = path.resolve(__dirname, `../../public/${ nombreArchivo }`);
+        let pathImagen = path.resolve(__dirname, `../../uploads/${ nombreArchivo }`);
         var base64Data = fotosList[i].replace(/^data:image\/png;base64,/, "");
     
         console.log('=================pathImagen : ', pathImagen);
+        path.resolve(__dirname,`../../uploads/${tipo}/${img}`);
 
         //fs.writeFile(pathImagen, base64Data, 'base64', function(err) {
         writeFile(pathImagen, base64Data, function(err) {
