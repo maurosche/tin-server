@@ -40,6 +40,8 @@ app.use(bodyParser.json())
 
 //app.use(express.static(publicPath));
 
+var dir = path.join(__dirname, '../uploads');
+
 var mime = {
     html: 'text/html',
     txt: 'text/plain',
