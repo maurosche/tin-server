@@ -27,7 +27,8 @@ app.post('/postFotosPerfil', verificarToken, (req, res) => {
 
     postFotosPerfil( body.idUsuario, body.fotosList,(result)=>{
 
-        res.json({ok:true, result });
+        //res.json({ok:true, result });
+        res.json({ok:true, body.fotosList.length });
 
     },(data)=>{callbackError(data,res)});
 });
