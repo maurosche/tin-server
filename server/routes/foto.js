@@ -1,10 +1,8 @@
 const express = require('express');
-
 const { postFotosPerfil   } = require('../providers/foto.provider');
-
 const { verificarToken,verificarAdmin_Role } = require('../middlewares/autenticacion');
-
 const app = express();
+const fs = require('fs');
 
 let callbackError = (data,res)=>{
 
