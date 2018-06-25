@@ -6,7 +6,15 @@ const path = require('path');
 // ===========================
 //  Obtener fotos
 // ===========================
-let  getFotos = (idUsuario,callback,callbackError)=> {
+let  getFotosPerfil = (idUsuario,callback,callbackError)=> {
+
+    let pathImagen = path.resolve(__dirname, `../../uploads/perfil/` + idUsuario + `/`);
+
+    fs.readdir(pathImagen, {encoding : "base64"},(data)=>{
+
+        console.log('DATAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:',data);
+
+    })
 
 };
 
@@ -20,16 +28,12 @@ let  postFotosPerfil = (idUsuario,fotosList,callback,callbackError)=> {
     for(var i = 0; i < fotosList.length;i++){
         
         let extension = fotosList[i].indexOf('jpeg') < 0 ? 'png' : 'jpeg';      
-        let nombreArchivo = `${new Date().getMilliseconds()}.${extension}`;  
+        let nombreArchivo = `${Math.floor((Math.random() * 1000) + 1)}-${new Date().getMilliseconds()}.${extension}`;  
         let pathImagen = path.resolve(__dirname, `../../uploads/perfil/` + idUsuario + `/${ nombreArchivo }`);
-        //let pathImagen = path.resolve(__dirname, `../../uploads/${ nombreArchivo }`);
-        //var base64Data = fotosList[i].replace(/^data:image\/png;base64,/, "");
-
-        console.log('=================pathImagen : ', pathImagen);
-        
         let base64Data = fotosList[i].split(';base64,').pop();
 
-        //fs.writeFile(pathImagen, base64Data, 'base64', function(err) {
+        console.log('=================pathImagen : ', pathImagen);       
+      
         writeFile(pathImagen, base64Data, function(err) {
  
             if (err) 
@@ -60,5 +64,6 @@ let writeFile = (path, contents, cb) => {
 
 
 module.exports = {
-    postFotosPerfil
+    postFotosPerfil,
+    getFotosPerfil
 };

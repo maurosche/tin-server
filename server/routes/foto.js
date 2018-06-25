@@ -1,5 +1,5 @@
 const express = require('express');
-const { postFotosPerfil   } = require('../providers/foto.provider');
+const { postFotosPerfil ,getFotosPerfil  } = require('../providers/foto.provider');
 const { verificarToken,verificarAdmin_Role } = require('../middlewares/autenticacion');
 const app = express();
 const fs = require('fs');
@@ -28,6 +28,21 @@ app.post('/fotosPerfil', verificarToken, (req, res) => {
 
     },(data)=>{callbackError(data,res)});
 });
+
+// ====================================
+//  Obtiene todas las fotos de perfil
+// ====================================
+app.get('/fotosPerfil', verificarToken, (req, res) => {
+
+    let body = req.body;
+
+    getFotosPerfil( body.idUsuario, body.fotosList,(result)=>{
+
+        res.json({ok:true, result });        
+
+    },(data)=>{callbackError(data,res)});
+});
+
 
 // ===========================
 // GET FOTO
