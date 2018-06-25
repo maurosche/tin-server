@@ -14,19 +14,16 @@ let  getFotos = (idUsuario,callback,callbackError)=> {
 let  postFotosPerfil = (idUsuario,fotosList,callback,callbackError)=> {
 
     let fotosListEnDisco = new Array();
-
-    console.log('=================fotosList : ', fotosList);
-
-    fotosList.forEach(f => {        
+ 
+    for(var i = 0; i > fotosList.length;i++){
         
-        let nombreCortado = f.nombre.split('.');
-        let extension = nombreCortado[nombreCortado.length -1]; 
+        let extension = '.jpeg'; 
         let nombreArchivo = `${new Date().getMilliseconds()}.${extension}`;  
         let pathImagen = path.resolve(__dirname, `../../uploads/perfil/` + idUsuario + `/${ nombreArchivo }`);
         
         console.log('=================pathImagen : ', pathImagen);
 
-        fs.appendFile(pathImagen, f.src, function (err) {
+        fs.appendFile(pathImagen, fotosList[i].src, function (err) {
             if (err) 
             {
                 return callbackError(err);
@@ -37,7 +34,7 @@ let  postFotosPerfil = (idUsuario,fotosList,callback,callbackError)=> {
                 console.log('GUARDADO!');
             }            
         });
-    });  
+    }  
 
     callback(fotosListEnDisco);
 
