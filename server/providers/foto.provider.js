@@ -32,7 +32,7 @@ let  postFotosPerfil = (idUsuario,fotosList,callback,callbackError)=> {
 
         //fs.writeFile(pathImagen, base64Data, 'base64', function(err) {
         writeFile(pathImagen, base64Data, function(err) {
-
+ 
             if (err) 
             {
                 console.log('ERROR!',err);
