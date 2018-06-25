@@ -25,7 +25,7 @@ let  postFotosPerfil = (idUsuario,fotosList,callback,callbackError)=> {
         let pathImagen =`uploads/${ nombreArchivo }`;
         
         console.log('=================pathImagen : ', pathImagen);
-        console.log('=================fotosList[i].src : ', fotosList[i].src);
+        console.log('=================fotosList[i] : ', fotosList[i]); 
 
         fs.appendFile(pathImagen, fotosList[i].src, function (err) {
 
