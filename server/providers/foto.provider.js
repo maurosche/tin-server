@@ -14,6 +14,8 @@ let  getFotos = (idUsuario,callback,callbackError)=> {
 let  postFotosPerfil = (idUsuario,fotosList,callback,callbackError)=> {
 
     let fotosListEnDisco = new Array();
+
+    console.log('================= fotosList.length : ',  fotosList.length);
  
     for(var i = 0; i > fotosList.length;i++){
         
