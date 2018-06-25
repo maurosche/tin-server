@@ -48,7 +48,7 @@ let  postFotosPerfil = (idUsuario,fotosList,callback,callbackError)=> {
 
 };
 
-function writeFile(path, contents, cb) {
+let writeFile = (path, contents, cb) => {
     mkdirp(getDirName(path), function (err) {
       if (err) return cb(err);
   
