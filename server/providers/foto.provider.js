@@ -29,7 +29,6 @@ let  postFotosPerfil = (idUsuario,fotosList,callback,callbackError)=> {
         var base64Data = fotosList[i].replace(/^data:image\/png;base64,/, "");
     
         console.log('=================pathImagen : ', pathImagen);
-        path.resolve(__dirname,`../../uploads/${tipo}/${img}`);
 
         //fs.writeFile(pathImagen, base64Data, 'base64', function(err) {
         writeFile(pathImagen, base64Data, function(err) {
