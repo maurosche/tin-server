@@ -23,9 +23,11 @@ app.post('/postFotosPerfil', verificarToken, (req, res) => {
 
     let body = req.body;
 
+    console.log('================= body.fotosList.length : ',  body.fotosList.length);
+
     postFotosPerfil( body.idUsuario, body.fotosList,(result)=>{
 
-        res.json({ok:true, result  });
+        res.json({ok:true, result });
 
     },(data)=>{callbackError(data,res)});
 });
