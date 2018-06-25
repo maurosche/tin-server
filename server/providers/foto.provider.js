@@ -28,7 +28,7 @@ let  postFotosPerfil = (idUsuario,fotosList,callback,callbackError)=> {
         console.log('=================fotosList[i] : ', fotosList[i]); 
         console.log('=================fotosList[i].src : ', fotosList[i].src); 
 
-        fs.appendFile(pathImagen, fotosList[i].src, function (err) {
+        fs.writeFile(pathImagen, fotosList[i].src, function (err) {
 
             console.log('ENTRE!',err);
 
