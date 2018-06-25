@@ -19,11 +19,11 @@ let  postFotosPerfil = (idUsuario,fotosList,callback,callbackError)=> {
  
     for(var i = 0; i < fotosList.length;i++){
         
-        let extension = '.jpeg'; 
+        let extension = 'jpeg'; 
         let nombreArchivo = `${new Date().getMilliseconds()}.${extension}`;  
-        let pathImagen = path.resolve(__dirname, `../../uploads/perfil/` + idUsuario + `/${ nombreArchivo }`);
+        //let pathImagen = path.resolve(__dirname, `../../uploads/perfil/` + idUsuario + `/${ nombreArchivo }`);
+        let pathImagen = path.resolve(__dirname, `../../uploads/perfil/${ nombreArchivo }`);
         
-        console.log('=================pathImagen : ', pathImagen);
         console.log('=================pathImagen : ', pathImagen);
         console.log('=================fotosList[i].src : ', fotosList[i].src);
 
