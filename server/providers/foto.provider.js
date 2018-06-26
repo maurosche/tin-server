@@ -12,12 +12,10 @@ let  getFotosPerfil = (idUsuario,callback,callbackError)=> {
 
     let list = new Array();
 
-    mkdirp(getDirName(pathFotosPerfil), function (err) {
-
         fs.readdir(pathFotosPerfil,(err,dir)=>{
 
             if(err){
-                callbackError(err);
+                return callback('No hay fotos');
                 console.log('Error al leer directorio : ',err);
             } 
 
@@ -55,7 +53,7 @@ let  getFotosPerfil = (idUsuario,callback,callbackError)=> {
                     })
             });
         });
-    });     
+         
 };
 
 // ===========================
