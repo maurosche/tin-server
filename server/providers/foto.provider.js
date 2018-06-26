@@ -56,7 +56,6 @@ let  getFotosPerfil = (idUsuario,callback,callbackError)=> {
         })
 };
 
-
 // ===========================
 //  Obtener fotos
 // ===========================
