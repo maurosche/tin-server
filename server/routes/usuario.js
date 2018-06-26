@@ -27,7 +27,7 @@ let callbackError = (data,res)=>{
 app.get('/usuario', verificarTokenAdmin, function(req,res){
 
     let idUsuario = req.query.idUsuario || 0;
-
+    let list = new Array();
     //Traigo usuarios a los que no le haya dado like
     getLikesPropios(idUsuario,(likes)=>{
 
@@ -45,16 +45,17 @@ app.get('/usuario', verificarTokenAdmin, function(req,res){
 
             getFotosPerfil(result[index]._id,(fotos)=>{
 
-                result[index]["fotos"] = new Array();
+                result[index].fotos = new Array();
 
                 fotos.forEach(element => {
                     result[index].fotos.push(element);
                 });
 
                 console.log("FOTOSSSSSSSSSSSSSSSSSSSSS : ", result[index].fotos);
+                list.push(result[index]);
 
                 if (index+1 == result.length) {
-                    res.json({ok:true,result });
+                    res.json({ok:true,result : list });
                 }
 
 
