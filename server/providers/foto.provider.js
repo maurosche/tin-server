@@ -24,7 +24,7 @@ let pathFotosPerfil = './uploads/perfil/' + idUsuario ;
             
             dir.forEach(element => {
 
-                let archivo = pathFotosPerfil + element;
+                let archivo = pathFotosPerfil + '/' + element;
 
                     //read image file
                     fs.readFile( archivo, (err, data)=>{
