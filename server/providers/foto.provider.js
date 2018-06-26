@@ -15,8 +15,8 @@ let  getFotosPerfil = (idUsuario,callback,callbackError)=> {
         fs.readdir(pathFotosPerfil,(err,dir)=>{
 
             if(err){
-                return callback('No hay fotos');
                 console.log('Error al leer directorio : ',err);
+                return callback('No hay fotos');
             } 
 
             if(!dir || dir.length == 0){
@@ -40,9 +40,7 @@ let  getFotosPerfil = (idUsuario,callback,callbackError)=> {
                         let base64Image = new Buffer(data, 'binary').toString('base64');
                         
                         //combine all strings
-                        let imgSrcString = `data:image/${extensionName.split('.').pop()};base64,${base64Image}`;
-                        
-                        console.log('src : ',imgSrcString);
+                        let imgSrcString = `data:image/${extensionName.split('.').pop()};base64,${base64Image}`;                        
 
                         //send image src string into jade compiler
                         list.push( imgSrcString );
