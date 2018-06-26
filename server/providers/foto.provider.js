@@ -12,7 +12,11 @@ let  getFotosPerfil = (idUsuario,callback,callbackError)=> {
 
     let list = new Array();
 
-         // if(fs.exists(path))
+        if(!fs.exists(pathFotosPerfil))
+        {
+
+        }
+        
         fs.readdir(pathFotosPerfil,(err,dir)=>{
 
             if(err){
