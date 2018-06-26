@@ -31,7 +31,7 @@ fsReaddir(pathImagen, function _cb(err, filepaths) {
 });
  
 // as stream
-var stream = fsReaddir('../gitclone-cli')
+var stream = fsReaddir(pathImagen)
 .on('error', function(err) {
   console.log('error:', err);
 })
