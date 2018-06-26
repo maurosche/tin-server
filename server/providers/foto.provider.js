@@ -8,8 +8,7 @@ const path = require('path');
 // ===========================
 let  getFotosPerfil = (idUsuario,callback,callbackError)=> {
 
-     //let pathImagen = path.resolve(__dirname, `../../uploads/perfil/` + idUsuario + `/`);
-     let pathImagen = `../../uploads/perfil`;
+     let pathImagen = path.resolve(__dirname, `../../uploads/perfil/` + idUsuario + `/`);
 
     // fs.readdir(pathImagen, {encoding : "base64"},(err,data)=>{
 
@@ -18,6 +17,8 @@ let  getFotosPerfil = (idUsuario,callback,callbackError)=> {
 
     // })
 
+    console.log('=================pathImagen : ', pathImagen);  
+    
 var fsReaddir = require('fs-readdir');
 var through2 = require('through2');
  
