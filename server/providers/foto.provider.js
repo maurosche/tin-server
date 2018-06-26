@@ -16,11 +16,11 @@ let  getFotosPerfil = (idUsuario,callback,callbackError)=> {
 
             if(err){
                 console.log('Error al leer directorio : ',err);
-                return callback('No hay fotos');
+                return callback(new Array());
             } 
 
             if(!dir || dir.length == 0){
-                return callback('No hay fotos');
+                return callback(new Array());
             }
             
             dir.forEach(element => {
