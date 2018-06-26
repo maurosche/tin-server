@@ -10,7 +10,7 @@ let  getFotosPerfil = (idUsuario,callback,callbackError)=> {
 
 //let pathImagen = path.resolve(__dirname, `../../uploads/perfil/`);// + idUsuario );
 //let pathImagen = path.resolve(__dirname, `../../uploads/`);
-let pathImagen = '.';
+let pathImagen = './uploads';
 
     fs.readdir(pathImagen,(err,data)=>{
         console.log('DATAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ERROR:',err);
