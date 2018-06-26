@@ -11,6 +11,7 @@ let  getFotosPerfil = (idUsuario,callback,callbackError)=> {
     let pathFotosPerfil = './uploads/perfil/' + idUsuario ;
 
     let list = new Array();
+    
 
          // if(fs.exists(path))
         fs.readdir(pathFotosPerfil,(err,dir)=>{
