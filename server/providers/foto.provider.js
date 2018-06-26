@@ -20,7 +20,7 @@ let path = './uploads/perfil/' + idUsuario ;
             if(err){
                 callbackError(err);
                 console.log('Error al leer directorio : ',err);
-            }
+            } 
             
             data.forEach(element => {
 
