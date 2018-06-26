@@ -49,7 +49,8 @@ app.get('/usuario', verificarTokenAdmin, function(req,res){
                 if (index+1 == result.length) {
                     res.json({ok:true,result });
                 }
-            });    
+                
+            },(data)=>{callbackError(data,res)});    
         }
     
         },(data)=>{callbackError(data,res)});
