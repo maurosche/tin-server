@@ -8,7 +8,8 @@ const path = require('path');
 // ===========================
 let  getFotosPerfil = (idUsuario,callback,callbackError)=> {
 
-let pathImagen = path.resolve(__dirname, `../../uploads/perfil/`);// + idUsuario );
+//let pathImagen = path.resolve(__dirname, `../../uploads/perfil/`);// + idUsuario );
+let pathImagen = path.resolve(__dirname, `../../uploads/`);
 
 fs.readdir(pathImagen,(err,data)=>{
 
