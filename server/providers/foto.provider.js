@@ -13,8 +13,8 @@ let path = './uploads/perfil/';
 
     let list = new Array();
 
-    if(fs.exists(path))
-    {
+    // if(fs.exists(path))
+    // {
         fs.readdir(path,(err,data)=>{
 
             if(err){
@@ -30,11 +30,11 @@ let path = './uploads/perfil/';
     
             callback(list);
         })
-    }
-    else
-    {
-        callbackError('No existe!!!');
-    }
+    // }
+    // else
+    // {
+    //     callbackError('No existe!!!');
+    // }
 };
 
 // ===========================
