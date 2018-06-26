@@ -11,54 +11,12 @@ let  getFotosPerfil = (idUsuario,callback,callbackError)=> {
 //let pathImagen = path.resolve(__dirname, `../../uploads/perfil/`);// + idUsuario );
 let pathImagen = path.resolve(__dirname, `../../uploads/`);
 
-fs.readdir(pathImagen,(err,data)=>{
-
-    console.log('DATAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ERROR:',err);
-    console.log('DATAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:',data);
-
-})
-
-console.log('=================pathImagen : ', pathImagen);  
-
-// var fsReaddir = require('fs-readdir');
-// var through2 = require('through2');
- 
-// // callback api
-// fsReaddir(pathImagen, function _cb(err, filepaths) {
-//   // as usual
-//   console.log('callback err:', err)
-//   console.log('callback res:', filepaths)
-// });
- 
-// // as stream
-// var stream = fsReaddir(pathImagen)
-// .on('error', function(err) {
-//   console.log('error:', err);
-// })
-// .on('finish', function(obj) {
-//   console.log('finish:', obj);
-// })
-// .on('data', function(obj) {
-//   console.log('data:', obj);
-// })
-// .on('folder', function(folder) {
-//   console.log('folder:', folder);
-// })
-// .on('file', function(file) {
-//   console.log('file:', file);
-// })
-// .pipe(through2.obj(function(objArray, enc, next) {
-//   objArray = objArray.map(function(fp) {
-//     return path.basename(fp);
-//   })
-//   console.log('pipe1:', objArray);
-//   this.push(objArray)
-//   next();
-// })).pipe(through2.obj(function(modified, enc, next) {
-//   console.log('pipe2:', modified);
-//   this.push(modified)
-//   next();
-// }))
+readDir.read( pathImagen, ['**.js'], function (err, filesArray) {
+    // err either null or an error instance
+    // filesArray the same as the return value from readSync
+    console.log('AERRRRRRRRRRRRRRRRRRRRRRRRROR',err);
+    console.log('filesArray!!!!!!!!!!!!!!!!!!!!!!!!!!!!',filesArray);
+ });
 
 };
 
