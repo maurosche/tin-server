@@ -8,7 +8,7 @@ const path = require('path');
 // ===========================
 let  getFotosPerfil = (idUsuario,callback,callbackError)=> {
 
-let path = './uploads/perfil/' + idUsuario + '/';
+let path = './uploads/perfil/' + idUsuario ;
 
     let list = new Array();
 
@@ -34,8 +34,6 @@ let path = './uploads/perfil/' + idUsuario + '/';
     {
         callbackError('No existe!!!');
     }
-
-
 };
 
 // ===========================
