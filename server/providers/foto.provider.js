@@ -21,7 +21,7 @@ let  getFotosPerfil = (idUsuario,callback,callbackError)=> {
             } 
 
             if(!dir || dir.length == 0){
-                callback('No hay fotos');
+                return callback('No hay fotos');
             }
             
             dir.forEach(element => {
