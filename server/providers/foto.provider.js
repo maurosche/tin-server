@@ -8,25 +8,34 @@ const path = require('path');
 // ===========================
 let  getFotosPerfil = (idUsuario,callback,callbackError)=> {
 
-let pathImagen = './uploads/perfil/' + idUsuario + '/';
+let path = './uploads/perfil/' + idUsuario + '/';
 
     let list = new Array();
 
-    fs.readdir(pathImagen,(err,data)=>{
+    if(fs.exists(path))
+    {
+        fs.readdir(path,(err,data)=>{
 
-        if(err){
-            callbackError(err);
-            console.log('Error al leer directorio : ',err);
-        }
-        
-        data.forEach(element => {
-
-            list.push(element);
+            if(err){
+                callbackError(err);
+                console.log('Error al leer directorio : ',err);
+            }
             
-        });
+            data.forEach(element => {
+    
+                list.push(element);
+                
+            });
+    
+            callback(list);
+        })
+    }
+    else
+    {
+        callbackError('No existe!!!');
+    }
 
-        callback(list);
-    })
+
 };
 
 // ===========================
