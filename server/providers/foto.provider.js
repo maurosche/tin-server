@@ -8,14 +8,14 @@ const path = require('path');
 // ===========================
 let  getFotosPerfil = (idUsuario,callback,callbackError)=> {
 
-let path = './uploads/perfil/' + idUsuario ;
+let pathFotosPerfil = './uploads/perfil/' + idUsuario ;
 //let path = './uploads/perfil/';
 
     let list = new Array();
 
     // if(fs.exists(path))
     // {
-        fs.readdir(path,(err,dir)=>{
+        fs.readdir(pathFotosPerfil,(err,dir)=>{
 
             if(err){
                 callbackError(err);
@@ -24,10 +24,10 @@ let path = './uploads/perfil/' + idUsuario ;
             
             dir.forEach(element => {
 
-                let archivo = path + element;
+                let archivo = pathFotosPerfil + element;
 
                     //read image file
-                    fs.readFile( path + element, (err, data)=>{
+                    fs.readFile( archivo, (err, data)=>{
                         
                         //error handle
                         if(err) console.log('ERROR : ', err);
