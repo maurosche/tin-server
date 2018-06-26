@@ -46,11 +46,11 @@ app.get('/usuario', verificarTokenAdmin, function(req,res){
             getFotosPerfil(result[index]._id,(fotos)=>{
 
                 let user = result[index];
-                user.fotos = new Array();
+                user['fotos'] = fotos;
 
-                fotos.forEach(element => {
-                    user.fotos.push(element);
-                });
+                // fotos.forEach(element => {
+                //     user.fotos.push(element);
+                // });
 
                 console.log("FOTOSSSSSSSSSSSSSSSSSSSSS user : ", user);
                 list.push(user);
