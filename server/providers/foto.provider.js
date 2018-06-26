@@ -20,7 +20,7 @@ let  getFotosPerfil = (idUsuario,callback,callbackError)=> {
                 console.log('Error al leer directorio : ',err);
             } 
 
-            if(dir.length == 0){
+            if(!dir || dir.length == 0){
                 callback('No hay fotos');
             }
             
