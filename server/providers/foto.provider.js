@@ -62,7 +62,7 @@ let  getFotosPerfil = (idUsuario,callback,callbackError)=> {
 let  getFotoPerfil = (idUsuario, img,callback,callbackError)=> {
 
 
-    let pathFotosPerfil = './uploads/perfil/' + idUsuario + '/' + img ;
+    let pathImg = './uploads/perfil/' + idUsuario + '/' + img ;
     //let pathImg = path.resolve(__dirname,`../../uploads/perfil/${idUsuario}/${img}`);
     let noImagePath = path.resolve(__dirname,'../assets/no-image.jpg');
 
