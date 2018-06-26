@@ -50,6 +50,7 @@ app.get('/usuario', verificarTokenAdmin, function(req,res){
                     res.json({ok:true,result });
                 }
 
+                
             },(data)=>{callbackError(data,res)});    
         }
     
