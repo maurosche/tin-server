@@ -8,18 +8,16 @@ const path = require('path');
 // ===========================
 let  getFotosPerfil = (idUsuario,callback,callbackError)=> {
 
-var readDir = require('readdir');
-
 //let pathImagen = path.resolve(__dirname, `../../uploads/perfil/`);// + idUsuario );
 let pathImagen = path.resolve(__dirname, `../../uploads/`);
 
-readDir.read( pathImagen, ['**.js'], function (err, filesArray) {
-    // err either null or an error instance
-    // filesArray the same as the return value from readSync
-    console.log('AERRRRRRRRRRRRRRRRRRRRRRRRROR',err);
-    console.log('filesArray!!!!!!!!!!!!!!!!!!!!!!!!!!!!',filesArray);
- });
+    fs.readdir(pathImagen,(err,data)=>{
+        console.log('DATAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ERROR:',err);
+        console.log('DATAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:',data);
+    })
 
+    console.log('=================__dirname : ', __dirname);  
+    console.log('=================pathImagen : ', pathImagen);  
 };
 
 // ===========================
