@@ -8,17 +8,25 @@ const path = require('path');
 // ===========================
 let  getFotosPerfil = (idUsuario,callback,callbackError)=> {
 
-//let pathImagen = path.resolve(__dirname, `../../uploads/perfil/`);// + idUsuario );
-//let pathImagen = path.resolve(__dirname, `../../uploads/`);
-let pathImagen = './uploads';
+let pathImagen = './uploads/perfil/' + idUsuario + '/';
+
+    let list = new Array();
 
     fs.readdir(pathImagen,(err,data)=>{
-        console.log('DATAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ERROR:',err);
-        console.log('DATAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:',data);
-    })
 
-    console.log('=================__dirname : ', __dirname);  
-    console.log('=================pathImagen : ', pathImagen);  
+        if(err){
+            callbackError(err);
+            console.log('Error al leer directorio : ',err);
+        }
+        
+        data.forEach(element => {
+
+            list.push(element);
+            
+        });
+
+        callback(list);
+    })
 };
 
 // ===========================
