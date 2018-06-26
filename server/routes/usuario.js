@@ -45,9 +45,13 @@ app.get('/usuario', verificarTokenAdmin, function(req,res){
 
             getFotosPerfil(result[index]._id,(fotos)=>{
 
-                result[index].img = fotos;
+                result[index].fotos = new Array();
 
-                console.log("FOTOSSSSSSSSSSSSSSSSSSSSS : ", fotos);
+                fotos.forEach(element => {
+                    result[index].fotos.push(element);
+                });
+
+                console.log("FOTOSSSSSSSSSSSSSSSSSSSSS : ", result[index].fotos);
 
                 if (index+1 == result.length) {
                     res.json({ok:true,result });
