@@ -23,8 +23,15 @@ let path = './uploads/perfil/' + idUsuario ;
             }
             
             data.forEach(element => {
+
+                var request = require('request').defaults({ encoding: null });
+                request.get(path + element, function (err, res, body) {
+                    //process exif here
+                    console.log('request res: ', res);
+                    console.log('request body: ', body);
+                });
     
-                list.push(element);
+                list.push( path + element);
                 
             });
     
