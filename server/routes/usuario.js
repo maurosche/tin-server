@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const Usuario = require('../models/usuario');
 const { getUsuarios , postUsuario, putUsuario, login} = require('../providers/usuario.provider');
 const { getLikesPropios} = require('../providers/like.provider');
+const { getFotosPerfil} = require('../providers/foto.provider');
 
 const { verificarToken,verificarTokenAdmin } = require('../middlewares/autenticacion');
 
@@ -40,7 +41,16 @@ app.get('/usuario', verificarTokenAdmin, function(req,res){
 
         getUsuarios(idUsuario,ids,(result)=>{
 
-            res.json({ok:true,result });
+        for (let index = 0; index < result.length; index++) {
+
+            getFotosPerfil(idUsuario,(fotos)=>{
+                result[index].fotos = fotos;
+
+                if (index+1 == result.length) {
+                    res.json({ok:true,result });
+                }
+            });    
+        }
     
         },(data)=>{callbackError(data,res)});
 
