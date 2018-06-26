@@ -24,15 +24,26 @@ let path = './uploads/perfil/' + idUsuario ;
             
             data.forEach(element => {
 
-                var request = require('request').defaults({ encoding: null });
-                request.get(path + element, function (err, res, body) {
-                    //process exif here
-                    console.log('request res: ', res);
-                    console.log('request body: ', body);
-                });
-    
-                list.push( path + element);
-                
+                let archivo = path + element;
+
+                    //read image file
+                    fs.readFile( path + element, (err, data)=>{
+                        
+                        //error handle
+                        if(err) console.log('ERROR : ', err);
+                        
+                        //get image file extension name
+                        let extensionName = path.extname(archivo);
+                        
+                        //convert image file to base64-encoded string
+                        let base64Image = new Buffer(data, 'binary').toString('base64');
+                        
+                        //combine all strings
+                        let imgSrcString = `data:image/${extensionName.split('.').pop()};base64,${base64Image}`;
+                        
+                        //send image src string into jade compiler
+                        list.push( archivo );
+                    })
             });
     
             callback(list);
