@@ -14,9 +14,9 @@ let  getFotosPerfil = (idUsuario,callback,callbackError)=> {
 
         if(!fs.exists(pathFotosPerfil))
         {
-
+            return callback('No hay fotos');
         }
-        
+
         fs.readdir(pathFotosPerfil,(err,dir)=>{
 
             if(err){
