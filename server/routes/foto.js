@@ -1,5 +1,5 @@
 const express = require('express');
-const { postFotosPerfil ,getFotosPerfil  } = require('../providers/foto.provider');
+const { postFotosPerfil ,getFotosPerfil, getFotoPerfil  } = require('../providers/foto.provider');
 const { verificarToken,verificarAdmin_Role } = require('../middlewares/autenticacion');
 const app = express();
 const fs = require('fs');
@@ -52,15 +52,11 @@ app.get('/fotoPerfil/:idUser/:img', (req,res)=>{
     let idUser = req.params.idUser;
     let img = req.params.img;
 
-    let pathImg = path.resolve(__dirname,`../../uploads/perfil/${idUser}/${img}`);
-    let noImagePath = path.resolve(__dirname,'../assets/no-image.jpg');
+    getFotoPerfil( idUser,img,(result)=>{
 
-    if (fs.existsSync(pathImg)) {
-        res.sendFile(pathImg);
-    }
-    else{
-        res.sendFile(noImagePath);
-    }
+        res.sendFile(result);       
+
+    },(data)=>{callbackError(data,res)});
 });
 
 

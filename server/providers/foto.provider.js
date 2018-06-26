@@ -8,19 +8,21 @@ const path = require('path');
 // ===========================
 let  getFotosPerfil = (idUsuario,callback,callbackError)=> {
 
-let pathFotosPerfil = './uploads/perfil/' + idUsuario ;
-//let path = './uploads/perfil/';
+    let pathFotosPerfil = './uploads/perfil/' + idUsuario ;
 
     let list = new Array();
 
-    // if(fs.exists(path))
-    // {
+         // if(fs.exists(path))
         fs.readdir(pathFotosPerfil,(err,dir)=>{
 
             if(err){
                 callbackError(err);
                 console.log('Error al leer directorio : ',err);
             } 
+
+            if(dir.length == 0){
+                callback('No hay fotos');
+            }
             
             dir.forEach(element => {
 
@@ -52,12 +54,26 @@ let pathFotosPerfil = './uploads/perfil/' + idUsuario ;
                     })
             });
         })
-    // }
-    // else
-    // {
-    //     callbackError('No existe!!!');
-    // }
 };
+
+// ===========================
+//  Obtener fotos
+// ===========================
+let  getFotoPerfil = (idUsuario, img,callback,callbackError)=> {
+
+
+    let pathFotosPerfil = './uploads/perfil/' + idUsuario + '/' + img ;
+    //let pathImg = path.resolve(__dirname,`../../uploads/perfil/${idUsuario}/${img}`);
+    let noImagePath = path.resolve(__dirname,'../assets/no-image.jpg');
+
+    if (fs.existsSync(pathImg)) {
+        callback(pathImg);
+    }
+    else{
+        callback(noImagePath);
+    }
+};
+
 
 // ===========================
 //  Agrega fotos de perfil
@@ -107,5 +123,6 @@ let writeFile = (path, contents, cb) => {
 
 module.exports = {
     postFotosPerfil,
-    getFotosPerfil
+    getFotosPerfil,
+    getFotoPerfil
 };
