@@ -15,14 +15,14 @@ let path = './uploads/perfil/' + idUsuario ;
 
     // if(fs.exists(path))
     // {
-        fs.readdir(path,(err,data)=>{
+        fs.readdir(path,(err,dir)=>{
 
             if(err){
                 callbackError(err);
                 console.log('Error al leer directorio : ',err);
             } 
             
-            data.forEach(element => {
+            dir.forEach(element => {
 
                 let archivo = path + element;
 
@@ -41,12 +41,16 @@ let path = './uploads/perfil/' + idUsuario ;
                         //combine all strings
                         let imgSrcString = `data:image/${extensionName.split('.').pop()};base64,${base64Image}`;
                         
+                        console.log('src : ',imgSrcString);
+
                         //send image src string into jade compiler
-                        list.push( archivo );
+                        list.push( imgSrcString );
+
+                        if(dir.length == list.length){
+                            callback(list);
+                        }
                     })
             });
-    
-            callback(list);
         })
     // }
     // else
