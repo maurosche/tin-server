@@ -6,7 +6,7 @@ const path = require('path');
 // ===========================
 //  Obtener fotos
 // ===========================
-let  getFotosPerfil = (idUsuario,callback,callbackError)=> {
+let  getFotosPerfil = (usuario,callback,callbackError)=> {
 
     let pathFotosPerfil = './uploads/perfil/' + idUsuario ;
 
@@ -16,11 +16,11 @@ let  getFotosPerfil = (idUsuario,callback,callbackError)=> {
 
             if(err){
                 console.log('Error al leer directorio : ',err);
-                return callback({idUsuario , fotos : new Array()});
+                return callback({usuario});
             } 
 
             if(!dir || dir.length == 0){
-                return callback({idUsuario , fotos : new Array()});
+                return callback({usuario});
             }
             
             dir.forEach(element => {
@@ -53,7 +53,8 @@ let  getFotosPerfil = (idUsuario,callback,callbackError)=> {
                     // })
             });
 
-            return callback({idUsuario , fotos : list});
+            usuario.fotos = list;
+            return callback({usuario});
         });
          
 };

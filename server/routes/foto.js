@@ -34,9 +34,9 @@ app.post('/fotosPerfil', verificarToken, (req, res) => {
 // ====================================
 app.get('/fotosPerfil', verificarToken, (req, res) => {
 
-    let idUsuario = req.query.idUsuario || 0; 
+    let usuario = {_id : req.query.idUsuario || 0 }; 
 
-    getFotosPerfil( idUsuario,(result)=>{
+    getFotosPerfil( usuario,(result)=>{
 
         res.json({ok:true, result });        
 
