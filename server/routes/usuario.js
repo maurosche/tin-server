@@ -50,10 +50,10 @@ app.get('/usuario', verificarTokenAdmin, function(req,res){
                 fotos.fotos.forEach(element => {
 
                     for (let i = 0; i < result.length; i++) {                        
-                        if (element.idUsuario == result[i]._id) {
+                        //if (element.idUsuario == result[i]._id) {
 
                             result[i].fotos.push(element);                            
-                        }
+                        //}
                     }
                 });
 
