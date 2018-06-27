@@ -47,18 +47,24 @@ app.get('/usuario', verificarTokenAdmin, function(req,res){
 
                 result[index].fotos = new Array();
 
-                fotos.forEach(element => {
-                    result[index].fotos.push(element);
+                fotos.fotos.forEach(element => {
+
+                    for (let i = 0; i < result.length; i++) {                        
+                        if (element.idUsuario == result[i]._id) {
+
+                            result[i].fotos.push(element);                            
+                        }
+                    }
                 });
  
                 console.log("FOTOSSSSSSSSSSSSSSSSSSSSS result[index] : ", result[index]);
                 console.log("iiiiiiiiiiiiiiiiiiiiiiiii index : ", index);
                 console.log("iiiiiiiiiiiiiiiiiiiiiiiii (index == (result.length-1)) : ", (index == (result.length-1)));
 
-                if (index == (result.length-1)) {
-                    
-                    return res.json({ok:true,result  });
-                }
+                // if (index == (result.length-1)) {
+
+                //     return res.json({ok:true,result  });
+                // }
 
             },(data)=>{callbackError(data,res)});    
         }

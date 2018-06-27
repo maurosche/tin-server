@@ -16,40 +16,44 @@ let  getFotosPerfil = (idUsuario,callback,callbackError)=> {
 
             if(err){
                 console.log('Error al leer directorio : ',err);
-                return callback(new Array());
+                return callback({idUsuario , fotos : new Array()});
             } 
 
             if(!dir || dir.length == 0){
-                return callback(new Array());
+                return callback({idUsuario , fotos : new Array()});
             }
             
             dir.forEach(element => {
 
-                let archivo = pathFotosPerfil + '/' + element;
+                let archivo = process.env.urlFotos + 'fotosPerfil/' + idUsuario + '/' +  element;
 
-                    //read image file
-                    fs.readFile( archivo, (err, data)=>{
-                        
-                        //error handle
-                        if(err) console.log('ERROR : ', err);
-                        
-                        //get image file extension name
-                        let extensionName = path.extname(archivo);
-                        
-                        //convert image file to base64-encoded string
-                        let base64Image = new Buffer(data, 'binary').toString('base64');
-                        
-                        //combine all strings
-                        let imgSrcString = `data:image/${extensionName.split('.').pop()};base64,${base64Image}`;                        
+                list.push(archivo);
 
-                        //send image src string into jade compiler
-                        list.push( imgSrcString );
+                    // //read image file
+                    // fs.readFile( archivo, (err, data)=>{
+                        
+                    //     //error handle
+                    //     if(err) console.log('ERROR : ', err);
+                        
+                    //     //get image file extension name
+                    //     let extensionName = path.extname(archivo);
+                        
+                    //     //convert image file to base64-encoded string
+                    //     let base64Image = new Buffer(data, 'binary').toString('base64');
+                        
+                    //     //combine all strings
+                    //     let imgSrcString = `data:image/${extensionName.split('.').pop()};base64,${base64Image}`;                        
 
-                        if(dir.length == list.length){
-                            callback(list);
-                        }
-                    })
+                    //     //send image src string into jade compiler
+                    //     list.push( imgSrcString );
+
+                    //     if(dir.length == list.length){
+                    //         return callback({idUsuario , fotos : list});
+                    //     }
+                    // })
             });
+
+            return callback({idUsuario , fotos : list});
         });
          
 };

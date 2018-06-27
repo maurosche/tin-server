@@ -24,6 +24,11 @@ process.env.CADUCIDAD_TOKEN = '1d';
 process.env.SEED = process.env.SEED || 'este-es-el-seed-desarrollo';
 
 // ========================
+//   SEED
+// ========================
+process.env.urlFotos = 'https://tinder-server-node.herokuapp.com/';
+
+// ========================
 //   MONGO DB
 // ========================
 let urlDB = '';
@@ -36,5 +41,7 @@ let urlDB = '';
 
 
 process.env.urlDB = urlDB;
+
+
 
 
