@@ -1,4 +1,5 @@
 const _ = require('underscore');
+const bcrypt = require('bcrypt');
 const Usuario = require('../models/usuario');
 
 // ===========================
