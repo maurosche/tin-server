@@ -1,6 +1,7 @@
 var mkdirp = require('mkdirp');
 const fs = require('fs');
 var getDirName = require('path').dirname;
+const path = require('path');
 
 // ===========================
 //  Obtener fotos
