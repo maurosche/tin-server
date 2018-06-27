@@ -48,6 +48,7 @@ app.get('/usuario', verificarTokenAdmin, function(req,res){
                 let user = result[index];
                 user['fotos'] = fotos;
 
+                console.log("FOTOSSSSSSSSSSSSSSSSSSSSS result[index] : ", result[index]);
                 console.log("FOTOSSSSSSSSSSSSSSSSSSSSS user : ", user);
                 console.log("FOTOSSSSSSSSSSSSSSSSSSSSS fotos : ", fotos);
                 console.log("FOTOSSSSSSSSSSSSSSSSSSSSS user['fotos']  : ", user['fotos'] );
