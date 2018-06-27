@@ -90,36 +90,27 @@ let  postFotosPerfil = (idUsuario,fotosList,callback,callbackError)=> {
 
         console.log('=================pathImagen : ', pathImagen);       
       
-        writeFile(pathImagen, base64Data, function(err) {
- 
-            if (err) 
-            {
-                console.log('ERROR!',err);
-                //return callbackError(err);
-            }
-            else
-            {
-                fotosListEnDisco.push(pathImagen);
-                console.log('GUARDADO!');
-            }
+        writeFile(pathImagen, base64Data, function(){
+
+            console.log('GUARDADO!');
+         
             console.log('IiiiiiiiiiiiiiiiiiiiiiiIIIIIIIIIIIIIIIII! i : ',i);            
             console.log('IiiiiiiiiiiiiiiiiiiiiiiIIIIIIIIIIIIIIIII! : ',(i+1) == fotosList.length);
             if ((i+1) == fotosList.length) {
                 return callback(fotosListEnDisco);
             }   
+
+        }, function(err) {
+            console.log(err);
         });
-    }  
-
-
-
+    }
 };
 
-let writeFile = (path, contents, cb) => {
+let writeFile = (path, contents,callback,callbackError) => {
     mkdirp(getDirName(path), function (err) {
       if (err) return cb(err);
   
-      fs.writeFile(path, contents, {encoding: 'base64'}, function(err) {
-    });
+      fs.writeFile(path, contents, {encoding: 'base64'}, callback);
   });
 }
 
