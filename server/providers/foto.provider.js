@@ -28,7 +28,7 @@ let  getFotosPerfil = (usuario,callback,callbackError)=> {
                 let archivo = process.env.urlFotos + 'fotoPerfil/' + usuario._id + '/' +  element;
                 //let archivo = path.resolve(__dirname,`../../uploads/perfil/${usuario._id}/${element}`);
 
-                //list.push(archivo);
+                list.push(archivo);
 
                     //read image file
                     // fs.readFile( archivo, (err, data)=>{
