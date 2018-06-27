@@ -51,7 +51,7 @@ app.get('/usuario', verificarTokenAdmin, function(req,res){
 
                 if (count == (result.length-1)) {
 
-                    setTimeout( function(){res.json({ok:true,result : list })},3000);
+                    res.json({ok:true,result : list });
                 }
 
             },(data)=>{callbackError(data,res)});    

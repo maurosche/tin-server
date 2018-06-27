@@ -25,38 +25,38 @@ let  getFotosPerfil = (usuario,callback,callbackError)=> {
             
             dir.forEach(element => {
 
-                //let archivo = process.env.urlFotos + 'fotoPerfil/' + usuario._id + '/' +  element;
-                let archivo = path.resolve(__dirname,`../../uploads/perfil/${usuario._id}/${element}`);
+                let archivo = process.env.urlFotos + 'fotoPerfil/' + usuario._id + '/' +  element;
+                //let archivo = path.resolve(__dirname,`../../uploads/perfil/${usuario._id}/${element}`);
 
                 //list.push(archivo);
 
                     //read image file
-                    fs.readFile( archivo, (err, data)=>{
+                    // fs.readFile( archivo, (err, data)=>{
                         
-                        //error handle
-                        if(err) console.log('ERROR : ', err);
+                    //     //error handle
+                    //     if(err) console.log('ERROR : ', err);
                         
-                        //get image file extension name
-                        let extensionName = path.extname(archivo);
+                    //     //get image file extension name
+                    //     let extensionName = path.extname(archivo);
                         
-                        //convert image file to base64-encoded string
-                        let base64Image = new Buffer(data, 'binary').toString('base64');
+                    //     //convert image file to base64-encoded string
+                    //     let base64Image = new Buffer(data, 'binary').toString('base64');
                         
-                        //combine all strings
-                        let imgSrcString = `data:image/${extensionName.split('.').pop()};base64,${base64Image}`;                        
+                    //     //combine all strings
+                    //     let imgSrcString = `data:image/${extensionName.split('.').pop()};base64,${base64Image}`;                        
 
-                        //send image src string into jade compiler
-                        list.push( imgSrcString );
+                    //     //send image src string into jade compiler
+                    //     list.push( imgSrcString );
 
-                        if(dir.length == list.length){
-                            usuario.fotos = list;
-                            return callback({usuario});
-                        }
-                    })
+                    //     if(dir.length == list.length){
+                    //         usuario.fotos = list;
+                    //         return callback({usuario});
+                    //     }
+                    // })
             });
 
-            // usuario.fotos = list;
-            // return callback({usuario});
+             usuario.fotos = list;
+             return callback({usuario});
         });
          
 };
