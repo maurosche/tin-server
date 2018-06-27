@@ -52,6 +52,7 @@ app.get('/usuario', verificarTokenAdmin, function(req,res){
                 });
  
                 console.log("FOTOSSSSSSSSSSSSSSSSSSSSS result[index] : ", result[index]);
+                console.log("iiiiiiiiiiiiiiiiiiiiiiiii index : ", index);
 
                 if (index+1 == result.length) {
                     res.json({ok:true,result  });
