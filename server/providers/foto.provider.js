@@ -103,7 +103,7 @@ let  postFotosPerfil = (idUsuario,fotosList,callback,callbackError)=> {
                 console.log('GUARDADO!');
             }            
 
-            if (i+1 == fotosList.length) {
+            if ((i+1) == fotosList.length) {
                 return callback(fotosListEnDisco);
             }   
         });
