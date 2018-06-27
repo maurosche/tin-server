@@ -25,7 +25,8 @@ let  getFotosPerfil = (usuario,callback,callbackError)=> {
             
             dir.forEach(element => {
 
-                let archivo = process.env.urlFotos + 'fotoPerfil/' + usuario._id + '/' +  element;
+                //let archivo = process.env.urlFotos + 'fotoPerfil/' + usuario._id + '/' +  element;
+                let archivo = path.resolve(__dirname,`../../uploads/perfil/${usuario._id}/${element}`);
 
                 //list.push(archivo);
 
