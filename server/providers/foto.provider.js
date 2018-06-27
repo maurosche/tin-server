@@ -8,7 +8,7 @@ const path = require('path');
 // ===========================
 let  getFotosPerfil = (usuario,callback,callbackError)=> {
 
-    let pathFotosPerfil = './uploads/perfil/' + idUsuario ;
+    let pathFotosPerfil = './uploads/perfil/' + usuario._id ;
 
     let list = new Array();
 
@@ -25,7 +25,7 @@ let  getFotosPerfil = (usuario,callback,callbackError)=> {
             
             dir.forEach(element => {
 
-                let archivo = process.env.urlFotos + 'fotoPerfil/' + idUsuario + '/' +  element;
+                let archivo = process.env.urlFotos + 'fotoPerfil/' + usuario._id + '/' +  element;
 
                 list.push(archivo);
 
