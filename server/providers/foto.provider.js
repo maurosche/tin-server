@@ -92,18 +92,14 @@ let  postFotosPerfil = (idUsuario,fotosList,callback,callbackError)=> {
       
         writeFile(pathImagen, base64Data, function(){
 
-            console.log('GUARDADO!');
-         
-            console.log('IiiiiiiiiiiiiiiiiiiiiiiIIIIIIIIIIIIIIIII! i : ',i);            
-            console.log('IiiiiiiiiiiiiiiiiiiiiiiIIIIIIIIIIIIIIIII! : ',(i+1) == fotosList.length);
-            if ((i+1) == fotosList.length) {
-                return callback(fotosListEnDisco);
-            }   
+            console.log('GUARDADO!'); 
 
         }, function(err) {
             console.log(err);
         });
     }
+
+    return callback(fotosListEnDisco);
 };
 
 let writeFile = (path, contents,callback,callbackError) => {
