@@ -56,11 +56,6 @@ app.get('/usuario', verificarTokenAdmin, function(req,res){
                         }
                     }
                 });
-                
- 
-                console.log("FOTOSSSSSSSSSSSSSSSSSSSSS result[index] : ", result[index]);
-                console.log("iiiiiiiiiiiiiiiiiiiiiiiii index : ", index);
-                console.log("iiiiiiiiiiiiiiiiiiiiiiiii (index == (result.length-1)) : ", (index == (result.length-1)));
 
                 if (index == (result.length-1)) {
 

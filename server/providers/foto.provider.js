@@ -68,6 +68,9 @@ let  getFotoPerfil = (idUsuario, img,callback,callbackError)=> {
     //let pathImg = path.resolve(__dirname,`../../uploads/perfil/${idUsuario}/${img}`);
     let noImagePath = path.resolve(__dirname,'../assets/no-image.jpg');
 
+    console.log('1==================================pathImg: ', pathImg);
+    
+
     if (fs.existsSync(pathImg)) {
         callback(pathImg);
     }
