@@ -24,7 +24,11 @@ let getUsuarios = (idUsuario,ids,callback,callbackError)=> {
         { "$match": condition},    
         // Project the fields you want, notice the logical conditions
         { "$project": {
-            "fotos": 1
+            "fotos": 1,
+            "nombre" : 1,
+            "apellido" : 1, 
+            "email" : 1,
+            "img" : 1
             }
         }])
         .exec((err, data) => {
