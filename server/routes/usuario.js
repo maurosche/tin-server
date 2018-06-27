@@ -61,10 +61,10 @@ app.get('/usuario', verificarTokenAdmin, function(req,res){
                 console.log("iiiiiiiiiiiiiiiiiiiiiiiii index : ", index);
                 console.log("iiiiiiiiiiiiiiiiiiiiiiiii (index == (result.length-1)) : ", (index == (result.length-1)));
 
-                // if (index == (result.length-1)) {
+                if (index == (result.length-1)) {
 
-                //     return res.json({ok:true,result  });
-                // }
+                    setTimeout( function(){res.json({ok:true,result })},3000);
+                }
 
             },(data)=>{callbackError(data,res)});    
         }
