@@ -9,6 +9,8 @@ let getUsuarios = (idUsuario,ids,callback,callbackError)=> {
 
     let condition =  idUsuario == 0 ? {borrado:false} : {borrado:false , _id : { $nin : ids}};
 
+    console.log('CONDITION : ', condition);
+
     //Usuario.find( condition, 'id nombre apellido email img kmConfig edadDesdeConfig edadHastaConfig notifMensajeConfig notifMatchConfig')
     // .exec((err, data) => {
 
