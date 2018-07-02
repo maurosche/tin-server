@@ -40,21 +40,20 @@ app.get('/usuario', verificarTokenAdmin, function(req,res){
 
         ids.push(idUsuario);
 
-        getUsuarios(idUsuario,ids,(result)=>{
-
-        console.log("USUARIOSSSSSSSSSSSSSSSS: ", result);
+        getUsuarios(idUsuario,ids,(result)=>{        
 
         for (let index = 0; index < result.length; index++) {
 
             getFotosPerfil(result[index],(user)=>{
-
-                count++;
+                
                 list.push(user);
 
                 if (count == (result.length-1)) {
 
                     res.json({ok:true,result : list });
                 }
+
+                count++;
 
             },(data)=>{callbackError(data,res)});    
         }
