@@ -11,11 +11,11 @@ let getUsuarios = (idUsuario,ids,callback,callbackError)=> {
     //let condition =  idUsuario == 0 ? {borrado:false} : {borrado:false , _id : { $nin : ids}};
     //let condition =  {_id : { $ne :  new ObjectId('5b1991bf1a102b00147b9aae')}};
     //let condition =  {_id : { $nin : [ new ObjectId('5b1991bf1a102b00147b9aae')] }};
-    
+
     let idsLikes = new Array();
 
     ids.forEach(element => {
-        idsLikes.push( new ObjectID(element));
+        idsLikes.push( new ObjectId(element));
     });
 
     let condition =  idUsuario == 0 ? {borrado:false} : {borrado:false , _id : { $nin : idsLikes}};
