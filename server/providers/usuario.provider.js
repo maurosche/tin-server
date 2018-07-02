@@ -8,20 +8,7 @@ let ObjectId = require('mongoose').Types.ObjectId;
 // ===========================
 let getUsuarios = (idUsuario,ids,callback,callbackError)=> {
 
-    //let condition =  idUsuario == 0 ? {borrado:false} : {borrado:false , _id : { $nin : ids}};
-    //let condition =  {_id : { $ne :  new ObjectId('5b1991bf1a102b00147b9aae')}};
-    //let condition =  {_id : { $nin : [ new ObjectId('5b1991bf1a102b00147b9aae')] }};
-
-    let idsLikes = new Array();
-
-    ids.forEach(element => {
-        idsLikes.push( element.toString());
-        console.log("CONDITIONNNNNNNNNNN element.toString() :",element.toString());
-    });
-
-    console.log("CONDITIONNNNNNNNNNN idsLikes :",idsLikes);
-
-    let condition =  idUsuario == 0 ? {borrado:false} : {borrado:false , _id : { $nin : idsLikes}};
+    let condition =  idUsuario == 0 ? {borrado:false} : {borrado:false , _id : { $ne : ids}};
 
     console.log("CONDITIONNNNNNNNNNN:",condition);
 
