@@ -1,4 +1,5 @@
 const Like = require('../models/like');
+let ObjectId = require('mongoose').Types.ObjectId; 
 
 // ===========================
 //  Agregar likes
@@ -8,8 +9,8 @@ let  postLike = (idUsuarioEmisor,idUsuarioReceptor,callback,callbackError)=> {
     let ObjectId = require('mongoose').Types.ObjectId;  
 
     let like = new Like({
-        usuarioEmisor: idUsuarioEmisor,
-        usuarioReceptor: idUsuarioReceptor,
+        usuarioEmisor: ObjectId(idUsuarioEmisor),
+        usuarioReceptor: ObjectId(idUsuarioReceptor),
         fecha : new Date()
     });
 
