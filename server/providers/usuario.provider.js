@@ -8,9 +8,9 @@ let ObjectId = require('mongoose').Types.ObjectId;
 // ===========================
 let getUsuarios = (idUsuario,ids,callback,callbackError)=> {
 
-    let condition =  idUsuario == 0 ? {borrado:false} : {borrado:false , _id : { $ne : ids}};
+    let condition =  idUsuario == 0 ? {borrado:false} : {borrado:false , _id : { $nin : ids}};
 
-    console.log("CONDITIONNNNNNNNNNN:",condition);
+    console.log("CONDITIONNNNNNNNNNN!!!!!!:",condition);
 
     Usuario.aggregate([
         // Match your posts
