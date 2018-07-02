@@ -15,7 +15,7 @@ let getUsuarios = (idUsuario,ids,callback,callbackError)=> {
     let idsLikes = new Array();
 
     ids.forEach(element => {
-        idsLikes.push( new ObjectId(element));
+        idsLikes.push( new ObjectId(element.toString()));
     });
 
     let condition =  idUsuario == 0 ? {borrado:false} : {borrado:false , _id : { $nin : idsLikes}};
