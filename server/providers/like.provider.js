@@ -13,6 +13,8 @@ let  postLike = (idUsuarioEmisor,idUsuarioReceptor,callback,callbackError)=> {
         fecha : new Date()
     });
 
+    console.log("LIKE!!!!!!!!!!!!!!!!!!!!!!!!!!!!1 :",like);
+
     like.save((err, result) => {
 
         if (err) {
