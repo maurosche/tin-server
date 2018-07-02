@@ -30,7 +30,19 @@ let getUsuarios = (idUsuario,ids,callback,callbackError)=> {
                 return callbackError(err);
             }     
 
-            callback(data);
+            let list = new Array();
+
+            data.forEach(element => {
+                list.push({
+                    _id : element._id,
+                    nombre : element.nombre,
+                    apellido : element.apellido,
+                    img : element.img,
+                    fotos : []
+                });
+            });        
+
+            callback(list);
         });
 };
 
