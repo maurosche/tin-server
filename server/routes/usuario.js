@@ -31,6 +31,10 @@ app.get('/usuario', verificarTokenAdmin, function(req,res){
     let idUsuario = req.query.idUsuario || 0;
     let count = 0;
     let list = new Array();
+
+    try {
+        
+
     //Traigo usuarios a los que no le haya dado like
     getLikesPropios(idUsuario,(likes)=>{
 
@@ -65,6 +69,11 @@ app.get('/usuario', verificarTokenAdmin, function(req,res){
         },(data)=>{callbackError(data,res)});
 
     },(data)=>{callbackError(data,res)});
+
+        } catch (error) {
+        
+            callbackError('Error al traer usuario',res);
+    }
 })
 
 // ===========================
