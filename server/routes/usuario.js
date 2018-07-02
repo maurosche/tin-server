@@ -42,6 +42,8 @@ app.get('/usuario', verificarTokenAdmin, function(req,res){
 
         getUsuarios(idUsuario,ids,(result)=>{
 
+        console.log("USUARIOSSSSSSSSSSSSSSSS: ", result);
+
         for (let index = 0; index < result.length; index++) {
 
             getFotosPerfil(result[index],(user)=>{
