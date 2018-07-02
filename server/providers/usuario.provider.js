@@ -7,7 +7,8 @@ const Usuario = require('../models/usuario');
 // ===========================
 let getUsuarios = (idUsuario,ids,callback,callbackError)=> {
 
-    let condition =  idUsuario == 0 ? {borrado:false} : {borrado:false , 'usuario._id' : { $nin : ids}};
+    //let condition =  idUsuario == 0 ? {borrado:false} : {borrado:false , _id : { $nin : ids}};
+    let condition =  {_id : { $ne : '5b1991bf1a102b00147b9aae'}};
 
     //Usuario.find( condition, 'id nombre apellido email img kmConfig edadDesdeConfig edadHastaConfig notifMensajeConfig notifMatchConfig')
     // .exec((err, data) => {
