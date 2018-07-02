@@ -55,8 +55,6 @@ let  getLike = (idUsuarioEmisor,idUsuarioReceptor,callback,callbackError)=> {
 // ===========================
 let  getLikesPropios = (idUsuario,callback,callbackError)=> {
 
-    let ObjectId = require('mongoose').Types.ObjectId; 
-
     let condicion = {
         usuarioEmisor : new ObjectId(idUsuario)
     };   
