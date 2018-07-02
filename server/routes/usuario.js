@@ -37,7 +37,7 @@ app.get('/usuario', verificarTokenAdmin, function(req,res){
         let ids = new Array();
 
         likes.forEach(element => {
-            ids.push( new ObjectId(element.usuarioReceptor._id);
+            ids.push( new ObjectId(element.usuarioReceptor._id));
         });
 
         ids.push(new ObjectId(idUsuario));
