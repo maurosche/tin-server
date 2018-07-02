@@ -14,8 +14,6 @@ let  postLike = (idUsuarioEmisor,idUsuarioReceptor,callback,callbackError)=> {
         fecha : new Date()
     });
 
-    console.log("LIKE!!!!!!!!!!!!!!!!!!!!!!!!!!!!1 :",like);
-
     like.save((err, result) => {
 
         if (err) {
@@ -75,7 +73,7 @@ let  getLikesPropios = (idUsuario,callback,callbackError)=> {
             callback(result);
         })
 };
-
+ 
 module.exports = {
     postLike,
     getLikesPropios,
