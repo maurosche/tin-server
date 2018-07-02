@@ -10,6 +10,8 @@ const { verificarToken,verificarTokenAdmin } = require('../middlewares/autentica
 
 const app = express();
 
+let ObjectId = require('mongoose').Types.ObjectId; 
+
 let callbackError = (data,res)=>{
 
     //console.log('ERROR : ', data);
@@ -35,10 +37,10 @@ app.get('/usuario', verificarTokenAdmin, function(req,res){
         let ids = new Array();
 
         likes.forEach(element => {
-            ids.push(element.usuarioReceptor._id);
+            ids.push( new ObjectId(element.usuarioReceptor._id);
         });
 
-        ids.push(idUsuario);
+        ids.push(new ObjectId(idUsuario));
 
         getUsuarios(idUsuario,ids,(result)=>{        
 
