@@ -42,6 +42,8 @@ app.get('/usuario', verificarTokenAdmin, function(req,res){
 
         ids.push(new ObjectId(idUsuario));
 
+        console.log("IDSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS :",ids);
+
         getUsuarios(idUsuario,ids,(result)=>{        
 
         for (let index = 0; index < result.length; index++) {
