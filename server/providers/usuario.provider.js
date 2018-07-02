@@ -15,7 +15,8 @@ let getUsuarios = (idUsuario,ids,callback,callbackError)=> {
     let idsLikes = new Array();
 
     ids.forEach(element => {
-        idsLikes.push( new ObjectId(element.toString()));
+        idsLikes.push( element.toString());
+        console.log("CONDITIONNNNNNNNNNN element.toString() :",element.toString());
     });
 
     console.log("CONDITIONNNNNNNNNNN idsLikes :",idsLikes);
