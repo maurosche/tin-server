@@ -60,7 +60,7 @@ let  getLikesPropios = (idUsuario,callback,callbackError)=> {
     let condicion = {
         usuarioEmisor : new ObjectId(idUsuario)
     };   
-    
+
     Like.find(condicion)
         .populate('usuarioEmisor')
         .populate('usuarioReceptor')
