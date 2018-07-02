@@ -18,6 +18,8 @@ let getUsuarios = (idUsuario,ids,callback,callbackError)=> {
         idsLikes.push( new ObjectId(element.toString()));
     });
 
+    console.log("CONDITIONNNNNNNNNNN idsLikes :",idsLikes);
+
     let condition =  idUsuario == 0 ? {borrado:false} : {borrado:false , _id : { $nin : idsLikes}};
 
     console.log("CONDITIONNNNNNNNNNN:",condition);
