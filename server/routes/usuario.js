@@ -46,7 +46,7 @@ app.get('/usuario', verificarTokenAdmin, function(req,res){
             ids.push( element.usuarioReceptor._id);
         });
 
-        ids.push(new ObjectId(idUsuario));
+        ids.push(idUsuario);
 
         getUsuarios(idUsuario,ids,(result)=>{        
 
