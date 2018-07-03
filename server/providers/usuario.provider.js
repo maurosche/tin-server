@@ -10,19 +10,7 @@ let getUsuarios = (idUsuario,ids,callback,callbackError)=> {
 
     let condition =  idUsuario == 0 ? {borrado:false} : {borrado:false , _id : { $nin : ids}};
 
-    // Usuario.aggregate([
-    //     // Match your posts
-    //     { "$match": condition},    
-    //     // Project the fields you want, notice the logical conditions
-    //     { "$project": {
-    //         "_id": 1,
-    //         "fotos": 1,
-    //         "nombre" : 1,
-    //         "apellido" : 1, 
-    //         "email" : 1,
-    //         "img" : 1
-    //         }
-    //     }])
+
     Usuario.find( condition, 'id nombre apellido img')
         .exec((err, data) => {
 
@@ -51,7 +39,6 @@ let getUsuarios = (idUsuario,ids,callback,callbackError)=> {
 // ===========================
 let getUsuario = (idUsuario,callback,callbackError)=> {
 
-    console.log("GETUSUARIOS===================", idUsuario);
     let condition =  idUsuario == 0 ? {borrado:false} : {borrado:false , _id : { $ne : idUsuario}};
 
     Usuario.findById( idUsuario, 'id nombre apellido img')
