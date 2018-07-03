@@ -98,7 +98,7 @@ let  postFotosPerfil = (idUsuario,fotosList,callback,callbackError)=> {
         let pathImagen = './uploads/perfil/' + idUsuario + '/' + nombreArchivo ;
         let base64Data = fotosList[i].split(';base64,').pop();
 
-        console.log('=================pathImagen : ', pathImagen);       
+        console.log('=================pathImagen : ', pathImagen);  
       
         writeFile(pathImagen, base64Data, function(){
 
