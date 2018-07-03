@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const Usuario = require('../models/usuario');
 const { getUsuarios , postUsuario, putUsuario, login} = require('../providers/usuario.provider');
 const { getLikesPropios} = require('../providers/like.provider');
-const { getFotosPerfil} = require('../providers/foto.provider');
+const { getFotosPerfil, postFotosPerfil} = require('../providers/foto.provider');
 
 const { verificarToken,verificarTokenAdmin } = require('../middlewares/autenticacion');
 
@@ -114,7 +114,11 @@ app.put('/usuario', [verificarToken], function(req,res){
 
     putUsuario(usuario,(result)=>{
 
-        res.json({ok:true,result });
+        postFotosPerfil( usuario.idUsuario, usuario.fotos,(result)=>{
+
+            res.json({ok:true, result });        
+    
+        },(data)=>{callbackError(data,res)});
 
     },(data)=>{callbackError(data,res)});
     

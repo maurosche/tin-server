@@ -100,13 +100,16 @@ let  postFotosPerfil = (idUsuario,fotosList,callback,callbackError)=> {
 
         console.log('=================pathImagen : ', pathImagen);  
       
-        writeFile(pathImagen, base64Data, function(){
+        if (!fotosList[i].indexOf('http') >= 0) {
+            
+            writeFile(pathImagen, base64Data, function(){
 
-            console.log('GUARDADO!'); 
-
-        }, function(err) {
-            console.log(err);
-        });
+                console.log('GUARDADO!'); 
+    
+            }, function(err) {
+                console.log(err);
+            });
+        }
     }
 
     return callback(fotosListEnDisco);
