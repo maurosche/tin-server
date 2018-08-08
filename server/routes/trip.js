@@ -39,7 +39,7 @@ app.post('/trip', verificarToken, (req, res) => {
 
     let trip = req.body;
 
-        postTrip(trip,(result)=>{
+        postTrip(trip,(data)=>{
 
             res.json({ok:true,result : data});
 
