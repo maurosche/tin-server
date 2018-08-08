@@ -11,5 +11,6 @@ app.use( require('./usuario'));
 app.use( require('./chat'));
 app.use( require('./like'));
 app.use( require('./match'));
+app.use( require('./trip'));
 
 module.exports = app;
