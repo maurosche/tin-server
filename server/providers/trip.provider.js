@@ -1,4 +1,4 @@
-const Like = require('../models/trip');
+const Trip = require('../models/trip');
 let ObjectId = require('mongoose').Types.ObjectId; 
 
 // ===========================
