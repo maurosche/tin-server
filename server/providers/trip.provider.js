@@ -4,7 +4,7 @@ let ObjectId = require('mongoose').Types.ObjectId;
 // ===========================
 //  Agregar likes
 // ===========================
-let  postLike = (t,callback,callbackError)=> {
+let  postTrip = (t,callback,callbackError)=> {
 
     let trip = new Trip({
         nombre : t.nombre,
@@ -54,5 +54,6 @@ let  getTrips = (idUsuario,callback,callbackError)=> {
 
  
 module.exports = {
-    getTrips
+    getTrips,
+    postTrip
 };

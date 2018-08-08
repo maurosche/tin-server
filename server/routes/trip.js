@@ -1,9 +1,6 @@
 const express = require('express');
 
-const Match= require('../models/match');
-const { getChats} = require('../providers/chat.provider');
-const { getMatchs,postMatch} = require('../providers/match.provider');
-const { enviarMatch} = require('../providers/socket.provider');
+const { getTrips,postTrip} = require('../providers/match.provider');
 
 const { verificarToken } = require('../middlewares/autenticacion'); 
 
