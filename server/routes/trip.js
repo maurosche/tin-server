@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { getTrips,postTrip} = require('../providers/match.provider');
+const { getTrips,postTrip} = require('../providers/trip.provider');
 
 const { verificarToken } = require('../middlewares/autenticacion'); 
 
