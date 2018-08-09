@@ -38,7 +38,7 @@ let putTrip = (trip,callback,callbackError)=> {
 
     let tripEdit =  trip;//_.pick(trip, ['fechaEdicion']);
 
-    Trip.findByIdAndUpdate(tripEdit._id,(err,data) =>{    
+    Trip.findByIdAndUpdate(tripEdit._id,tripEdit,(err,data) =>{    
    
        if (err) {
            return callbackError(err);
