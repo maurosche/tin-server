@@ -65,9 +65,9 @@ app.put('/trip', verificarToken, (req, res) => {
 // ===========================
 app.delete('/trip', verificarToken, (req, res) => { 
 
-    let trip = req.body;
+    let idTrip = req.query.idTrip || 0;
 
-        deleteTrip(trip,(data)=>{
+        deleteTrip(idTrip,(data)=>{
 
             res.json({ok:true,result : data});
 

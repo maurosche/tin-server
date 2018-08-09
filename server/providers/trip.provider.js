@@ -51,14 +51,11 @@ let putTrip = (trip,callback,callbackError)=> {
 // ===========================
 //  Delete trip
 // ===========================
-let deleteTrip = (trip,callback,callbackError)=> {
+let deleteTrip = (idTrip,callback,callbackError)=> {
 
-    trip.borrado = true;
+    console.log("TRIPPPPPPPPPPPPPPPP PARA BORARRRRRRRRRRRRRRRRR : ",idTrip);
 
-    console.log("TRIPPPPPPPPPPPPPPPP PARA BORARRRRRRRRRRRRRRRRR : ",trip);
-    console.log("TRIPPPPPPPPPPPPPPPP PARA BORARRRRRRRRRRRRRRRRR : ",trip._id);
-
-    Trip.findByIdAndUpdate(trip._id,{borrado:true},{new:true},(err,data) =>{    
+    Trip.findByIdAndUpdate(idTrip,{borrado:true},{new:true},(err,data) =>{    
    
        if (err) {
            return callbackError(err);
