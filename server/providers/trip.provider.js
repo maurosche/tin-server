@@ -55,6 +55,9 @@ let deleteTrip = (trip,callback,callbackError)=> {
 
     trip.borrado = true;
 
+    console.log("TRIPPPPPPPPPPPPPPPP PARA BORARRRRRRRRRRRRRRRRR : ",trip);
+    console.log("TRIPPPPPPPPPPPPPPPP PARA BORARRRRRRRRRRRRRRRRR : ",trip._id);
+
     Trip.findByIdAndUpdate(trip._id,{borrado:true},{new:true},(err,data) =>{    
    
        if (err) {
