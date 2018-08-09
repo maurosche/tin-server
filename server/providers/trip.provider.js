@@ -46,7 +46,7 @@ let putTrip = (trip,callback,callbackError)=> {
    
        callback(data);
    });
-};
+}; 
 
 // ===========================
 //  Delete trip
