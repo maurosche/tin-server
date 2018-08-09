@@ -13,7 +13,7 @@ let  postTrip = (t,callback,callbackError)=> {
         lng :t.lng,
         pais : t.pais,
         provincia : t.provincia,
-        usuario : t.usuario,
+        usuario : ObjectId(t.usuario),
         fechaDesde : t.fechaDesde, 
         fechaHasta : t.fechaHasta,
         descripcion : t.descripcion,
