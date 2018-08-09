@@ -29,13 +29,10 @@ let callbackError = (data,res)=>{
 app.get('/usuarioMe', verificarTokenAdmin, function(req,res){
 
     let idUsuario = req.query.idUsuario || 0;
-    let count = 0;
-    let list = new Array();
 
-    try {        
+    try {       
 
-
-        getUsuario(idUsuario,ids,(result)=>{        
+        getUsuario(idUsuario,(result)=>{        
 
                     res.json({ok:true,result });
 
