@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { getTrips,postTrip,putTrip} = require('../providers/trip.provider');
+const { getTrips,postTrip,putTrip,deleteTrip} = require('../providers/trip.provider');
 
 const { verificarToken } = require('../middlewares/autenticacion'); 
 
@@ -54,6 +54,20 @@ app.put('/trip', verificarToken, (req, res) => {
     let trip = req.body;
 
         putTrip(trip,(data)=>{
+
+            res.json({ok:true,result : data});
+
+        },(data)=>{callbackError(data,res)});
+});
+
+// ===========================
+//  Elimina un trip
+// ===========================
+app.delete('/trip', verificarToken, (req, res) => { 
+
+    let trip = req.body;
+
+        deleteTrip(trip,(data)=>{
 
             res.json({ok:true,result : data});
 

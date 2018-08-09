@@ -48,6 +48,23 @@ let putTrip = (trip,callback,callbackError)=> {
    });
 };
 
+// ===========================
+//  Delete trip
+// ===========================
+let deleteTrip = (trip,callback,callbackError)=> {
+
+    trip.borrado = true;
+
+    Trip.findByIdAndUpdate(trip._id,trip,{new:true},(err,data) =>{    
+   
+       if (err) {
+           return callbackError(err);
+       }     
+   
+       callback(data);
+   });
+};
+
 
 // ===========================
 //  get trips
@@ -75,5 +92,6 @@ let  getTrips = (idUsuario,callback,callbackError)=> {
 module.exports = {
     getTrips,
     postTrip,
-    putTrip
+    putTrip,
+    deleteTrip
 };
