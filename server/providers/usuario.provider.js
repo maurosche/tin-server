@@ -10,7 +10,6 @@ let getUsuarios = (idUsuario,ids,callback,callbackError)=> {
 
     let condition =  idUsuario == 0 ? {borrado:false} : {borrado:false , _id : { $nin : ids}};
 
-
     Usuario.find( condition, 'id nombre apellido img')
         .exec((err, data) => {
 
@@ -41,7 +40,7 @@ let getUsuario = (idUsuario,callback,callbackError)=> {
 
     let condition =  idUsuario == 0 ? {borrado:false} : {borrado:false , _id : { $ne : idUsuario}};
 
-    Usuario.findById( idUsuario, 'id nombre apellido img')
+    Usuario.findById( idUsuario, 'id nombre apellido img kmConfig edadDesdeConfig edadHastaConfig fechaNacimiento notifMensajeConfig notifMatchConfig')
         .exec((err, data) => {
 
             if (err) {

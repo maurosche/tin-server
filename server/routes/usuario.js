@@ -2,7 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 
 const Usuario = require('../models/usuario');
-const { getUsuarios , postUsuario, putUsuario, login} = require('../providers/usuario.provider');
+const { getUsuario ,getUsuarios , postUsuario, putUsuario, login} = require('../providers/usuario.provider');
 const { getLikesPropios} = require('../providers/like.provider');
 const { getFotosPerfil, postFotosPerfil} = require('../providers/foto.provider');
 
@@ -26,16 +26,41 @@ let callbackError = (data,res)=>{
 //  Listar usuarios
 // ===========================
 
+app.get('/usuarioMe', verificarTokenAdmin, function(req,res){
+
+    let idUsuario = req.query.idUsuario || 0;
+    let count = 0;
+    let list = new Array();
+
+    try {        
+
+
+        getUsuario(idUsuario,ids,(result)=>{        
+
+                    res.json({ok:true,result });
+
+
+        },(data)=>{callbackError(data,res)});
+
+    } catch (error) {
+            
+        callbackError('Error al traer usuario',res);
+    }
+})
+
+// ===========================
+//  Listar usuarios
+// ===========================
+
 app.get('/usuario', verificarTokenAdmin, function(req,res){
 
     let idUsuario = req.query.idUsuario || 0;
     let count = 0;
     let list = new Array();
 
-    try {
-        
+    try {        
 
-    //Traigo usuarios a los que no le haya dado like
+    //Traigo usuarios a los que ya le haya dado like
     getLikesPropios(idUsuario,(likes)=>{
 
         let ids = new Array();
