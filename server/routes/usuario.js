@@ -30,9 +30,9 @@ app.get('/usuarioMe', verificarTokenAdmin, function(req,res){
 
     let idUsuario = req.query.idUsuario || 0;
 
-    try {       
+    try {
 
-        getUsuario(idUsuario,(result)=>{        
+        getUsuario(idUsuario,(result)=>{
 
                     res.json({ok:true,result });
 

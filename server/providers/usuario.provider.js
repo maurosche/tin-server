@@ -47,6 +47,8 @@ let getUsuario = (idUsuario,callback,callbackError)=> {
                 return callbackError(err);
             }     
 
+            data.fotos = [];
+
             callback(data);
         });
 };
