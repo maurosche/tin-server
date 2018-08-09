@@ -1,8 +1,9 @@
 const Trip = require('../models/trip');
 let ObjectId = require('mongoose').Types.ObjectId; 
+const _ = require('underscore');
 
 // ===========================
-//  Agregar likes
+//  Agregar trip
 // ===========================
 let  postTrip = (t,callback,callbackError)=> {
 
@@ -31,7 +32,25 @@ let  postTrip = (t,callback,callbackError)=> {
 };
 
 // ===========================
-//  Obtener likes
+//  Modifica un trip
+// ===========================
+let putTrip = (trip,callback,callbackError)=> {
+
+    let tripEdit =  trip;//_.pick(trip, ['fechaEdicion']);
+
+    Trip.findByIdAndUpdate(tripEdit._id,(err,data) =>{    
+   
+       if (err) {
+           return callbackError(err);
+       }     
+   
+       callback(data);
+   });
+};
+
+
+// ===========================
+//  get trips
 // ===========================
 let  getTrips = (idUsuario,callback,callbackError)=> {
 
@@ -55,5 +74,6 @@ let  getTrips = (idUsuario,callback,callbackError)=> {
  
 module.exports = {
     getTrips,
-    postTrip
+    postTrip,
+    putTrip
 };

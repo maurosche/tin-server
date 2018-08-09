@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { getTrips,postTrip} = require('../providers/trip.provider');
+const { getTrips,postTrip,putTrip} = require('../providers/trip.provider');
 
 const { verificarToken } = require('../middlewares/autenticacion'); 
 
@@ -40,6 +40,20 @@ app.post('/trip', verificarToken, (req, res) => {
     let trip = req.body;
 
         postTrip(trip,(data)=>{
+
+            res.json({ok:true,result : data});
+
+        },(data)=>{callbackError(data,res)});
+});
+
+// ===========================
+//  Modifica un trip
+// ===========================
+app.put('/trip', verificarToken, (req, res) => { 
+
+    let trip = req.body;
+
+        putTrip(trip,(data)=>{
 
             res.json({ok:true,result : data});
 
