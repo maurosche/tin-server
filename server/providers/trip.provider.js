@@ -55,7 +55,7 @@ let deleteTrip = (trip,callback,callbackError)=> {
 
     trip.borrado = true;
 
-    Trip.findByIdAndUpdate(trip._id,trip,{new:true},(err,data) =>{    
+    Trip.findByIdAndUpdate(trip._id,{borrado:true},{new:true},(err,data) =>{    
    
        if (err) {
            return callbackError(err);
