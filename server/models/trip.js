@@ -19,12 +19,17 @@ let matchSchema = new Schema({
     },
     provincia: { type: String
     },
-    fechaDesde :{
-        type : Date
+    Mes: { type: String
     },
-    fechaHasta :{
-        type : Date
+    Anio: { type: int
     },
+
+    // fechaDesde :{
+    //     type : Date
+    // },
+    // fechaHasta :{
+    //     type : Date
+    // },
     borrado: {
         type : Boolean,
         default : false
