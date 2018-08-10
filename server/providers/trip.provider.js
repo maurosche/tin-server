@@ -15,8 +15,10 @@ let  postTrip = (t,callback,callbackError)=> {
         pais : t.pais,
         provincia : t.provincia,
         usuario : ObjectId(t.usuario),
-        fechaDesde : t.fechaDesde, 
-        fechaHasta : t.fechaHasta,
+        // fechaDesde : t.fechaDesde, 
+        // fechaHasta : t.fechaHasta,
+        anio : t.anio,
+        mes : t.mes,
         descripcion : t.descripcion,
         borrado: false
       });
