@@ -12,19 +12,20 @@ let getUsuarios = (idUsuario,ids,callback,callbackError)=> {
 
 
     Usuario.aggregate([
-            { "$match": condition },
+            //{ "$match": condition },
             { $lookup: {from: 'trips', localField: '_id', foreignField: 'usuario', as: 'trips'}}  ,
-            {
-                "$project": {
-                "tripete": {
-                   $cond: {
-                      if: { $eq: [ "$trips.pais", "Argentina" ] },
-                      then: "ARGENTINA",
-                      else: "OTRO"
-                   }
-                }
-                }
-            }         
+            // { "$match": { "$trips.pais": "Argentina"} },
+            // {
+            //     "$project": {
+            //     "tripete": {
+            //        $cond: {
+            //           if: { $eq: [ "$trips.pais", "Argentina" ] },
+            //           then: "ARGENTINA",
+            //           else: "OTRO"
+            //        }
+            //     }
+            //     }
+            // }         
         ])
         .exec((err, usuarios) => {
 
