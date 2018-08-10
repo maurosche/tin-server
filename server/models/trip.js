@@ -21,7 +21,7 @@ let matchSchema = new Schema({
     },
     Mes: { type: String
     },
-    Anio: { type: int
+    Anio: { type: Number
     },
 
     // fechaDesde :{
