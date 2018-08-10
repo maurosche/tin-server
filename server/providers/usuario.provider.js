@@ -7,7 +7,7 @@ let ObjectId = require('mongoose').Types.ObjectId;
 //  Obtener usuarios
 // ===========================
 let getUsuarios = (idUsuario,ids,callback,callbackError)=> {
-
+    
     let condition =  idUsuario == 0 ? {borrado:false} : {borrado:false , _id : { $nin : ids}};
 
     Usuario.find( condition, 'id nombre apellido img')
@@ -47,9 +47,20 @@ let getUsuario = (idUsuario,callback,callbackError)=> {
                 return callbackError(err);
             }     
 
-            data.fotos = [];
+            let usuario = {
+                _id : data._id,
+                nombre : data.nombre,
+                apellido : data.apellido,
+                img : data.img,
+                kmConfig: data.kmConfig,
+                edadDesdeConfig: data.edadDesdeConfig,
+                edadHastaConfig: data.edadHastaConfig,
+                notifMensajeConfig: edad.notifMensajeConfig,
+                notifMatchConfig: edad.notifMatchConfig,
+                fotos : []
+            }
 
-            callback(data);
+            callback(usuario);
         });
 };
 
