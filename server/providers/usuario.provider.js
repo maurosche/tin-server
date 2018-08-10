@@ -55,8 +55,8 @@ let getUsuario = (idUsuario,callback,callbackError)=> {
                 kmConfig: data.kmConfig,
                 edadDesdeConfig: data.edadDesdeConfig,
                 edadHastaConfig: data.edadHastaConfig,
-                notifMensajeConfig: edad.notifMensajeConfig,
-                notifMatchConfig: edad.notifMatchConfig,
+                notifMensajeConfig: data.notifMensajeConfig,
+                notifMatchConfig: data.notifMatchConfig,
                 fotos : []
             }
 
