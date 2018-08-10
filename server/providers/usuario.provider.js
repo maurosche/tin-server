@@ -18,8 +18,8 @@ let getUsuarios = (idUsuario,ids,callback,callbackError)=> {
                 "tripete": {
                    $cond: {
                       if: { $eq: [ "$trips.pais", "Argentina" ] },
-                      then: "ESARGENTINA",
-                      else: "NOLOESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSs"
+                      then: "$trips.pais",
+                      else: "$trips.pais"
                    }
                 }
                 }
