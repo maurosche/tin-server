@@ -10,27 +10,40 @@ let getUsuarios = (idUsuario,ids,callback,callbackError)=> {
     
     let condition =  idUsuario == 0 ? {borrado:false} : {borrado:false , _id : { $nin : ids}};
 
-    Usuario.find( condition, 'id nombre apellido img')
-        .exec((err, data) => {
+    Usuario.aggregate([
+            { "$match": condicion },
+            { $lookup: {from: 'trips', localField: '_id', foreignField: 'usuario', as: 'trips'}}  
+        ])
+        .exec((err, usuarios) => {
 
-            if (err) {
-                return callbackError(err);
-            }     
+        if (err) {
+            return callbackError(err);
+        }
 
-            let list = new Array();
+        callback(usuarios);
+    });
 
-            data.forEach(element => {
-                list.push({
-                    _id : element._id,
-                    nombre : element.nombre,
-                    apellido : element.apellido,
-                    img : element.img,
-                    fotos : []
-                });
-            });        
+    // Usuario.find( condition, 'id nombre apellido img')
+    //     .exec((err, data) => {
 
-            callback(list);
-        });
+    //         if (err) {
+    //             return callbackError(err);
+    //         }     
+
+    //         let list = new Array();
+
+    //         data.forEach(element => {
+    //             list.push({
+    //                 _id : element._id,
+    //                 nombre : element.nombre,
+    //                 apellido : element.apellido,
+    //                 img : element.img,
+    //                 fotos : []
+    //             });
+    //         });        
+
+    //         callback(list);
+    //     });
 };
 
 // ===========================
