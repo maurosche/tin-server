@@ -15,11 +15,11 @@ let getUsuarios = (idUsuario,ids,callback,callbackError)=> {
             { "$match": condition },
             {
                 "$project": {
-                "trips": {
+                "tripete": {
                    $cond: {
                       if: { $eq: [ "$trips.pais", "Argentina" ] },
-                      then: "ES ARGENTINA",
-                      else: "NO LO ESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSs"
+                      then: "ESARGENTINA",
+                      else: "NOLOESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSs"
                    }
                 }
                 }
