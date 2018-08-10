@@ -11,7 +11,7 @@ let getUsuarios = (idUsuario,ids,callback,callbackError)=> {
     let condition =  idUsuario == 0 ? {borrado:false} : {borrado:false , _id : { $nin : ids}};
 
     Usuario.aggregate([
-            { "$match": condicion },
+            { "$match": condition },
             { $lookup: {from: 'trips', localField: '_id', foreignField: 'usuario', as: 'trips'}}  
         ])
         .exec((err, usuarios) => {
