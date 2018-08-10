@@ -14,7 +14,7 @@ let getUsuarios = (idUsuario,ids,callback,callbackError)=> {
     Usuario.aggregate([
             { "$match": condition },
             { $lookup: {from: 'trips', localField: '_id', foreignField: 'usuario', as: 'trips'}}  ,
-            //{ "$match": aftercondition },
+            { "$match": aftercondition },
             // {
             //     "$project": {
             //     "tripete": {
