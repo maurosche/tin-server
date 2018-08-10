@@ -10,20 +10,20 @@ let getUsuarios = (idUsuario,ids,callback,callbackError)=> {
     
     let condition =  idUsuario == 0 ? {borrado:false} : {borrado:false , _id : { $nin : ids}};
 
+
     Usuario.aggregate([
             { "$match": condition },
             {
-                "$group": {
-                    "_id": {
-                        "trips": "$trips"
-                    },
-                    "trips": { $first : "$trips"},
-                    "esArgentina":  { "$eq": [ "$pais", "Argentina" ] },                                                    
-                                                        1,  
-                                                        0
-                                            
+                "$project": {
+                "trips": {
+                   $cond: {
+                      if: { $eq: [ "$trips.pais", "Argentina" ] },
+                      then: "ES ARGENTINA",
+                      else: "NO LO ESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSs"
+                   }
                 }
-            }, 
+                }
+            },  
             { $lookup: {from: 'trips', localField: '_id', foreignField: 'usuario', as: 'trips'}}  
         ])
         .exec((err, usuarios) => {
