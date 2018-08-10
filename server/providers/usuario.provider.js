@@ -13,16 +13,17 @@ let getUsuarios = (idUsuario,ids,callback,callbackError)=> {
     Usuario.aggregate([
             { "$match": condition },
             {
-                "$project": {
-                "trips": {
-                   $cond: {
-                      if: { $eq: [ "Argentina", "$pais" ] },
-                      then: "ES EN ARGENTINA",
-                      else: "NO ES EN ARGENTINA!!!!!!!!!!!!!!!!!!!!"
-                   }
+                "$group": {
+                    "_id": {
+                        "trips": "$trips"
+                    },
+                    "trips": { $first : "$trips"},
+                    "esArgentina":  { "$cond": [ { "$eq": [ "$pais", "Argentina" ] },                                                    
+                                                        1,  
+                                                        0
+                        ]}                    
                 }
-                }
-            },
+            }, 
             { $lookup: {from: 'trips', localField: '_id', foreignField: 'usuario', as: 'trips'}}  
         ])
         .exec((err, usuarios) => {
