@@ -19,9 +19,8 @@ let matchSchema = new Schema({
     },
     provincia: { type: String
     },
-    mes: { type: String
-    },
-    anio: { type: Number
+    fecha :{
+        type : Date
     },
 
     // fechaDesde :{
